@@ -1,0 +1,17 @@
+{
+  "name": "bloggy",
+  "version": "1.0.0",
+  "description": "Blog api built using MERN Stack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ReactJS",
+    "Express",
+    "MongoDB",
+    "NodeJS"
+  ],
+  "author": "Varun Malaviya",
+  "license": "ISC"
+}
