@@ -36,6 +36,7 @@
 /* styling for the homepage component */
 .home{
     display: flex;
+    border: 1px solid black;
 }
 
 /* styling for the sidebar component */
@@ -45,6 +46,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 30%;
 }
 
 .sidebarItem{
@@ -80,8 +82,48 @@
     cursor: pointer;
 }
 
-/* styling for posts component */
+/* styling for posts component/component that displays a selection of posts */
 .posts{
-    width: 60%;
+    width: 70%;
     border: 1px solid black;
+}
+
+/* styling for the post component/individual post displays */
+.post{
+    width: 100%;
+    margin: 20px 0px;
+    border-bottom: 1px solid rgb(112, 128, 144);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.postImg{
+    width: auto;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.postMeta{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.postCategories{
+    margin: 5px;
+    font-size: 14px;
+    color: gold;
+}
+
+.postCategory{
+    margin: 5px;
+    padding: 8px;
+    background: skyblue;
+    border-radius: 20px;
+    cursor: pointer;
 }

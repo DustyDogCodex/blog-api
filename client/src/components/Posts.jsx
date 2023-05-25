@@ -1,10 +1,15 @@
-import { Container } from "react-bootstrap";
+import { Post } from "./Post";
 
 function Posts(){
     return(
-        <Container className="posts">
-            <h1>Posts</h1>
-        </Container>
+        <div className="posts">
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+        </div>
     )
 }
 

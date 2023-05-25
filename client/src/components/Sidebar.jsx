@@ -1,8 +1,6 @@
-import { Container } from "react-bootstrap"
-
 function Sidebar(){
     return(
-        <Container className="sidebar">
+        <div className="sidebar">
             <div className="sidebarItem">
                 <span className="sidebarTitle">About me</span>
                 <img className="sidebarImage" src="https://e1.pxfuel.com/desktop-wallpaper/467/133/desktop-wallpaper-pin-on-anime-y-mas-anime-avatar-girl.jpg" alt="avatar" />
@@ -19,7 +17,7 @@ function Sidebar(){
                     <li className="sidebarListItem">Movies</li>
                 </ul>
             </div>
-        </Container>
+        </div>
     )
 }
 
