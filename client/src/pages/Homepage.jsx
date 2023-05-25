@@ -1,12 +1,17 @@
 import { Container } from "react-bootstrap"
 import { HeaderComponent } from "../components/HeaderComponent"
+import { Posts } from "../components/Posts"
+import { Sidebar } from "../components/Sidebar"
 
 function Homepage(){
     return(
-        <Container>
+        <>
             <HeaderComponent />
-            <h1>This is our Homepage</h1>
-        </Container>
+            <Container className="home">
+                <Posts/>
+                <Sidebar />
+            </Container>
+        </>
     )
 }
 
