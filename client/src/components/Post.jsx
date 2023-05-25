@@ -12,6 +12,9 @@ function Post(){
                 <hr/>
                 <span className="postCreatedAt">1 hr ago</span>
             </div>
+            <div className="postSummary">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, reiciendis iure iusto aut ipsum ipsam necessitatibus quis optio tempora eaque rem obcaecati saepe sit ut totam officia itaque iste perferendis.
+            </div>
         </div>
     )
 }

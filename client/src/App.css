@@ -19,10 +19,12 @@
 }
 
 .headerTitleSmall{
+    font-family: 'Permanent Marker', cursive;
     font-size: 20px;
 }
 
 .headerTitleLarge {
+    font-family: 'Permanent Marker', cursive;
     font-size: 60px;
 }
 
@@ -90,7 +92,6 @@
 
 /* styling for the post component/individual post displays */
 .post{
-    width: 100%;
     margin: 20px 0px;
     border-bottom: 1px solid rgb(112, 128, 144);
     display: flex;
@@ -117,6 +118,7 @@
 .postCategories{
     margin: 5px;
     font-size: 14px;
+    font-family: 'Raleway', sans-serif;;
     color: gold;
 }
 
@@ -126,4 +128,29 @@
     background: skyblue;
     border-radius: 20px;
     cursor: pointer;
+}
+
+.postTitle{
+    font-size: 28px;
+    margin-top: 10px;
+    font-family: 'Permanent Marker', cursive;
+    cursor: pointer;
+}
+
+.postCreatedAt{
+    font-size: 16px;
+    font-family: 'Roboto Mono', monospace;
+    font-style: italic;
+    color: rgb(112, 128, 144);
+    margin-bottom: 10px;
+}
+
+.postSummary{
+    padding: 15px;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

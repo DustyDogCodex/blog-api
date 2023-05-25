@@ -7,7 +7,7 @@ function Homepage(){
     return(
         <>
             <HeaderComponent />
-            <Container className="home">
+            <Container fluid='xxl' className="home">
                 <Posts/>
                 <Sidebar />
             </Container>
