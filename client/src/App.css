@@ -1,5 +1,6 @@
 * {
     font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
 }
 
 /* styling for header component */
@@ -153,4 +154,18 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+/* styling for PostPage page component. This is the page where a selected blog post will be displayed */
+.postPage{
+    display: flex;
+    border: 1px solid black;
+}
+
+.blogPost{
+    padding: 20px;
+}
+
+.blogImg{
+    width: 100%;
 }
