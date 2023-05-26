@@ -217,3 +217,12 @@
     font-size: 40px;
     font-weight: 900;
 }
+
+/* styling for the Account page */
+.account{
+    display: flex;
+}
+
+.accountContent{
+    flex: 9;
+}
