@@ -7,7 +7,7 @@ function Navigation(){
                 <Navbar.Brand href="#home">Bloggy</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
+                    <Nav className="me-auto d-flex align-items-center justify-content-center">
                         <Nav.Link href="#home">Home</Nav.Link>
                         <Nav.Link href="#about">About</Nav.Link>
                         <Nav.Link href="#contact">Contact</Nav.Link>
@@ -23,6 +23,13 @@ function Navigation(){
                                 Separated link
                             </NavDropdown.Item>
                         </NavDropdown>
+                        <Nav.Link href="#account">
+                            <img 
+                                className="navbarImage" 
+                                src="https://e1.pxfuel.com/desktop-wallpaper/467/133/desktop-wallpaper-pin-on-anime-y-mas-anime-avatar-girl.jpg" 
+                                alt="avatar" 
+                            />
+                        </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

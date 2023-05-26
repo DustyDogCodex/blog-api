@@ -17,7 +17,7 @@ function AddBlog() {
             className="headerImage" 
             src="https://images.pexels.com/photos/368260/pexels-photo-368260.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
             alt="nightime mountain view" 
-            style={{borderRadius:'20px'}}
+            style={{borderRadius:'20px', marginTop:'20px'}}
         />
         <Formik
             validationSchema={schema}
