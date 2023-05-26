@@ -2,17 +2,23 @@ import { Formik } from 'formik';
 import * as yup from 'yup'
 import { Container, Button, Col, Form, InputGroup, Row } from 'react-bootstrap';
 
-//using schema for validation from yup. Formik will validate the user input against this using the validationSchema prop. Formik has built in compatibility with yup for this.
-const schema = yup.object().shape({
-  blogTitle: yup.string().required(),
-  blogText: yup.string().required(),
-  username: yup.string().required(),
-  file: yup.mixed().required(),
-});
-
 function AddBlog() {
-  return (
+    //using schema for validation from yup. Formik will validate the user input against this using the validationSchema prop. Formik has built in compatibility with yup for this.
+    const schema = yup.object().shape({
+        blogTitle: yup.string().required(),
+        blogText: yup.string().required(),
+        username: yup.string().required(),
+        file: yup.mixed().required(),
+    });
+
+    return (
     <Container>
+        <img 
+            className="headerImage" 
+            src="https://images.pexels.com/photos/368260/pexels-photo-368260.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+            alt="nightime mountain view" 
+            style={{borderRadius:'20px'}}
+        />
         <Formik
             validationSchema={schema}
             onSubmit={console.log}
@@ -32,7 +38,8 @@ function AddBlog() {
             isValid,
             errors,
         }) => (
-        <Form noValidate onSubmit={handleSubmit}>
+        <Form className='mt-5 mb-5' noValidate onSubmit={handleSubmit}>
+            <h1 style={{fontFamily:'Permanent Marker, cursive', color:'green'}}>Create a new blog post!</h1>
             <Row className="mb-3">
             <Form.Group
               as={Col}
@@ -73,12 +80,6 @@ function AddBlog() {
                     isValid={touched.blogText && !errors.blogText}
                     isInvalid={!!errors.blogText}
                 />
-                <Form.Control.Feedback type='valid' tooltip>
-                    Looks good!
-                </Form.Control.Feedback>
-                <Form.Control.Feedback type='invalid' tooltip>
-                    {errors.blogText}
-                </Form.Control.Feedback>
             </Form.Group>
             
             <Form.Group 
