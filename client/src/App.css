@@ -189,3 +189,25 @@
     width:20px;
     cursor:pointer;
 }
+
+.blogInfo{
+    margin: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.blogDate{
+    margin-left: 10px;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.blogText{
+    font-size: 18px;
+}
+
+.blogText::first-letter{
+    margin-left: 50px;
+    font-size: 40px;
+    font-weight: 900;
+}
