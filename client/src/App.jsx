@@ -6,12 +6,13 @@ import { PostPage } from './pages/PostPage';
 import { AddBlog } from './pages/AddBlog';
 import { Account } from './pages/Account';
 import { Login } from './pages/Login';
+import { Register } from './pages/Register';
 
 function App() {
   return (
     <>
       <Navigation/>
-      <Login/>
+      <Register/>
     </>
   )
 }

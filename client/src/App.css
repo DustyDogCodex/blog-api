@@ -228,7 +228,7 @@
     flex: 9;
 }
 
-/* styling for login page */
+/* styling for login page and register pages. They use the same class since styling for both of these pages is identical */
 .login{
     height: 95vh;
     width: 100vw;

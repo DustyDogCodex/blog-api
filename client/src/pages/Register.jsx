@@ -1,9 +1,9 @@
 import { Form, Button } from "react-bootstrap";
 
-function Login(){
+function Register(){
     return(
         <div className="login">
-            <h1 style={{fontFamily:'Permanent Marker, cursive', fontSize:'60px', marginBottom:'30px'}}>Login</h1>
+            <h1 style={{fontFamily:'Permanent Marker, cursive', fontSize:'60px', marginBottom:'30px'}}>Create a New Account</h1>
             <Form className="d-flex flex-column">
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
@@ -16,15 +16,15 @@ function Login(){
                 </Form.Group>
     
                 <Button variant="primary" type="submit">
-                    Login
+                    Register
                 </Button>
             </Form>
-            <p style={{marginTop:'30px'}}>Dont have an account?</p>
+            <p style={{marginTop:'30px'}}>Already have an account?</p>
             <Button variant="success" type="button">
-                Register
+                Login
             </Button>
         </div>
     )
 }
 
-export { Login }
+export { Register }
