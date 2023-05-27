@@ -220,9 +220,26 @@
 
 /* styling for the Account page */
 .account{
+    margin-top: 50px;
     display: flex;
 }
 
 .accountContent{
     flex: 9;
+}
+
+/* styling for login page */
+.login{
+    height: 95vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(
+        rgba(255,255,255,0.6),
+        rgba(255, 255, 255,0.6)),
+        url(https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
