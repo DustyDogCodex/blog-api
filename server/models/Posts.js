@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Schema = mongoose.schema()
+const { Schema } = mongoose
 
 //this is our schema for storing blog post information
 //using timestamps to get createdAt and updatedAt info for user accounts

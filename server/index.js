@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const multer = require('multer')
+const authRoute = require('./routes/auth')
 const dotenv = require('dotenv')
 dotenv.config()
 
@@ -9,8 +10,10 @@ const app = express()
 
 //mongodb connection setup
 mongoose.connect(process.env.MONGO_URL)
-    .then(console.log('Established connection to database!'))
-    .catch(err => console.log(err))
+.then(console.log('Established connection to database!'))
+.catch(err => console.log(err))
+
+app.use('/auth', authRoute)
 
 const port = process.env.PORT || 5000
 
