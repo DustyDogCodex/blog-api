@@ -1,16 +1,15 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose
 
-//this is our schema for storing blog post information
-//using timestamps to get createdAt and updatedAt info for user accounts
-//setting title to unique to prevent posts from having duplicate titles.
-//setting categories to type Arraya since users can add multiple categories to their posts.
+//this is our schema for storing categories that were assigned to posts
+//very simple model since we only need a name for the category and nothing else
 
 const CategorySchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     }
-}, { timestamps: true } )
+})
 
 module.exports = mongoose.model('Category', CategorySchema)
