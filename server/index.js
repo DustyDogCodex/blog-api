@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const multer = require('multer')
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
+const postRoute = require('./routes/posts')
 const dotenv = require('dotenv')
 dotenv.config()
 
@@ -16,9 +17,12 @@ mongoose.connect(process.env.MONGO_URL)
 .then(console.log('Established connection to database!'))
 .catch(err => console.log(err))
 
-//route for authenticating users through /register and /login routes.
-app.use('/auth', authRoute)
-app.use('/user', userRoute)
+//routes for registering and authenticating users
+app.use('/auth', authRoute)     
+//routes for user account CRUD ops
+app.use('/user', userRoute)  
+//routes for blog post CRUD ops   
+app.use('/post', postRoute)     
 
 const port = process.env.PORT || 5000
 
