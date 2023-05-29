@@ -3,6 +3,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const multer = require('multer')
 const authRoute = require('./routes/auth')
+const userRoute = require('./routes/users')
 const dotenv = require('dotenv')
 dotenv.config()
 
@@ -17,6 +18,7 @@ mongoose.connect(process.env.MONGO_URL)
 
 //route for authenticating users through /register and /login routes.
 app.use('/auth', authRoute)
+app.use('/user', userRoute)
 
 const port = process.env.PORT || 5000
 
