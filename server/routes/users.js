@@ -6,6 +6,17 @@ const Router = express.Router()
 const User = require('../models/Users')
 const Post = require('../models/Posts')
 
+//Route for getting user account info
+Router.get(
+    '/:id',
+    asyncHandler(async(req,res,next) => {
+        const user = await User.findById(req.params.id)
+        //taking out the password as it shouldn't be shown publicly. All other info from the selected user document is passed into the others object using javascript's rest property.
+        const { password, ...others } = user._doc
+        res.status(200).json(others)
+    })
+)
+
 //Route for updating user information
 Router.put(
     '/:id', 
