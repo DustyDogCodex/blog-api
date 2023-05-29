@@ -2,11 +2,40 @@ const express = require('express')
 const asyncHandler = require('express-async-handler')
 const Router = express.Router()
 
-const User = require('../models/Users')
 const Post = require('../models/Posts')
 
 //Route for getting a blog post
-/* Router.get() */
+Router.get(
+    '/:id',
+    asyncHandler(async(req,res,next) => {
+        const post = await Post.findById(req.params.id)
+        res.status(200).json(post)
+    })
+)
+
+//Route for getting ALL blog posts belonging to a user or a category
+Router.get(
+    '/',
+    asyncHandler(async(req,res,next) => {
+        //identifying the query sent in the request
+        const username = req.query.username
+        const category = req.query.category
+        
+        //posts will be assigned depending on what query is received.
+        //if no query, it will fetch all posts.
+        let posts
+        if(username){
+            posts = await Post.find({ username })
+        } else if (category) {
+            posts = await Post.find({ categories: {
+                $in: [category]
+            } })
+        } else {
+            posts = await Post.find()
+        }
+        res.status(200).json(posts)
+    })
+)
 
 //Route for creating new blog posts
 Router.post(
