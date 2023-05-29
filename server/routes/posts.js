@@ -40,8 +40,24 @@ Router.put(
     })
 )
 
-
 //Route for deleting a blog post
-/* Router.delete() */
+Router.delete(
+    '/:id',
+    asyncHandler(async(req,res,next) => {
+        const post = await Post.findById(req.params.id)
+        
+        //checking to see if the correct user is deleting this post
+        if(post.username === req.body.username){
+            try {
+                await Post.findByIdAndDelete(req.params.id) 
+                res.status(200).json('Post was deleted!')
+            } catch (error) {
+                res.status(500).json(error)
+            }
+        } else {
+            res.status(401).json('You can only delete your own posts!')
+        }
+    })
+)
 
 module.exports = Router
