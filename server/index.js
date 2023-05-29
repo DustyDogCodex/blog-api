@@ -7,12 +7,15 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 const app = express()
+app.use(cors())
+app.use(express.json())
 
 //mongodb connection setup
 mongoose.connect(process.env.MONGO_URL)
 .then(console.log('Established connection to database!'))
 .catch(err => console.log(err))
 
+//route for authenticating users through /register and /login routes.
 app.use('/auth', authRoute)
 
 const port = process.env.PORT || 5000
