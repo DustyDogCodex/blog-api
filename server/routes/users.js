@@ -31,7 +31,7 @@ Router.put(
             //update saved user info
             const updatedUser = await User.findByIdAndUpdate(req.params.id, {
                 $set: req.body
-            })
+            }, { new: true })
             res.status(200).json(updatedUser)
         } else {
             //if userId is different from params, this is not the correct users account!
