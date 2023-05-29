@@ -34,6 +34,23 @@ Router.post(
 )
 
 //Login existing users
+Router.post(
+    '/login', 
+    asyncHandler( async(req,res,next) => {
+
+        //locate username from req in our DB
+        const user = await User.findOne({ username: req.body.username })
+        
+        //if username doesn't exist, send an error
+        !user && res.status(400).json("Invalid username!")
+        
+        //if username exists, compare passwords
+        const authenticate = await bcrypt.compare(req.body.password, user.password)
+        !authenticate && res.status(400).json("Incorrect Credentials! Please try again!")
+        
+        res.status(200).json(authenticate)
+    })
+)
 
 
 module.exports = Router
