@@ -1,14 +1,28 @@
 import { Container } from "react-bootstrap"
 import { HeaderComponent } from "../components/HeaderComponent"
-import { Posts } from "../components/Posts"
 import { Sidebar } from "../components/Sidebar"
+import { PostsDisplay } from "../components/PostsDisplay"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 function Homepage(){
+    //using state to select posts to display
+    const [blogs, setBlogs] = useState([])
+
+    //fetching data from our API
+    useEffect(() => {
+        const getBlogs = async() => {
+            const res = await axios.get('http://localhost:5000/post/')
+            console.log(res)
+        }
+        getBlogs()
+    }, [])
+
     return(
         <>
             <HeaderComponent />
             <Container fluid='xxl' className="home">
-                <Posts/>
+                <PostsDisplay/>
                 <Sidebar />
             </Container>
         </>

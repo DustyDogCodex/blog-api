@@ -1,8 +1,8 @@
 import { Post } from "./Post";
 
-function Posts(){
+function PostsDisplay(){
     return(
-        <div className="posts">
+        <div className="postsDisplay">
             <Post />
             <Post />
             <Post />
@@ -11,4 +11,4 @@ function Posts(){
     )
 }
 
-export { Posts }
+export { PostsDisplay }
