@@ -1,5 +1,11 @@
 /* This is the post component for controlling/styling individual posts. For the component that displays posts, please go to Posts.jsx */
-function Post(){
+function Post({ title, summary, username, categories }){
+    
+    //mapping categories to display as an array
+    const categoryElements = categories.map((cat,index) => 
+        <span key={index} className="postCategory">{cat}</span>
+    )
+
     return(
         <div className="post">
             <img 
@@ -8,14 +14,13 @@ function Post(){
                 className="postImg" 
             />
             <div className="postContent">
-                <div className="postTitle">Majestic Mountain</div>
+                <div className="postTitle">{title}</div>
                 <div className="postCategories">
-                    <span className="postCategory">Mountain</span>
-                    <span className="postCategory">Nature</span>
+                    {categoryElements}
                 </div>
                 <span className="postCreatedAt">1 hr ago</span>
                 <div className="postSummary">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, reiciendis iure iusto aut ipsum ipsam necessitatibus quis optio tempora eaque rem obcaecati saepe sit ut totam officia itaque iste perferendis.
+                    {summary}
                 </div>
             </div>
         </div>

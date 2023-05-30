@@ -13,7 +13,8 @@ function Homepage(){
     useEffect(() => {
         const getBlogs = async() => {
             const res = await axios.get('http://localhost:5000/post/')
-            console.log(res)
+            //setting fetched data as current blogs to be displayed
+            setBlogs(res.data)
         }
         getBlogs()
     }, [])
@@ -22,7 +23,7 @@ function Homepage(){
         <>
             <HeaderComponent />
             <Container fluid='xxl' className="home">
-                <PostsDisplay/>
+                <PostsDisplay blogs={blogs}/>
                 <Sidebar />
             </Container>
         </>
