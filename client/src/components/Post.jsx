@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom"
+
 /* This is the post component for controlling/styling individual posts. For the component that displays posts, please go to Posts.jsx */
-function Post({ title, summary, username, categories }){
-    
+function Post({ id, title, summary, username, categories, created }){
+
     //mapping categories to display as an array
     const categoryElements = categories.map((cat,index) => 
         <span key={index} className="postCategory">{cat}</span>
@@ -14,11 +16,18 @@ function Post({ title, summary, username, categories }){
                 className="postImg" 
             />
             <div className="postContent">
-                <div className="postTitle">{title}</div>
+                <Link 
+                    to={`/post/${id}`} 
+                    style={{textDecoration:'none', color:'black'}}
+                >
+                    <div className="postTitle">{title}</div>
+                </Link>
                 <div className="postCategories">
                     {categoryElements}
                 </div>
-                <span className="postCreatedAt">1 hr ago</span>
+                <span className="postCreatedAt">
+                    { new Date(created).toLocaleDateString() }
+                </span>
                 <div className="postSummary">
                     {summary}
                 </div>

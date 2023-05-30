@@ -1,8 +1,29 @@
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import axios from "axios"
+import { useEffect, useState } from "react"
+import { useLocation } from "react-router-dom"
 
 function BlogPost(){
+
+    //using location to identify id of the blog post
+    //then using api call to fetch and display that individual post
+    const location = useLocation()
+    const blogId = location.pathname.split('/')[2]
+
+    //using state variable to store currently displayed post's information
+    const [currentPost, setCurrentPost] = useState([])
+
+    //api call to fetch the selected blog post
+    useEffect(() => {
+        const getPost = async() => {
+        const res = await axios.get(`http://localhost:5000/post/${blogId}`)
+        setCurrentPost(res.data)
+        }
+        getPost()
+    }, [blogId])
+    
     return(
         <div className="blogPost">
             <img 
@@ -11,7 +32,7 @@ function BlogPost(){
                 className="blogImg"
             />
             <h1 className="blogTitle">
-                Title for this blog post.
+                {currentPost.title}
                 <div className="blogCRUD">
                     <FontAwesomeIcon 
                         icon={faPenToSquare} 
@@ -26,11 +47,15 @@ function BlogPost(){
                 </div>
             </h1>
             <div className="blogInfo">
-                <span className="blogAuthor">Written by <strong>Maximus Dickus</strong></span>
-                <span className="blogDate">Created 1 hr ago</span>
+                <span className="blogAuthor">
+                    Written by <strong>{currentPost.username}</strong>
+                </span>
+                <span className="blogDate">
+                    {new Date(currentPost.createdAt).toLocaleDateString()}
+                </span>
             </div>
             <p className="blogText">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. In, cupiditate? Mollitia aspernatur distinctio doloremque facere porro natus illum doloribus consequuntur atque voluptatum at sint saepe tempora cumque, aliquam nihil numquam aliquid obcaecati eligendi, harum earum, voluptatibus amet. Culpa odio omnis eveniet nihil quod soluta ea animi aliquam! Totam fugiat iusto, nemo similique nesciunt dolorem ipsam corrupti minus, deleniti, minima tempore! Porro, distinctio voluptatem nostrum perspiciatis recusandae excepturi rem consectetur voluptatum magni totam hic eius voluptas ab doloremque ratione ea provident atque illo quos, neque, optio fugit? Fugiat sunt beatae quisquam adipisci modi aliquid, praesentium id voluptate aspernatur, possimus eligendi mollitia eaque esse rerum asperiores amet hic quos quis vel. Delectus dolorum officiis corrupti, voluptate illum nobis placeat cumque, sunt reprehenderit natus, explicabo iste accusamus excepturi. Dolores ab in eos repellat provident veritatis! Fugit, aperiam deserunt. Deserunt qui debitis iusto perferendis accusantium inventore nihil culpa animi quidem modi, tenetur quam quos laborum omnis aliquid quaerat laudantium officiis mollitia rerum quae voluptates odio consequatur non. Temporibus delectus repudiandae facilis doloribus provident nobis, fugiat, pariatur atque harum magni saepe eaque natus consectetur voluptatibus voluptatem. Nostrum quia ipsam ipsum? Alias earum corrupti voluptates optio reprehenderit nisi similique dolorem labore quam magnam nulla, aliquam recusandae officia atque totam a cupiditate dignissimos eveniet est laboriosam libero consectetur aliquid soluta! Ratione doloribus mollitia molestiae neque quaerat consectetur ea repellendus nemo cumque labore sit quam, saepe quia quisquam dolorem facere laboriosam maiores unde. Reiciendis ducimus iure sint voluptatem. Fugit, ad fugiat quisquam hic temporibus magnam! Reprehenderit, aut quisquam?
+                {currentPost.summary}
             </p>
         </div>
     )
