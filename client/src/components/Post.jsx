@@ -23,13 +23,13 @@ function Post({ id, title, summary, username, categories, created }){
                     <div className="postTitle">{title}</div>
                 </Link>
                 <div className="postCategories">
-                    {categoryElements}
+                    { categoryElements }
                 </div>
                 <span className="postCreatedAt">
                     { new Date(created).toLocaleDateString() }
                 </span>
                 <div className="postSummary">
-                    {summary}
+                    { summary }
                 </div>
             </div>
         </div>

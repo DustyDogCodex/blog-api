@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom"
 
 function BlogPost(){
 
-    //using location to identify id of the blog post
+    //using useLocation to identify id of the blog post
     //then using api call to fetch and display that individual post
     const location = useLocation()
     const blogId = location.pathname.split('/')[2]
@@ -51,7 +51,7 @@ function BlogPost(){
                     Written by <strong>{currentPost.username}</strong>
                 </span>
                 <span className="blogDate">
-                    {new Date(currentPost.createdAt).toLocaleDateString()}
+                   Created on {new Date(currentPost.createdAt).toLocaleDateString()}
                 </span>
             </div>
             <p className="blogText">
