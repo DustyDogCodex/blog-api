@@ -3,7 +3,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 function BlogPost(){
 
@@ -48,7 +48,13 @@ function BlogPost(){
             </h1>
             <div className="blogInfo">
                 <span className="blogAuthor">
-                    Written by <strong>{currentPost.username}</strong>
+                    Written by 
+                    <Link 
+                        to={`/?username=${currentPost.username}`} 
+                        style={{textDecoration:"none", color:'black'}}
+                    >
+                        <strong> {currentPost.username} </strong>
+                    </Link>
                 </span>
                 <span className="blogDate">
                    Created on {new Date(currentPost.createdAt).toLocaleDateString()}

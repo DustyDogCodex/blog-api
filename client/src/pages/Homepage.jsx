@@ -9,6 +9,8 @@ function Homepage(){
     //using state to select posts to display
     const [blogs, setBlogs] = useState([])
 
+    //
+
     //fetching data from our API
     useEffect(() => {
         const getBlogs = async() => {

@@ -16,12 +16,9 @@ function Sidebar(){
     },[])
 
     //mapping categories into an array for display
-    console.log('these are our categories', categories)
     const categoriesElements = categories.map((cat,index) => 
         <div key={index} className="sidebarListItem"> {cat.name} </div>
     )
-
-    console.log(categoriesElements)
 
     return(
         <div className="sidebar">
