@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGO_URL)
 .then(console.log('Established connection to database!'))
 .catch(err => console.log(err))
 
-//setting up file system storage for user uploaded files.
+//setting up storage for user uploaded files using multer.
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "server/images")

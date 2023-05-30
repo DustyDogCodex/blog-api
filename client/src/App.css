@@ -15,7 +15,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: rgb(112, 128, 144);
 }
 
 .headerComponent{
@@ -45,6 +44,7 @@
 /* styling for the homepage component */
 .home{
     display: flex;
+    justify-content: center;
     border: 1px solid black;
 }
 
@@ -55,7 +55,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 30%;
+    width: 25%;
+    max-height: 800px;
 }
 
 .sidebarItem{
@@ -93,16 +94,15 @@
 
 /* styling for posts component/component that displays a selection of posts */
 .posts{
-    width: 70%;
+    width: 75%;
     border: 1px solid black;
 }
 
 /* styling for the post component/individual post displays */
 .post{
-    margin: 20px 0px;
+    padding: 20px;
     border-bottom: 1px solid rgb(112, 128, 144);
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -114,7 +114,7 @@
     border-radius: 20px;
 }
 
-.postMeta{
+.postContent{
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -153,10 +153,11 @@
 }
 
 .postSummary{
-    padding: 15px;
+    margin-top: 5px;
+    padding: 0px 5px;
     text-align: center;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;

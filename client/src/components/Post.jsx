@@ -7,17 +7,16 @@ function Post(){
                 alt="mountain at sunset" 
                 className="postImg" 
             />
-            <div className="postMeta">
+            <div className="postContent">
+                <div className="postTitle">Majestic Mountain</div>
                 <div className="postCategories">
                     <span className="postCategory">Mountain</span>
                     <span className="postCategory">Nature</span>
                 </div>
-                <div className="postTitle">Majestic Mountain</div>
-                <hr/>
                 <span className="postCreatedAt">1 hr ago</span>
-            </div>
-            <div className="postSummary">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, reiciendis iure iusto aut ipsum ipsam necessitatibus quis optio tempora eaque rem obcaecati saepe sit ut totam officia itaque iste perferendis.
+                <div className="postSummary">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, reiciendis iure iusto aut ipsum ipsam necessitatibus quis optio tempora eaque rem obcaecati saepe sit ut totam officia itaque iste perferendis.
+                </div>
             </div>
         </div>
     )

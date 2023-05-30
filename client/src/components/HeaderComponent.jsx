@@ -2,8 +2,8 @@ function HeaderComponent(){
     return(
         <div className="headerComponent">
             <div className="headerTitle">
-                <span className="headerTitleSmall">React and Node!</span>
-                <span className="headerTitleLarge">Blog</span>
+                <span className="headerTitleSmall">Welcome to</span>
+                <span className="headerTitleLarge">Bloggy!</span>
             </div>
             <img 
                 className="headerImage" 
