@@ -3,6 +3,10 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const multer = require('multer')
 const dotenv = require('dotenv')
+const passport = require('passport')
+const LocalStrategy = require('passport-local')
+const bcrypt = require('bcrypt')
+const session = require('express-session')
 //all imported routes
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
@@ -19,6 +23,56 @@ app.use(express.json())
 mongoose.connect(process.env.MONGO_URL)
 .then(console.log('Established connection to database!'))
 .catch(err => console.log(err))
+
+//import User model
+const User = require('./models/Users')
+
+//setting up passport local strategy
+passport.use(
+  new LocalStrategy(async(username, password, done) => {
+    try {
+      const user = await User.findOne({ username: username });
+      if (!user) {
+        return done(null, false, { message: "Incorrect username" });
+      };
+        bcrypt.compare(password, user.password, (err, res) => {
+        if (res) {
+            // passwords match! log user in
+            return done(null, user)
+        } else {
+            // passwords do not match!
+            return done(null, false, { message: "Incorrect password" })
+        }         
+        })
+    } catch(err) {
+      return done(err);
+    };
+  })
+);
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async function(id, done) {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch(err) {
+    done(err);
+  };
+});
+
+app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.urlencoded({ extended: false }));
+
+//creating local variables using middleware
+app.use(function(req, res, next) {
+  res.locals.currentUser = req.user;
+  next();
+});
 
 //setting up storage for user uploaded files using multer.
 const storage = multer.diskStorage({
