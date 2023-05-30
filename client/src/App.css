@@ -82,8 +82,7 @@
 
 .sidebarList{
     list-style: none;
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
+    display: flex;
     gap: 25px;
     text-align: center;
 }

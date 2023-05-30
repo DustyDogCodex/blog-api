@@ -9,17 +9,19 @@ function Sidebar(){
     //fetching available categories
     useEffect(() => {
         const getCategories = async() => {
-            const res = await axios.get('http://localhost:5000/category')
+            const res = await axios.get('http://localhost:5000/category/')
             setCategories(res.data)
-            console.log('these are our categories',categories)
         }
         getCategories()
     },[])
 
     //mapping categories into an array for display
-    let categoriesElements = categories.map((cat,index) => {
-                        <li key={index} className="sidebarListItem">{cat.name}</li>
-                    })
+    console.log('these are our categories', categories)
+    const categoriesElements = categories.map((cat,index) => 
+        <div key={index} className="sidebarListItem"> {cat.name} </div>
+    )
+
+    console.log(categoriesElements)
 
     return(
         <div className="sidebar">
@@ -36,9 +38,9 @@ function Sidebar(){
             </div>
             <div className="sidebarItem">
                 <span className="sidebarTitle">Categories</span>
-                <ul className="sidebarList">
+                <div className="sidebarList">
                     { categoriesElements }
-                </ul>
+                </div>
             </div>
         </div>
     )
