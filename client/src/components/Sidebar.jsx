@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
+import { Link } from "react-router-dom"
 
 function Sidebar(){
 
@@ -16,8 +17,15 @@ function Sidebar(){
     },[])
 
     //mapping categories into an array for display
+    //adding Link so we can view all posts in a particular category at once.
     const categoriesElements = categories.map((cat,index) => 
-        <div key={index} className="sidebarListItem"> {cat.name} </div>
+        <Link 
+            key={ index }
+            to={`/?category=${cat.name}`}
+            className="link"
+        >
+            <div className="sidebarListItem"> {cat.name} </div>
+        </Link>
     )
 
     return(

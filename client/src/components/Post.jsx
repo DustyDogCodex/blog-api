@@ -18,7 +18,7 @@ function Post({ id, title, summary, username, categories, created }){
             <div className="postContent">
                 <Link 
                     to={`/post/${id}`} 
-                    style={{textDecoration:'none', color:'black'}}
+                    className="link"
                 >
                     <div className="postTitle">{title}</div>
                 </Link>

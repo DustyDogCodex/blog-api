@@ -51,13 +51,13 @@ function BlogPost(){
                     Written by 
                     <Link 
                         to={`/?username=${currentPost.username}`} 
-                        style={{textDecoration:"none", color:'black'}}
+                        className="link"
                     >
                         <strong> {currentPost.username} </strong>
                     </Link>
                 </span>
                 <span className="blogDate">
-                   Created on {new Date(currentPost.createdAt).toLocaleDateString()}
+                   Created on { new Date(currentPost.createdAt).toLocaleDateString() }
                 </span>
             </div>
             <p className="blogText">

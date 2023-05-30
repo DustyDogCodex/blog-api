@@ -244,3 +244,9 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+/* this class is to remove the color and text decoration from link/anchor tags */
+.link{
+    text-decoration: none;
+    color: black;
+}
