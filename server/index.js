@@ -20,6 +20,26 @@ mongoose.connect(process.env.MONGO_URL)
 .then(console.log('Established connection to database!'))
 .catch(err => console.log(err))
 
+//setting up file system storage for user uploaded files.
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "server/images")
+    }, 
+    filename: (req, file, cb) => {
+        cb(null, "hello.jpg")
+    }
+})
+
+//setting up multer to store uploaded files.
+const upload = multer({ storage: storage })
+app.post(
+    '/upload',
+    upload.single("file"),
+    (req,res) => {
+        res.status(200).json('File uploaded!')
+    }
+)
+
 //routes for registering and authenticating users
 app.use('/auth', authRoute)     
 //routes for user account CRUD ops
