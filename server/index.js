@@ -63,7 +63,12 @@ passport.deserializeUser(async function(id, done) {
   };
 });
 
-app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+//setting up express sessions and initializing passportjs
+app.use(session({ 
+  secret: process.env.SESSION_SECRET,
+  resave: false, 
+  saveUninitialized: true 
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));

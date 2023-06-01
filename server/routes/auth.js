@@ -1,7 +1,6 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler')
 const passport = require('passport')
-const LocalStrategy = require('passport-local')
 const bcrypt = require('bcrypt')
 const Router = express.Router()
 
@@ -33,24 +32,23 @@ Router.post(
     })
 )
 
-//Login existing users
+//Login existing users using passport local strategy
 Router.post(
     '/login', 
-    asyncHandler( async(req,res,next) => {
-
-        //locate username from req in our DB
-        const user = await User.findOne({ username: req.body.username })
-        
-        //if username doesn't exist, send an error
-        !user && res.status(400).json("Invalid username!")
-        
-        //if username exists, compare passwords
-        const authenticate = await bcrypt.compare(req.body.password, user.password)
-        !authenticate && res.status(400).json("Incorrect Credentials! Please try again!")
-        
-        res.status(200).json(authenticate)
+    passport.authenticate("local", {
+    successRedirect: "http://localhost:5173/",
+    failureRedirect: "http://localhost:5173/login"
     })
 )
 
+//logout user 
+Router.get("/log-out", (req, res, next) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("http://localhost:5173/");
+  });
+})
 
 module.exports = Router
