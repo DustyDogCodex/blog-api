@@ -7,6 +7,7 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const bcrypt = require('bcrypt')
 const session = require('express-session')
+const flash = require('express-flash')
 //all imported routes
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
@@ -18,6 +19,7 @@ dotenv.config()
 const app = express()
 app.use(cors())
 app.use(express.json())
+app.use(flash())
 
 //mongodb connection setup
 mongoose.connect(process.env.MONGO_URL)

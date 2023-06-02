@@ -41,6 +41,18 @@ Router.post(
     })
 )
 
+//simple get request to check is a user is authenticated
+Router.get(
+    '/login-success',
+    asyncHandler((req,res,next) => {
+        if(req.isAuthenticated()){
+            res.status(200).json('true')
+        } else {
+            res.status(401).json('false')
+        }
+    })
+)
+
 //logout user 
 Router.get("/log-out", (req, res, next) => {
   req.logout(function (err) {

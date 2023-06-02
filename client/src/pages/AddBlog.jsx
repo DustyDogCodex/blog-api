@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import * as yup from 'yup'
+import * as yup from 'yup';
 import { Container, Button, Col, Form, InputGroup, Row } from 'react-bootstrap';
 
 function AddBlog() {
@@ -54,6 +54,7 @@ function AddBlog() {
                     placeholder='Enter the title for your post'
                     value={values.blogTitle}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     isValid={touched.blogTitle && !errors.blogTitle}
                     isInvalid={!!errors.blogTitle}
                 />
@@ -77,9 +78,13 @@ function AddBlog() {
                     rows={10}
                     value={values.blogText}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     isValid={touched.blogText && !errors.blogText}
                     isInvalid={!!errors.blogText}
                 />
+                <Form.Control.Feedback type="invalid" tooltip>
+                    {errors.blogText}
+                </Form.Control.Feedback>
             </Form.Group>
             
             <Form.Group 
@@ -97,6 +102,7 @@ function AddBlog() {
                         name="username"
                         value={values.username}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         isInvalid={!!errors.username}
                     />
                     <Form.Control.Feedback type="invalid" tooltip>
@@ -113,6 +119,7 @@ function AddBlog() {
               required
               name="file"
               onChange={handleChange}
+              onBlur={handleBlur}
               isInvalid={!!errors.file}
             />
             <Form.Control.Feedback type="invalid" tooltip>
