@@ -20,9 +20,7 @@ Router.post(
         //passing req info + hashed pasword into User model
         const newUser = new User({
             username: req.body.username,
-            email: req.body.email,
-            password: hashedPassword,
-            avatar: req.body.avatar
+            password: hashedPassword
         })
 
         //saving newUser to db
