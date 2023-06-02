@@ -14,6 +14,10 @@ function Register(){
     const [password2Alert, setPassword2Alert] = useState(false)
     const [passwordMismatch, setPasswordMismatch] = useState(false)
 
+    //state variables for successfull and failed registration
+    const [success, setSuccess] = useState(false)
+    const [fail, setFail] = useState(false)
+
     //onChange handling functions
     function changeUsername(e){
         setUsername(e.target.value)
@@ -27,11 +31,15 @@ function Register(){
 
     //sending post request with user info to backend
     async function sendInfo(){
-        const res = await axios.post(
+        return  await axios.post(
             'http://localhost:5000/auth/register',
             { username, password })
+                .then(res => {
+                    const data = res.data
+                    data == 'failed' ? setFail(true) : setSuccess(true)
+                }) 
+                .catch(err => console.log(err))
 
-        console.log(res.data)
     }
 
     //handling submit. this will also toggle bootstrap alerts is any field is left empty
@@ -121,6 +129,23 @@ function Register(){
                         Passwords do not match. Please try again.
                     </Alert>
                 </Form.Group>
+
+                <Alert 
+                    className="mt-3" 
+                    variant="success" 
+                    show={success} 
+                    onClose={() => setSuccess(false)}
+                    dismissible>
+                    User account successfully created!
+                </Alert>
+                <Alert 
+                    className="mt-3" 
+                    variant="warning" 
+                    show={fail} 
+                    onClose={() => setFail(false)}
+                    dismissible>
+                    User name already exists! Please choose a different username!
+                </Alert>
     
                 <Button variant="primary" type="submit">
                     Register

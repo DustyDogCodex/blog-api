@@ -12,21 +12,29 @@ Router.post(
     '/register', 
     asyncHandler( async(req,res,next) => {
         
-        //generating salt
-        const salt = await bcrypt.genSalt(10)
-        //hashing password
-        const hashedPassword = await bcrypt.hash(req.body.password, salt)
+        //if username already exists, a 418 status is sent back because you can't brew coffee in a teapot. The json message is 'failed' which will trigger a bootstrap alert on our frontend. 
+        const invalidUsername = User.findOne({ username: req.body.username })
+        if(invalidUsername){
+            /* res.status(418) */
+            res.send('failed')
+        } else {
+            //username is unique, we can proceed with saving user information
+            //generating salt
+            const salt = await bcrypt.genSalt(10)
+            //hashing password
+            const hashedPassword = await bcrypt.hash(req.body.password, salt)
 
-        //passing req info + hashed pasword into User model
-        const newUser = new User({
-            username: req.body.username,
-            password: hashedPassword
-        })
+            //passing req info + hashed pasword into User model
+            const newUser = new User({
+                username: req.body.username,
+                password: hashedPassword
+            })
 
-        //saving newUser to db
-        const user = await newUser.save()
+            //saving newUser to db
+            const user = await newUser.save()
 
-        res.status(200).json(user)
+            res.send('success')  
+        }
     })
 )
 
