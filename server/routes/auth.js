@@ -12,10 +12,11 @@ Router.post(
     '/register', 
     asyncHandler( async(req,res,next) => {
         
-        //if username already exists, a 418 status is sent back because you can't brew coffee in a teapot. The json message is 'failed' which will trigger a bootstrap alert on our frontend. 
-        const invalidUsername = User.findOne({ username: req.body.username })
+        //if username already exists, a 418 status is sent back because you can't brew coffee in a teapot. The route will respond with a 'failed' message which will trigger a bootstrap alert on our frontend. 
+        const invalidUsername = await User.findOne({ username: req.body.username })
         if(invalidUsername){
             /* res.status(418) */
+            console.log(invalidUsername)
             res.send('failed')
         } else {
             //username is unique, we can proceed with saving user information
@@ -33,6 +34,7 @@ Router.post(
             //saving newUser to db
             const user = await newUser.save()
 
+            //if user account is successfully created, the route will send a success message that will trigger a bootstap alert on the frontend letting the user know an account was created.
             res.send('success')  
         }
     })

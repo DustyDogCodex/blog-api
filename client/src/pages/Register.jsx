@@ -37,12 +37,17 @@ function Register(){
                 .then(res => {
                     const data = res.data
                     data == 'failed' ? setFail(true) : setSuccess(true)
+                    if(data == 'success') {
+                        setTimeout(() => {
+                            window.location.replace('/login')
+                        }, 3000)
+                    } 
                 }) 
                 .catch(err => console.log(err))
 
     }
 
-    //handling submit. this will also toggle bootstrap alerts is any field is left empty
+    //handling submit. this will also toggle bootstrap alerts if any field is left empty
     function handleSubmit(e){
         e.preventDefault()
         if(!username || !password || !password2){
@@ -136,7 +141,7 @@ function Register(){
                     show={success} 
                     onClose={() => setSuccess(false)}
                     dismissible>
-                    User account successfully created!
+                    User account successfully created! Redirecting to login ... 
                 </Alert>
                 <Alert 
                     className="mt-3" 
