@@ -1,5 +1,6 @@
 import { Form, Button, Alert } from "react-bootstrap";
 import { useState } from "react";
+import { LinkContainer } from "react-router-bootstrap";
 
 function Login(){
     //using state variables to keep track of user input.
@@ -80,9 +81,12 @@ function Login(){
                     </Button>
                 </Form>
                 <p style={{marginTop:'30px'}}>Dont have an account?</p>
-                <Button variant="success" type="submit">
-                    Register
-                </Button>
+                
+                <LinkContainer to='/register'>
+                    <Button variant="success" type="submit">
+                        Register
+                    </Button>
+                </LinkContainer>
         </div>
     )
 }

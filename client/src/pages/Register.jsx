@@ -1,6 +1,7 @@
 import { Form, Button, Alert } from "react-bootstrap"
 import { useState } from "react"
 import axios from "axios"
+import { LinkContainer } from "react-router-bootstrap"
 
 function Register(){
     //using state variables to keep track of user input.
@@ -151,15 +152,17 @@ function Register(){
                     dismissible>
                     User name already exists! Please choose a different username!
                 </Alert>
-    
+
                 <Button variant="primary" type="submit">
                     Register
                 </Button>
             </Form>
             <p style={{marginTop:'30px'}}>Already have an account?</p>
-            <Button variant="success" type="button">
-                Login
-            </Button>
+            <LinkContainer to='/login'>
+                <Button variant="success" type="button">
+                    Login
+                </Button>
+            </LinkContainer>
         </div>
     )
 }
