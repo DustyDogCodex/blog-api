@@ -6,8 +6,8 @@ import axios from "axios";
 
 function Login(){
     //using useRef to store user info returned from API. These values will not be displayed anywhere so useRef is perfect for them.
-    const userRef = useRef()
-    const passwordRef = useRef()
+    /* const userRef = useRef()
+    const passwordRef = useRef() */
     const { dispatch, fetching } = useContext(MyContext)
 
     //using state variables to keep track of user input.
@@ -33,8 +33,21 @@ function Login(){
             {
                 username,
                 password
-            })
-            .then(res => console.log(res))
+            }
+        )
+            /* .then(res => console.log(res)) */
+    }
+
+    //getting user info
+    async function getUser(){
+        return await axios.get(
+            'http://localhost:5000/auth/login/success',
+            {
+                username,
+                password
+            }
+        )
+            /* .then(res => console.log(res)) */
     }
 
     //handling submit. this will also toggle bootstrap alerts is any field is left empty
@@ -46,9 +59,8 @@ function Login(){
         } else {
             /* dispatch({ type: "START_LOGIN" }) */
             verifyUser()
-
+            getUser()
         }
-        
     }
 
     return(

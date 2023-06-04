@@ -6,6 +6,7 @@ const Router = express.Router()
 
 //importing UserSchema
 const User = require('../models/Users')
+CLIENT_URL = 'http://localhost:5173'
 
 //Register new users
 Router.post(
@@ -43,23 +44,53 @@ Router.post(
 //Login existing users using passport local strategy
 Router.post(
     '/login', 
-    passport.authenticate("local"),
-    (req,res,next) => {
-        
+    async (req,res,next) => {
+        passport.authenticate("local", async(err,user,info) => {
+            try {
+            if (err || !user) {
+                const error = new Error("An error occurred.");
+
+                return next(error);
+            }
+
+            req.login(user, { session: false }, async (error) => {
+                if (error) return next(error);
+
+                const body = { _id: user._id, username: user.username };
+                const token = jwt.sign({ user: body }, process.env.SECRET, {
+                expiresIn: "1d",
+            });
+
+        return res.json({ token });
+      });
+    } catch (error) {
+      return next(error);
+    }
+  })(req, res, next);
+})
+
+//simple get request to check if a user is authenticated and retrieve user information
+Router.get(
+    '/login/success',
+    (req,res) => {
+        if(req.user) {
+            res.json({
+                success: true,
+                message: "success",
+                user: req.user,
+                cookies: req.cookies
+            });
+        }
     }
 )
 
-//simple get request to check if a user is authenticated
-Router.get(
-    '/login-success',
-    asyncHandler((req,res,next) => {
-        if(req.isAuthenticated()){
-            res.send('true')
-        } else {
-            res.send('false')
-        }
-    })
-)
+// Similar to login/success except a fail message is sent with no user info.
+Router.get("/login/failed", (req, res) => {
+  res.status(401).json({
+    success: false,
+    message: "fail"
+  });
+});
 
 //logout user 
 Router.get("/log-out", (req, res, next) => {
@@ -67,7 +98,7 @@ Router.get("/log-out", (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect("http://localhost:5173/");
+    res.redirect(CLIENT_URL);
   });
 })
 

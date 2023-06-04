@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const multer = require('multer')
 const dotenv = require('dotenv')
 const passport = require('passport')
-const LocalStrategy = require('passport-local')
+const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt')
 const session = require('express-session')
 const flash = require('express-flash')
@@ -19,11 +19,11 @@ const categoryRoute = require('./routes/category')
 dotenv.config()
 
 const app = express()
-app.use(cors({
-  origin: "http://localhost:5173", // allow to server to accept request from different origin
+app.use(cors(/* {
+  origin: "http://localhost:5173/", // allow to server to accept request from different origin
   methods: "GET,HEAD,PUT,POST,DELETE",
   credentials: true // allow session cookie from browser to pass through
-}))
+} */))
 app.use(express.json())
 app.use(flash())
 // parse cookies
@@ -68,7 +68,7 @@ passport.use(
 );
 
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, user._id);
 });
 
 passport.deserializeUser(async function(id, done) {
@@ -84,7 +84,8 @@ passport.deserializeUser(async function(id, done) {
 app.use(session({ 
   secret: process.env.SESSION_SECRET,
   resave: false, 
-  saveUninitialized: true 
+  saveUninitialized: true,
+  cookie: { secure: true } 
 }));
 app.use(passport.initialize());
 app.use(passport.session());
