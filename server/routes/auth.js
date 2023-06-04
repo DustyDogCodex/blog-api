@@ -43,20 +43,20 @@ Router.post(
 //Login existing users using passport local strategy
 Router.post(
     '/login', 
-    passport.authenticate("local", {
-    successRedirect: "http://localhost:5173/",
-    failureRedirect: "http://localhost:5173/login"
-    })
+    passport.authenticate("local"),
+    (req,res,next) => {
+        
+    }
 )
 
-//simple get request to check is a user is authenticated
+//simple get request to check if a user is authenticated
 Router.get(
     '/login-success',
     asyncHandler((req,res,next) => {
         if(req.isAuthenticated()){
-            res.status(200).json('true')
+            res.send('true')
         } else {
-            res.status(401).json('false')
+            res.send('false')
         }
     })
 )

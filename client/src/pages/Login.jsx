@@ -1,8 +1,15 @@
 import { Form, Button, Alert } from "react-bootstrap";
-import { useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { LinkContainer } from "react-router-bootstrap";
+import { MyContext } from "../Context/MyContext";
+import axios from "axios";
 
 function Login(){
+    //using useRef to store user info returned from API. These values will not be displayed anywhere so useRef is perfect for them.
+    const userRef = useRef()
+    const passwordRef = useRef()
+    const { dispatch, fetching } = useContext(MyContext)
+
     //using state variables to keep track of user input.
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -19,14 +26,29 @@ function Login(){
         setPassword(e.target.value)
     }
 
+    //function for sending request to verify and log in user
+    async function verifyUser(){
+        return await axios.post(
+            'http://localhost:5000/auth/login',
+            {
+                username,
+                password
+            })
+            .then(res => console.log(res))
+    }
+
     //handling submit. this will also toggle bootstrap alerts is any field is left empty
     function handleSubmit(e){
         e.preventDefault()
         if(!username || !password){
             username.length === 0 ? setUsernameAlert(true) : ''
             password.length === 0 ? setPasswordAlert(true) : '' 
+        } else {
+            /* dispatch({ type: "START_LOGIN" }) */
+            verifyUser()
+
         }
-        console.log(username,password)
+        
     }
 
     return(
@@ -81,7 +103,7 @@ function Login(){
                     </Button>
                 </Form>
                 <p style={{marginTop:'30px'}}>Dont have an account?</p>
-                
+
                 <LinkContainer to='/register'>
                     <Button variant="success" type="submit">
                         Register
