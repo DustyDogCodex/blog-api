@@ -41,33 +41,20 @@ Router.post(
     })
 )
 
-//Login existing users using passport local strategy
+//Login existing users. Using bcrypt compare now instead of passport local
+//app is small enough to justify not using passport
 Router.post(
     '/login', 
-    async (req,res,next) => {
-        passport.authenticate("local", async(err,user,info) => {
-            try {
-            if (err || !user) {
-                const error = new Error("An error occurred.");
+    asyncHandler( async (req,res,next) => {
+        const user = await User.findOne({ username: req.body.username });
+        !user && res.status(400).json("Wrong credentials!");
 
-                return next(error);
-            }
+        const validated = await bcrypt.compare(req.body.password, user.password);
+        !validated && res.status(400).json("Wrong credentials!");
 
-            req.login(user, { session: false }, async (error) => {
-                if (error) return next(error);
-
-                const body = { _id: user._id, username: user.username };
-                const token = jwt.sign({ user: body }, process.env.SECRET, {
-                expiresIn: "1d",
-            });
-
-        return res.json({ token });
-      });
-    } catch (error) {
-      return next(error);
-    }
-  })(req, res, next);
-})
+        const { password, ...others } = user._doc;
+        res.status(200).json(others);
+}))
 
 //simple get request to check if a user is authenticated and retrieve user information
 Router.get(

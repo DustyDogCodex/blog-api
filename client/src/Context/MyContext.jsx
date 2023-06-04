@@ -5,7 +5,7 @@ import LoginReducer from './LoginReducer';
 
 const INITIAL_STATE = {
     user: null,
-    fetching: false,
+    isFetching: false,
     error: false
 }
 
@@ -19,8 +19,9 @@ export const ContextProvider = ({ children }) => {
         <MyContext.Provider 
             value={{
                 user: state.user, 
-                fetching: state.fetching, 
-                error: state.error
+                fetching: state.isFetching, 
+                error: state.error,
+                dispatch
             }}
         > 
             {children} 

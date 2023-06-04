@@ -5,7 +5,7 @@ function LoginReducer(state, action){
         case 'START_LOGIN': {
             return {
                 user: null,
-                fetching: true,
+                isFetching: true,
                 error: false
             }
         }
@@ -13,7 +13,7 @@ function LoginReducer(state, action){
         case 'SUCCESS_LOGIN': {
             return {
                 user: action.payload,
-                fetching: false,
+                isFetching: false,
                 error: false
             }
         }
@@ -21,7 +21,7 @@ function LoginReducer(state, action){
         case 'FAIL_LOGIN': {
             return {
                 user: null,
-                fetching: true,
+                isFetching: true,
                 error: true
             }
         }

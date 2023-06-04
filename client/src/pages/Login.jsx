@@ -8,7 +8,7 @@ function Login(){
     //using useRef to store user info returned from API. These values will not be displayed anywhere so useRef is perfect for them.
     /* const userRef = useRef()
     const passwordRef = useRef() */
-    const { dispatch, fetching } = useContext(MyContext)
+    const { user, dispatch, isFetching } = useContext(MyContext)
 
     //using state variables to keep track of user input.
     const [username, setUsername] = useState('')
@@ -26,18 +26,6 @@ function Login(){
         setPassword(e.target.value)
     }
 
-    //function for sending request to verify and log in user
-    async function verifyUser(){
-        return await axios.post(
-            'http://localhost:5000/auth/login',
-            {
-                username,
-                password
-            }
-        )
-            /* .then(res => console.log(res)) */
-    }
-
     //getting user info
     async function getUser(){
         return await axios.get(
@@ -51,18 +39,30 @@ function Login(){
     }
 
     //handling submit. this will also toggle bootstrap alerts is any field is left empty
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.preventDefault()
         if(!username || !password){
             username.length === 0 ? setUsernameAlert(true) : ''
             password.length === 0 ? setPasswordAlert(true) : '' 
         } else {
-            /* dispatch({ type: "START_LOGIN" }) */
-            verifyUser()
-            getUser()
+            dispatch({ type: "START_LOGIN" })
+            const res = await axios.post(
+            'http://localhost:5000/auth/login',
+            {
+                username,
+                password
+            })
+            .then(res => {
+                dispatch({ type: "SUCCESS_LOGIN", payload: res.data })
+            }) 
+            .catch(err => {
+                dispatch({ type: "FAIL_LOGIN" })
+            })
+            /* getUser() */
         }
     }
 
+    console.log(user)
     return(
         <div className="login">
                 <h1 style={{

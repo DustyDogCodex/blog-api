@@ -19,11 +19,7 @@ const categoryRoute = require('./routes/category')
 dotenv.config()
 
 const app = express()
-app.use(cors(/* {
-  origin: "http://localhost:5173/", // allow to server to accept request from different origin
-  methods: "GET,HEAD,PUT,POST,DELETE",
-  credentials: true // allow session cookie from browser to pass through
-} */))
+app.use(cors())
 app.use(express.json())
 app.use(flash())
 // parse cookies
