@@ -8,6 +8,8 @@ const LocalStrategy = require('passport-local')
 const bcrypt = require('bcrypt')
 const session = require('express-session')
 const flash = require('express-flash')
+const cookieSession = require("cookie-session");
+const cookieParser = require("cookie-parser"); // parse cookie header
 //all imported routes
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
@@ -24,6 +26,15 @@ app.use(cors({
 }))
 app.use(express.json())
 app.use(flash())
+// parse cookies
+app.use(cookieParser());
+app.use(
+  cookieSession({
+    name: "session",
+    keys: process.env.COOKIE_KEY,
+    maxAge: 24 * 60 * 60 * 100
+  })
+);
 
 //mongodb connection setup
 mongoose.connect(process.env.MONGO_URL)
