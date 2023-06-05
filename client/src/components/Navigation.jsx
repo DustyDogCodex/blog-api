@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useEffect } from "react";
 import { Navbar, Container, NavDropdown, Nav, Button } from "react-bootstrap"
 
 function Navigation(){
@@ -7,7 +6,8 @@ function Navigation(){
     const user = true;
 
     //function to log user out and invalidate set cookies.
-    async function logout() {
+    async function logout(e) {
+        e.preventDefault()
         const res = await axios.get('http://localhost:5000/auth/logout')
         console.log(res)
     }

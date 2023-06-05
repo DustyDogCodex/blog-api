@@ -28,18 +28,6 @@ function Homepage(){
         getBlogs()
     }, [ searchQuery ])
 
-    //fetching user account info if user is logged in
-    //maybe use react-cookies to get cookies?????
-    useEffect(() =>{
-        const getProfile = async() => {
-            const res = axios.get('http://localhost:5000/auth/profile',{ withCredentials: true })
-            .then(res => {
-                console.log(res.data.username)
-            })
-        }
-        getProfile()
-    }, [])
-
     return(
         <>
             <HeaderComponent />
