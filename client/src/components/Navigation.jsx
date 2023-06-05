@@ -1,8 +1,16 @@
-import { Navbar, Container, NavDropdown, Nav, NavLink } from "react-bootstrap"
+import axios from "axios";
+import { useEffect } from "react";
+import { Navbar, Container, NavDropdown, Nav, Button } from "react-bootstrap"
 
 function Navigation(){
     //same as in our browser router, certain things in the nav bar will be hidden depending one whether a user is logged in or not
-    const user = false;
+    const user = true;
+
+    //function to log user out and invalidate set cookies.
+    async function logout() {
+        const res = await axios.get('http://localhost:5000/auth/logout')
+        console.log(res)
+    }
 
     return(
         <Navbar bg="light" expand="lg" sticky="top">
@@ -32,11 +40,11 @@ function Navigation(){
                             user 
                             ?   <div style={{display:'flex', alignItems:'center'}}>
                                     <img 
-                                        className="navbarImage" 
+                                        className="navbarImage m-1" 
                                         src="https://e1.pxfuel.com/desktop-wallpaper/467/133/desktop-wallpaper-pin-on-anime-y-mas-anime-avatar-girl.jpg" 
                                         alt="user avatar" 
                                     />
-                                    <Nav.Link href="#logout">Logout</Nav.Link>
+                                    <Button variant="danger" className="m-1" onClick={logout}>Logout</Button>
                                 </div>
                             :   <div style={{display:'flex'}}>
                                     <Nav.Link href="/login">Login</Nav.Link> 

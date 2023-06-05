@@ -64,16 +64,13 @@ Router.post(
 
 //simple get request to check if a user is authenticated and retrieve user information
 Router.get(
-    '/login/success',
+    '/profile',
     (req,res) => {
-        if(req.user) {
-            res.json({
-                success: true,
-                message: "success",
-                user: req.user,
-                cookies: req.cookies
-            });
-        }
+        const { token } = req.cookies
+        jwt.verify(token, process.env.JWT_SECRET, {}, (err,info) =>{
+            if(err) throw err
+            res.json(info)
+        })
     }
 )
 
@@ -86,13 +83,13 @@ Router.get("/login/failed", (req, res) => {
 });
 
 //logout user 
-Router.get("/log-out", (req, res, next) => {
-  req.logout(function (err) {
-    if (err) {
-      return next(err);
-    }
-    res.redirect(CLIENT_URL);
-  });
+Router.get(
+    "/logout", 
+    (req, res, next) => {
+        res.cookie('token', 'none', {
+            expires: new Date(Date.now() + 5 * 1000),
+            httpOnly: true,
+        }).send('No more cookies for naughty children :(')
 })
 
 module.exports = Router

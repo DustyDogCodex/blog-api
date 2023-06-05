@@ -27,18 +27,6 @@ function Login(){
         setPassword(e.target.value)
     }
 
-    //getting user info
-    async function getUser(){
-        return await axios.get(
-            'http://localhost:5000/auth/login/success',
-            {
-                username,
-                password
-            }
-        )
-            /* .then(res => console.log(res)) */
-    }
-
     //handling submit. this will also toggle bootstrap alerts is any field is left empty
     async function handleSubmit(e){
         e.preventDefault()
@@ -62,12 +50,11 @@ function Login(){
             .catch(err => {
                 dispatch({ type: "FAIL_LOGIN" })
                 setRetryAlert(true)
+                console.log(err)
             })
-            /* getUser() */
         }
     }
-
-    console.log(user)
+    
     return(
         <div className="login">
                 <h1 style={{
