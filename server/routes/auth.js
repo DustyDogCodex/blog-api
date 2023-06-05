@@ -1,6 +1,6 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler')
-const passport = require('passport')
+const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const Router = express.Router()
 
@@ -52,8 +52,14 @@ Router.post(
         const validated = await bcrypt.compare(req.body.password, user.password);
         !validated && res.status(400).json("Wrong credentials!");
 
+        //separating password from other user account settings.
         const { password, ...others } = user._doc;
-        res.status(200).json(others);
+
+        //signing jwt to send as cookie
+        jwt.sign(others, process.env.JWT_SECRET, {}, (err,token) => {
+            if (err) throw err
+            res.cookie('token', token).send('Grab some milk for your cookie!')
+        })
 }))
 
 //simple get request to check if a user is authenticated and retrieve user information

@@ -5,9 +5,7 @@ import { MyContext } from "../Context/MyContext";
 import axios from "axios";
 
 function Login(){
-    //using useRef to store user info returned from API. These values will not be displayed anywhere so useRef is perfect for them.
-    /* const userRef = useRef()
-    const passwordRef = useRef() */
+    //using context to fetch and set user settings that will be accessible app wide.
     const { user, dispatch, isFetching } = useContext(MyContext)
 
     //using state variables to keep track of user input.
@@ -17,6 +15,9 @@ function Login(){
     //using state to toggle dismissible bootstrap alerts.
     const [usernameAlert, setUsernameAlert] = useState(false)
     const [passwordAlert, setPasswordAlert] = useState(false)
+
+    //invalide credentials Alert toggle
+    const [retryAlert, setRetryAlert] = useState(false)
 
     //onChange handling functions
     function changeUsername(e){
@@ -51,12 +52,16 @@ function Login(){
             {
                 username,
                 password
-            })
+            }, { withCredentials: true })
             .then(res => {
                 dispatch({ type: "SUCCESS_LOGIN", payload: res.data })
+                setTimeout(() => {
+                    window.location.replace('/')
+                }, 2000)
             }) 
             .catch(err => {
                 dispatch({ type: "FAIL_LOGIN" })
+                setRetryAlert(true)
             })
             /* getUser() */
         }
@@ -114,6 +119,15 @@ function Login(){
                         Login
                     </Button>
                 </Form>
+                <Alert 
+                    variant="danger" 
+                    show={retryAlert}
+                    className="mt-3" 
+                    onClose={() => setRetryAlert(false)} 
+                    dismissible >
+                    Incorrect credentials. Please try again.
+                </Alert>
+
                 <p style={{marginTop:'30px'}}>Dont have an account?</p>
 
                 <LinkContainer to='/register'>
