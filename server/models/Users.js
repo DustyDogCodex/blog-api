@@ -7,12 +7,10 @@ const { Schema } = mongoose
 
 const UserSchema = new Schema({
     username: {
-        type: String,
-        required: true,
+        type: String
     },
-    password: {
-        type: String,
-        required: true
+    googleId: {
+        type: String
     },
     avatar: {
         type: String,

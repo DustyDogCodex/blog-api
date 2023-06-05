@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const Router = express.Router()
+const passport = require('passport')
 
 //importing UserSchema
 const User = require('../models/Users')
@@ -91,5 +92,15 @@ Router.get(
             httpOnly: true,
         }).send('No more cookies for naughty children :(')
 })
+
+//google login authentication
+Router.get('/google', passport.authenticate('google', { scope: ['profile'] }));
+
+//google callback function after user is authenticated
+Router.get('/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login', failureMessage: true, session: true }),
+  function(req, res) {
+    res.redirect('http://localhost:5173');
+  });
 
 module.exports = Router

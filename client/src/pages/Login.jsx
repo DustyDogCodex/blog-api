@@ -38,6 +38,7 @@ function Login(){
     //handling submit. this will also toggle bootstrap alerts is any field is left empty
     async function handleSubmit(e){
         e.preventDefault()
+        //toggle alerts if fields are left empty
         if(!username || !password){
             username.length === 0 ? setUsernameAlert(true) : ''
             password.length === 0 ? setPasswordAlert(true) : '' 
@@ -62,6 +63,11 @@ function Login(){
                 console.log(err)
             })
         }
+    }
+
+    //signing in with Google
+    function googleSignIn(){
+        window.open("http://localhost:5000/auth/google", "_self")
     }
     
     return(
@@ -115,6 +121,9 @@ function Login(){
                         Login
                     </Button>
                 </Form>
+
+                <Button variant="danger" onClick={googleSignIn}>Sign in with Google</Button>
+
                 <Alert 
                     variant="danger" 
                     show={retryAlert}

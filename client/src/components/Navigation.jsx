@@ -3,7 +3,7 @@ import { Navbar, Container, NavDropdown, Nav, Button } from "react-bootstrap"
 
 function Navigation(){
     //same as in our browser router, certain things in the nav bar will be hidden depending one whether a user is logged in or not
-    const user = true;
+    const user = false
 
     //function to log user out and invalidate set cookies.
     async function logout(e) {
