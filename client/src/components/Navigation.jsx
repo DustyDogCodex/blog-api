@@ -1,9 +1,12 @@
 import axios from "axios";
+import { useContext } from "react";
 import { Navbar, Container, NavDropdown, Nav, Button } from "react-bootstrap"
+import { MyContext } from "../MyContext";
 
 function Navigation(){
     //same as in our browser router, certain things in the nav bar will be hidden depending one whether a user is logged in or not
-    const user = false
+    //using context to check for user
+    const userInfo = useContext(MyContext)
 
     //function to log user out and invalidate set cookies.
     async function logout(e) {
@@ -37,7 +40,7 @@ function Navigation(){
 
                         <Nav.Link href="/account">
                             { 
-                            user 
+                            userInfo 
                             ?   <div style={{display:'flex', alignItems:'center'}}>
                                     <img 
                                         className="navbarImage m-1" 

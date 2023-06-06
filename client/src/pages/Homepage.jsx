@@ -5,11 +5,11 @@ import { PostsDisplay } from "../components/PostsDisplay"
 import { useEffect, useState, useContext } from "react"
 import axios from "axios"
 import { useLocation } from "react-router-dom"
-import { MyContext } from "../Context/MyContext"
+import { MyContext } from "../MyContext"
 
 function Homepage(){
     //using context to check for user and then set it to him
-    const { user } = useContext(MyContext)
+    const userInfo = useContext(MyContext)
 
     //using state to select posts to display
     const [blogs, setBlogs] = useState([])

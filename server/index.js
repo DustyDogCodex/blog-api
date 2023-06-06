@@ -62,7 +62,7 @@ app.post(
     '/upload',
     upload.single("file"),
     (req,res) => {
-        res.status(200).json('File uploaded!')
+      res.status(200).json('File uploaded!')
     }
 )
 

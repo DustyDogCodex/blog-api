@@ -1,7 +1,7 @@
 import { Form, Button, Alert } from "react-bootstrap";
 import { useContext, useRef, useState } from "react";
 import { LinkContainer } from "react-router-bootstrap";
-import { MyContext } from "../Context/MyContext";
+import { MyContext } from "../MyContext";
 import axios from "axios";
 
 function Login(){
@@ -35,7 +35,7 @@ function Login(){
             username.length === 0 ? setUsernameAlert(true) : ''
             password.length === 0 ? setPasswordAlert(true) : '' 
         } else {
-            dispatch({ type: "START_LOGIN" })
+            //if no errors, send user info to api to authenticate user.
             const res = await axios.post(
             'http://localhost:5000/auth/login',
             {
@@ -43,21 +43,18 @@ function Login(){
                 password
             }, { withCredentials: true })
             .then(res => {
-                dispatch({ type: "SUCCESS_LOGIN", payload: res.data })
-                getProfile()
                 setTimeout(() => {
                     window.location.replace('/')
                 }, 2000)
             }) 
             .catch(err => {
-                dispatch({ type: "FAIL_LOGIN" })
                 setRetryAlert(true)
                 console.log(err)
             })
         }
     }
 
-    //signing in with Google
+    //signing in with Google. Opens new window to log into google account.
     function googleSignIn(){
         window.open("http://localhost:5000/auth/google", "_self")
     }

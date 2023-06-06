@@ -6,18 +6,19 @@ export const MyContext = createContext({});
 
 export const ContextProvider = ({ children }) => {
 
+    //using state to store and update user information
+    const [userInfo, setUserInfo] = useState({})
+
     //function to get user information after user logs in
     useEffect(() => {
         const getProfile = async() => {
         const res = await axios.get(
             'http://localhost:5000/auth/getuser',
             { withCredentials: true })
-                .then(res => {console.log(res)})
+                .then(res => setUserInfo(res.data))
         }
         getProfile()
     }, [])
-    
-    const [userInfo, setUserInfo] = useState({})
 
     return (
         <MyContext.Provider 
