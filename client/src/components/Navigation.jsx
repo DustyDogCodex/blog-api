@@ -6,13 +6,22 @@ import { MyContext } from "../MyContext";
 function Navigation(){
     //same as in our browser router, certain things in the nav bar will be hidden depending one whether a user is logged in or not
     //using context to check for user
-    const userInfo = useContext(MyContext)
+    const { userInfo } = useContext(MyContext)
+    console.log(userInfo)
 
     //function to log user out and invalidate set cookies.
     async function logout(e) {
         e.preventDefault()
-        const res = await axios.get('http://localhost:5000/auth/logout')
-        console.log(res)
+        await axios.get(
+                'http://localhost:5000/auth/logout',
+                { withCredentials: true }
+            )
+            .then(res => { 
+                if(res.data){
+                    window.location.href = '/'
+                }
+            }
+        )
     }
 
     return(
@@ -26,35 +35,29 @@ function Navigation(){
                         <Nav.Link href="#contact">Contact</Nav.Link>
                         <Nav.Link href="/addblog">Write</Nav.Link>
 
-                        <NavDropdown title="Socials" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Twitter</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                                Github
-                            </NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">LinkedIn</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">
-                                Separated link
-                            </NavDropdown.Item>
-                        </NavDropdown>
-
-                        <Nav.Link href="/account">
+                        <Nav.Item>
                             { 
                             userInfo 
                             ?   <div style={{display:'flex', alignItems:'center'}}>
+                                    <Nav.Link href="/account">
                                     <img 
                                         className="navbarImage m-1" 
                                         src="https://e1.pxfuel.com/desktop-wallpaper/467/133/desktop-wallpaper-pin-on-anime-y-mas-anime-avatar-girl.jpg" 
                                         alt="user avatar" 
                                     />
-                                    <Button variant="danger" className="m-1" onClick={logout}>Logout</Button>
+                                    </Nav.Link>
+                                    <Button 
+                                        variant="danger" 
+                                        className="m-1" 
+                                        type='button'
+                                        onClick={logout}>Logout</Button>
                                 </div>
                             :   <div style={{display:'flex'}}>
                                     <Nav.Link href="/login">Login</Nav.Link> 
                                     <Nav.Link href="/register">Register</Nav.Link>
                                 </div>
                             }
-                        </Nav.Link>
+                        </Nav.Item>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

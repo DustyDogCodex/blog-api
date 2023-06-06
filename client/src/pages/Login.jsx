@@ -1,12 +1,12 @@
 import { Form, Button, Alert } from "react-bootstrap";
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { MyContext } from "../MyContext";
 import axios from "axios";
 
 function Login(){
-    //using context to fetch and set user settings that will be accessible app wide.
-    const { user, dispatch, isFetching } = useContext(MyContext)
+    //using context to set user settings to data that was fetched from our backend that will be accessible app wide.
+    const { userInfo } = useContext(MyContext)
 
     //using state variables to keep track of user input.
     const [username, setUsername] = useState('')
