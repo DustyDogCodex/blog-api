@@ -1,29 +1,27 @@
-import { createContext, useEffect, useReducer } from 'react';
-import LoginReducer from './LoginReducer';
-
-//using context for managing user authentication. This will allow the website to restrict access to certain pages, conditional on whether the user is logged in or not.
-
-const INITIAL_STATE = {
-    user: null,
-    isFetching: false,
-    error: false
-}
+import { createContext, useEffect, useState } from 'react'
+import axios from 'axios'
 
 //this initial state will be updated with user info if user passes login authentication
-export const MyContext = createContext(INITIAL_STATE);
+export const MyContext = createContext({});
 
 export const ContextProvider = ({ children }) => {
+
+    //function to get user information after user logs in
+    useEffect(() => {
+        const getProfile = async() => {
+        const res = await axios.get(
+            'http://localhost:5000/auth/getuser',
+            { withCredentials: true })
+                .then(res => {console.log(res)})
+        }
+        getProfile()
+    }, [])
     
-    const [state, dispatch] = useReducer(LoginReducer, INITIAL_STATE)
+    const [userInfo, setUserInfo] = useState({})
 
     return (
         <MyContext.Provider 
-            value={{
-                user: state.user, 
-                fetching: state.isFetching, 
-                error: state.error,
-                dispatch
-            }}
+            value={{ userInfo }}
         > 
             {children} 
         </MyContext.Provider>

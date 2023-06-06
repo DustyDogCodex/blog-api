@@ -27,14 +27,6 @@ function Login(){
         setPassword(e.target.value)
     }
 
-    //function to get profile information after user logs in
-    const getProfile = async() => {
-        const res = await axios.get('http://localhost:5000/auth/profile',{withCredentials: true })
-        .then(res => {
-            console.log(res.data.username)
-        })
-    }
-
     //handling submit. this will also toggle bootstrap alerts is any field is left empty
     async function handleSubmit(e){
         e.preventDefault()

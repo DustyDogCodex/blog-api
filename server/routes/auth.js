@@ -1,9 +1,9 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler')
 const jwt = require('jsonwebtoken')
+const passport = require('passport')
 const bcrypt = require('bcrypt')
 const Router = express.Router()
-const passport = require('passport')
 
 //importing UserSchema
 const User = require('../models/Users')
@@ -65,13 +65,9 @@ Router.post(
 
 //simple get request to check if a user is authenticated and retrieve user information
 Router.get(
-    '/profile',
+    '/getuser',
     (req,res) => {
-        const { token } = req.cookies
-        jwt.verify(token, process.env.JWT_SECRET, {}, (err,info) =>{
-            if(err) throw err
-            res.json(info)
-        })
+        res.send(req.user)
     }
 )
 

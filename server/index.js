@@ -33,9 +33,8 @@ app.use(session({
   cookie: { 
     sameSite: "none",
     secure: false,  //for dev environment
-    maxAge: 60 * 60 * 1000 //one hour 
-  },
-  /* store: new MongoStore({ mongoUrl: process.env.MONGO_URL }) */
+    maxAge: 24 * 60 * 60 * 1000 //one day 
+  }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
