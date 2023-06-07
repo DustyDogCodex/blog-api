@@ -7,7 +7,6 @@ function Navigation(){
     //same as in our browser router, certain things in the nav bar will be hidden depending one whether a user is logged in or not
     //using context to check for user
     const { userInfo } = useContext(MyContext)
-    console.log(userInfo)
 
     //function to log user out and invalidate set cookies.
     async function logout(e) {

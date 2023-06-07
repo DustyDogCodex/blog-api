@@ -1,5 +1,4 @@
 import { Container } from "react-bootstrap";
-import { Sidebar } from "../components/Sidebar"
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -107,7 +106,6 @@ function Account(){
                 </Formik>
                 <p className="deleteAccount" style={{marginTop:'20px', color:'red'}}>Delete Your Account</p>
             </div>
-            <Sidebar />
         </Container>
     )
 }

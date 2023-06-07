@@ -21,29 +21,17 @@ passport.use(new GoogleStrategy({
     if(!doc){
       const newUser = new User({
         googleId: profile.id,
-        username: profile.displayName
+        username: profile.displayName,
+        avatar: profile.photos[0].value
       })
       //save user info into db
       await newUser.save()
+      return cb(null, newUser)
     }
     console.log(profile)
-    return cb(null, profile)
+    return cb(null, doc)
   }
 ));
-
-passport.serializeUser((user, cb) => {
-  /* process.nextTick(function() {
-    cb(null, { id: user._id, username: user.username });
-  }); */
-  return cb(null, user)
-});
-
-passport.deserializeUser((user, cb) => {
-  /* process.nextTick(function() {
-    return cb(null, user);
-  }); */
-  return cb(null, user)
-});
 
 /* -------------------- LOCAL STRATEGY -------------------------------------- */
 
@@ -71,15 +59,17 @@ passport.use(
   })
 );
 
-/* passport.serializeUser(function(user, done) {
-  done(null, user._id);
+/*-------------------- SERIALISE AND DESERIALISE USERS ------------------------- */
+
+passport.serializeUser((user, cb) => {
+  return cb(null, user._id)
 });
 
-passport.deserializeUser(async function(id, done) {
-  try {
+passport.deserializeUser(async(id, cb) => {
+ try {
     const user = await User.findById(id);
-    done(null, user);
+    cb(null, user);
   } catch(err) {
-    done(err);
+    cb(err);
   };
-}); */
+});
