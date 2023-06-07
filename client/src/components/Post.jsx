@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom"
+import { CategoryBubble } from './CategoryBubble'
 
 /* This is the post component for controlling/styling individual posts. For the component that displays posts, please go to Posts.jsx */
 function Post({ id, title, summary, username, categories, created }){
 
     //mapping categories to display as an array
-    const categoryElements = categories.map((cat,index) => 
-        <span key={index} className="postCategory">{cat}</span>
+    const categoryElements = categories.map((category,index) => 
+        <CategoryBubble key={index} category={category} />
     )
 
     return(

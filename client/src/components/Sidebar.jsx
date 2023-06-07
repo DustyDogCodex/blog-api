@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
+import { CategoryBubble } from "./CategoryBubble"
 
 function Sidebar(){
 
@@ -18,34 +19,21 @@ function Sidebar(){
 
     //mapping categories into an array for display
     //adding Link so we can view all posts in a particular category at once.
-    const categoriesElements = categories.map((cat,index) => 
+    const categoriesElements = categories.map((category,index) => 
         <Link 
             key={ index }
-            to={`/?category=${cat.name}`}
+            to={`/?category=${category.name}`}
             className="link"
         >
-            <div className="sidebarListItem"> {cat.name} </div>
+           <CategoryBubble key={index} category={category.name} />
         </Link>
     )
 
     return(
         <div className="sidebar">
-            <div className="sidebarItem">
-                <span className="sidebarTitle">About me</span>
-                <img 
-                    className="sidebarImage" 
-                    src="https://e1.pxfuel.com/desktop-wallpaper/467/133/desktop-wallpaper-pin-on-anime-y-mas-anime-avatar-girl.jpg" 
-                    alt="avatar" 
-                />
-                <p style={{margin:'15px'}}>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore, necessitatibus quo hic ratione earum dolore sunt consectetur, beatae reiciendis non, nihil magni maiores tenetur quaerat possimus amet debitis! Ex, accusantium?
-                </p>
-            </div>
-            <div className="sidebarItem">
-                <span className="sidebarTitle">Categories</span>
-                <div className="sidebarList">
-                    { categoriesElements }
-                </div>
+            <span className="sidebarTitle">Discover more of what matters to you</span>
+            <div className="sidebarList">
+                { categoriesElements }
             </div>
         </div>
     )
