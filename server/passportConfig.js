@@ -13,12 +13,21 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "/auth/google/callback"
   },
-  function(accessToken, refreshToken, profile, cb) {
-    /* User.findOrCreate({ googleId: profile.id, username: profile.displayName }, */ /* function (err, user) {
-      return cb(err, user);
-    }); */
+  async function(accessToken, refreshToken, profile, cb) {
+    //checking to see if user already exists
+    const doc = await User.findOne({ googleId: profile.id })
+
+    //if user doesn't exist, create user in database
+    if(!doc){
+      const newUser = new User({
+        googleId: profile.id,
+        username: profile.displayName
+      })
+      //save user info into db
+      await newUser.save()
+    }
     console.log(profile)
-    return cb(null, profile);
+    return cb(null, profile)
   }
 ));
 

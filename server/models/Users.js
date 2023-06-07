@@ -9,6 +9,9 @@ const UserSchema = new Schema({
     username: {
         type: String
     },
+    password: {
+        type: String
+    },
     googleId: {
         type: String
     },
