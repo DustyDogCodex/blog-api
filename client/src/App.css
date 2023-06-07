@@ -303,6 +303,29 @@
     font-size: 72px;
 }
 
+.spotLight {
+    border: 1px solid black;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.userSpotLight{
+    width: 100%;
+    display: grid;
+    gap: 5%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    border: 1px solid black;
+}
+
+.spotLightImg{
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+}
+
 /* media query to make aboutHeader bigger on large screens */
 @media (min-width:1200px){
     .aboutHeader{

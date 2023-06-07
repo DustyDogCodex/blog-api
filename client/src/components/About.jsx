@@ -1,4 +1,8 @@
+import { usersAndImages } from "../assets/usersAndImages"
+
 function About(){
+    /* const userElements =  */
+
     return(
         <>
             <div className="aboutHeader">
@@ -21,6 +25,31 @@ function About(){
             <div className="aboutUserSpotLight">
                 <h1 style={{marginBottom:'30px'}}>A melting pot of curious minds.</h1>
                 <p>Bloggy is fueled by a vibrant community of users. From passionate enthusiasts to seasoned experts, users flock to Bloggy to share their ideas, experiences, and perspectives. Engaging in lively discussions, they contribute to a diverse tapestry of knowledge and insights. With a spirit of inclusivity and collaboration, Bloggy encourages users of all backgrounds to actively participate and connect with one another. Together, they form a dynamic network that fuels the growth and vitality of the platform, making Bloggy a thriving hub for engaging content and meaningful interactions.</p>
+                <div className="userSpotLight">
+                    <div className="spotLight">
+                        <img 
+                            className='spotLightImg' 
+                            src="https://img.freepik.com/free-vector/mysterious-mafia-man-smoking-cigarette_52683-34828.jpg?t=st=1686099240~exp=1686099840~hmac=e3363770e0fd831a4444ad3f6d8b3f0db9bcc98cdf41432ffd91ce6b7d20f53d" alt="" 
+                        />
+                        <p>User 1</p>
+                    </div>
+                    <div className="spotLight">
+                        <img 
+                            className='spotLightImg'
+                            src="https://img.freepik.com/free-vector/cute-cat-gaming-cartoon_138676-2969.jpg?t=st=1686099240~exp=1686099840~hmac=c5d55013f4d5a0d9b024e932fbb2684dc45528f9becf8fe3f09bf05828603dd6" 
+                            alt="" 
+                        />
+                        <p>User 2</p>
+                    </div>
+                    <div className="spotLight">
+                        <img 
+                            className='spotLightImg' 
+                            src="" 
+                            alt="" 
+                        />
+                        <p>User 3</p>
+                    </div>
+                </div>
             </div>
         </>
     )
