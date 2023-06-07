@@ -10,7 +10,7 @@ import { MyContext } from "../MyContext"
 function Homepage(){
     //using context to check for user and then set it to him
     const userInfo = useContext(MyContext)
-
+    console.log(userInfo)
     //using state to select posts to display
     const [blogs, setBlogs] = useState([])
 

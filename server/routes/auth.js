@@ -45,16 +45,11 @@ Router.post(
 //app is small enough to justify not using passport
 Router.post(
     '/login', 
-    asyncHandler( async (req,res,next) => {
-        const user = await User.findOne({ username: req.body.username });
-        !user && res.status(400).json("Wrong credentials!");
-
-        const validated = await bcrypt.compare(req.body.password, user.password);
-        !validated && res.status(400).json("Wrong credentials!");
-
-        //separating password from other user account settings.
-        const { password, ...others } = user._doc;
-}))
+    passport.authenticate('local', { failureRedirect: '/login' }),
+    function(req, res) {
+        res.redirect('http://localhost:5173');
+    }
+);
 
 //simple get request to check if a user is authenticated and retrieve user information
 Router.get(
