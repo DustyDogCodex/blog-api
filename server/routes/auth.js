@@ -47,7 +47,7 @@ Router.post(
     '/login', 
     passport.authenticate('local', { failureRedirect: '/login' }),
     function(req, res) {
-        res.redirect('http://localhost:5173');
+        res.send('ok')
     }
 );
 
