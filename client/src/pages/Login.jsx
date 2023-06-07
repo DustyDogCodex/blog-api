@@ -1,13 +1,9 @@
 import { Form, Button, Alert } from "react-bootstrap";
 import { useContext, useState } from "react";
 import { LinkContainer } from "react-router-bootstrap";
-import { MyContext } from "../MyContext";
 import axios from "axios";
 
 function Login(){
-    //using context to set user settings to data that was fetched from our backend that will be accessible app wide.
-    const { userInfo } = useContext(MyContext)
-
     //using state variables to keep track of user input.
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -111,7 +107,12 @@ function Login(){
                     </Button>
                 </Form>
 
-                <Button variant="danger" onClick={googleSignIn}>Sign in with Google</Button>
+                <Button 
+                    variant="danger" 
+                    className="mt-3"
+                    onClick={googleSignIn}>
+                    Sign in with Google
+                </Button>
 
                 <Alert 
                     variant="danger" 

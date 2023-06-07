@@ -1,6 +1,5 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler')
-const jwt = require('jsonwebtoken')
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const Router = express.Router()
@@ -55,12 +54,6 @@ Router.post(
 
         //separating password from other user account settings.
         const { password, ...others } = user._doc;
-
-        //signing jwt to send as cookie
-        jwt.sign(others, process.env.JWT_SECRET, {}, (err,token) => {
-            if (err) throw err
-            res.cookie('token', token).send('Grab some milk for your cookie!')
-        })
 }))
 
 //simple get request to check if a user is authenticated and retrieve user information
@@ -70,14 +63,6 @@ Router.get(
         res.send(req.user)
     }
 )
-
-// Similar to login/success except a fail message is sent with no user info.
-Router.get("/login/failed", (req, res) => {
-  res.status(401).json({
-    success: false,
-    message: "fail"
-  });
-});
 
 //logout user 
 Router.get(

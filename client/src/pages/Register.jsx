@@ -62,6 +62,12 @@ function Register(){
         }
     }
 
+    //google sign-in
+    //signing in with Google. Opens new window to log into google account.
+    function googleSignIn(){
+        window.open("http://localhost:5000/auth/google", "_self")
+    }
+
     return(
         <div className="login">
             <h1 style={{ 
@@ -157,7 +163,18 @@ function Register(){
                     Register
                 </Button>
             </Form>
-            <p style={{marginTop:'30px'}}>Already have an account?</p>
+
+            <Button 
+                variant="danger" 
+                className="mt-3"
+                onClick={googleSignIn}
+            >
+                Register with Google
+            </Button>
+
+            <p style={{marginTop:'30px'}}>
+                Already have an account?
+            </p>
             <LinkContainer to='/login'>
                 <Button variant="success" type="button">
                     Login

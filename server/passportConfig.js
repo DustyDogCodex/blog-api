@@ -7,7 +7,7 @@ require('dotenv').config()
 //import User model for local strategy
 const User = require('./models/Users')
 
-//google strategy
+/* -------------------- GOOGLE STRATEGY -------------------------------------- */
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -35,6 +35,8 @@ passport.deserializeUser((user, cb) => {
   }); */
   return cb(null, user)
 });
+
+/* -------------------- LOCAL STRATEGY -------------------------------------- */
 
 //local strategy
 //setting up passport local strategy
