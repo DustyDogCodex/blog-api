@@ -9,6 +9,7 @@ import { Account } from './pages/Account';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Footer } from './components/Footer';
 
 function App() {
   //using user variable to test design for logged in users and for having no users
@@ -52,6 +53,7 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
+      <Footer/>
     </>
   )
 }

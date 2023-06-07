@@ -26,13 +26,13 @@ function Navigation(){
 
     return(
         <Navbar bg="light" expand="lg" sticky="top">
-            <Container>
+            <Container className="d-flex justify-space-between">
                 <Navbar.Brand href="/">Bloggy</Navbar.Brand>
+                <div>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto d-flex align-items-center justify-content-center">
                         <Nav.Link href="/about">Who We Are</Nav.Link>
-                        <Nav.Link href="#contact">Contact</Nav.Link>
                         <Nav.Link href="/addblog">Write</Nav.Link>
 
                         <Nav.Item>
@@ -60,6 +60,7 @@ function Navigation(){
                         </Nav.Item>
                     </Nav>
                 </Navbar.Collapse>
+                </div>
             </Container>
         </Navbar>
     )
