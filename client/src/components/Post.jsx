@@ -11,11 +11,6 @@ function Post({ id, title, summary, username, categories, created }){
 
     return(
         <div className="post">
-            <img 
-                src="https://img.freepik.com/free-photo/aerial-view-mountain-covered-fog-beautiful-pink-sky_181624-4676.jpg?t=st=1685049492~exp=1685050092~hmac=ff83ba7cda77f50cbaeae1890e17b274a0b720b2ffcfb46452aba5957aa8d790" 
-                alt="mountain at sunset" 
-                className="postImg" 
-            />
             <div className="postContent">
                 <Link 
                     to={`/post/${id}`} 
@@ -23,6 +18,7 @@ function Post({ id, title, summary, username, categories, created }){
                 >
                     <div className="postTitle">{title}</div>
                 </Link>
+                <span>By {username}</span>
                 <div className="postCategories">
                     { categoryElements }
                 </div>
@@ -33,6 +29,11 @@ function Post({ id, title, summary, username, categories, created }){
                     { summary }
                 </div>
             </div>
+            <img 
+                src="https://img.freepik.com/free-photo/aerial-view-mountain-covered-fog-beautiful-pink-sky_181624-4676.jpg?t=st=1685049492~exp=1685050092~hmac=ff83ba7cda77f50cbaeae1890e17b274a0b720b2ffcfb46452aba5957aa8d790" 
+                alt="mountain at sunset" 
+                className="postImg" 
+            />
         </div>
     )
 }

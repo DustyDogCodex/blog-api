@@ -93,9 +93,10 @@
 
 .postImg{
     width: auto;
-    height: 300px;
+    height: 250px;
     object-fit: cover;
     border-radius: 20px;
+    width: 30%;
 }
 
 .postContent{
@@ -104,6 +105,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 70%;
 }
 
 .postCategories{
@@ -121,7 +123,7 @@
 }
 
 .postTitle{
-    font-size: 28px;
+    font-size: 36px;
     margin-top: 10px;
     font-family: 'Permanent Marker', cursive;
     cursor: pointer;
