@@ -12,39 +12,39 @@ const usersAndImages = [
             username: 'Tech Wiz'
         },
         {
-            avatar: 'https://www.freepik.com/premium-photo/woman-with-mask-her-head_41083395.htm#page=2&query=avatar&position=14&from_view=keyword&track=sph',
+            avatar: 'https://img.freepik.com/premium-photo/woman-with-mask-her-head_14865-2383.jpg?w=1060',
             username: 'Pixel Chaser'
         },
         {
-            avatar: 'https://www.freepik.com/free-photo/pink-flower-with-face-woman-with-flowers-it_40369235.htm#query=avatar&position=44&from_view=keyword&track=sph',
+            avatar: 'https://img.freepik.com/free-photo/pink-flower-with-face-woman-with-flowers-it_1340-27970.jpg?w=1380&t=st=1686101644~exp=1686102244~hmac=0a85a1c39000b2ed2bc1cdd43fa65768877a033da215b9bc7caf0f8e004eb034',
             username: 'Dream Weaver'
         },
         {
-            avatar: 'https://www.freepik.com/premium-photo/spectacular-cyberpunk-shi-ar-royalty-dazzling-luminescent-vision-regality-with-golden-ratio-harmony-ai-generated_41024494.htm#page=2&query=avatar&position=10&from_view=keyword&track=sph',
+            avatar: 'https://img.freepik.com/premium-photo/spectacular-cyberpunk-shi-ar-royalty-dazzling-luminescent-vision-regality-with-golden-ratio-harmony-ai-generated_692702-22292.jpg?w=1380',
             username: 'Cyber Ninja'
         },
         {
-            avatar: 'https://www.freepik.com/free-photo/digital-art-selected_41948635.htm#page=2&query=avatar&position=8&from_view=keyword&track=sph',
+            avatar: 'https://img.freepik.com/free-photo/digital-art-selected_1340-39438.jpg?w=1380&t=st=1686101748~exp=1686102348~hmac=5fb1bd03283f153860eecd3ce8be4a13be9f2204cd29b9fad7fc877fcb8159d3',
             username: 'Echo Storm'
         },
         {
-            avatar: 'https://www.freepik.com/premium-photo/portrait-man-wearing-cyberpunk-headset-cyberpunk-gear-hightech-man-from-future_33590732.htm?query=avatar#from_view=detail_alsolike',
+            avatar: 'https://img.freepik.com/premium-photo/portrait-man-wearing-cyberpunk-headset-cyberpunk-gear-hightech-man-from-future_158863-1251.jpg?w=1380',
             username: 'Silver Arrow'
         },
         {
-            avatar: 'https://www.freepik.com/premium-photo/fashion-portrait-young-elegant-woman-sunglasses-black-leather-jacket-colored-background-studio-shot_12683973.htm?query=avatar#from_view=detail_alsolike',
+            avatar: 'https://img.freepik.com/premium-photo/fashion-portrait-young-elegant-woman-sunglasses-black-leather-jacket-colored-background-studio-shot_374827-369.jpg?w=1380',
             username: 'Sparkle Gem'
         },
         {
-            avatar: 'https://www.freepik.com/premium-photo/cyberpunk-girl-future-portrait-asian-teenager-cybernetic-illustration_40900061.htm#page=2&query=avatar&position=27&from_view=keyword&track=sph',
+            avatar: 'https://img.freepik.com/premium-photo/cyberpunk-girl-future-portrait-asian-teenager-cybernetic-illustration_739548-5149.jpg?w=1380',
             username: 'Cloud Dancer'
         },
         {
-            avatar: 'https://www.freepik.com/premium-photo/monkey-with-mask-flames-his-chest_41083198.htm#page=2&query=avatar&position=36&from_view=keyword&track=sph',
+            avatar: 'https://img.freepik.com/premium-photo/monkey-with-mask-flames-his-chest_14865-2293.jpg?w=1380',
             username: 'Luna Mist'
         },
         {
-            avatar: 'https://www.freepik.com/free-photo/man-with-mohawk-blue-hair-with-word-devil-it_42561949.htm#page=2&query=avatar&position=21&from_view=keyword&track=sph',
+            avatar: 'https://img.freepik.com/free-photo/man-with-mohawk-blue-hair-with-word-devil-it_1340-41517.jpg?w=1380&t=st=1686101974~exp=1686102574~hmac=6655b3462d3d2734f267cb5403272f9af0b96a574d5b08fa32d731790d87404c',
             username: 'Blaze Rider'
         },
 ]
