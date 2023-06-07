@@ -250,3 +250,74 @@
     text-decoration: none;
     color: black;
 }
+
+/* styling for the About component/Who We Are page */
+.aboutHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 320px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    font-size: 72px;
+}
+
+.aboutSummary{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+.summaryLeft{
+    width: 50%;
+    height: 100%;
+    padding: 30px 60px;
+    border-right: 1px solid black;
+}
+
+.summaryRight{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.summaryRight > video{
+    width: 500px;
+    height: 500px;
+}
+
+.aboutUserSpotLight{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5% 10%;
+    text-align: center;
+    background: #ffd1b9;
+}
+
+.aboutUserSpotLight > h1 {
+    font-size: 72px;
+}
+
+/* media query to make aboutHeader bigger on large screens */
+@media (min-width:1200px){
+    .aboutHeader{
+        font-size: 120px;
+    }
+
+    .summaryLeft{
+        padding: 30px 250px;
+    }
+
+    .aboutUserSpotLight > p{
+        padding: 5% 20%;
+    }
+
+    .aboutUserSpotLight > h1{
+        font-size: 100px;
+    }
+}

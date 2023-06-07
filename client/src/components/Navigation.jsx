@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext } from "react";
-import { Navbar, Container, NavDropdown, Nav, Button } from "react-bootstrap"
+import { Navbar, Container, Nav, Button } from "react-bootstrap"
 import { MyContext } from "../MyContext";
 
 function Navigation(){
@@ -31,7 +31,7 @@ function Navigation(){
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto d-flex align-items-center justify-content-center">
-                        <Nav.Link href="/">About</Nav.Link>
+                        <Nav.Link href="/about">Who We Are</Nav.Link>
                         <Nav.Link href="#contact">Contact</Nav.Link>
                         <Nav.Link href="/addblog">Write</Nav.Link>
 
