@@ -1,5 +1,8 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons"
 import { usersAndImages } from "../assets/usersAndImages"
 import { Spotlight } from "./Spotlight"
+import { faEnvelope } from "@fortawesome/free-regular-svg-icons"
 
 function About(){
     const spotLightElements = usersAndImages.map((user,index) => 
@@ -29,6 +32,59 @@ function About(){
                 <p>Bloggy is fueled by a vibrant community of users. From passionate enthusiasts to seasoned experts, users flock to Bloggy to share their ideas, experiences, and perspectives. Engaging in lively discussions, they contribute to a diverse tapestry of knowledge and insights. With a spirit of inclusivity and collaboration, Bloggy encourages users of all backgrounds to actively participate and connect with one another. Together, they form a dynamic network that fuels the growth and vitality of the platform, making Bloggy a thriving hub for engaging content and meaningful interactions.</p>
                 <div className="userSpotLight">
                     { spotLightElements }
+                </div>
+            </div>
+            <div className="contact">
+                <div className="contactLeft">
+                    <h1 style={{fontSize:'72px', padding:'2%'}}>Learn more about this website. Or contact me.</h1>
+                </div>
+                <div className="contactRight">
+                    <a 
+                        href="https://github.com/DustyDogCodex/bloggy"
+                        target="_blank" 
+                        rel="noopener">
+                    <FontAwesomeIcon 
+                        icon={faGithub} 
+                        style=
+                        {{
+                            color: "#898d94", 
+                            height:'50px', 
+                            width:'50px', 
+                            margin:'20px'
+                        }} 
+                    />
+                    </a>
+                    <a 
+                        href="https://twitter.com/VarunMalaviya2"
+                        target="_blank" 
+                        rel="noopener" >
+                    <FontAwesomeIcon 
+                        icon={faTwitter} 
+                        style=
+                        {{
+                            color: "#055ffa", 
+                            height:'50px', 
+                            width:'50px', 
+                            margin:'20px'
+                        }} 
+                    />
+                    </a>
+                    <a 
+                        href="#" 
+                        target="_blank" 
+                        rel="noopener"
+                        onClick={() => window.location = 'mailto:varunmalaviya7@gmail.com'}>
+                    <FontAwesomeIcon 
+                        icon={faEnvelope} 
+                        style=
+                        {{
+                            color: "#efc90b", 
+                            height:'50px', 
+                            width:'50px', 
+                            margin:'20px'
+                        }} 
+                    />
+                    </a>
                 </div>
             </div>
         </>

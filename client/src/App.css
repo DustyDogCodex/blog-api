@@ -330,6 +330,24 @@
     border-radius: 100%;
 }
 
+.contact{
+    display: flex;
+}
+
+.contactLeft{
+    width: 50%;
+    border-right: 1px solid black;
+}
+
+.contactRight{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 6%;
+}
+
 /* media query to make aboutHeader bigger on large screens */
 @media (min-width:1200px){
     .aboutHeader{
