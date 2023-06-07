@@ -332,11 +332,16 @@
 
 .contact{
     display: flex;
+    background: #34a245;
 }
 
 .contactLeft{
     width: 50%;
     border-right: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10%;
 }
 
 .contactRight{
@@ -347,6 +352,17 @@
     align-items: center;
     padding: 6%;
 }
+
+/* styling for footer */
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    background: grey;
+    color: aliceblue;
+}
+
 
 /* media query to make aboutHeader bigger on large screens */
 @media (min-width:1200px){

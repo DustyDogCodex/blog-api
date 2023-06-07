@@ -3,6 +3,7 @@ import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons"
 import { usersAndImages } from "../assets/usersAndImages"
 import { Spotlight } from "./Spotlight"
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons"
+import { Footer } from "./Footer"
 
 function About(){
     const spotLightElements = usersAndImages.map((user,index) => 
@@ -36,7 +37,7 @@ function About(){
             </div>
             <div className="contact">
                 <div className="contactLeft">
-                    <h1 style={{fontSize:'72px', padding:'2%'}}>Learn more about this website. Or contact me.</h1>
+                    <h1 style={{fontSize:'72px', padding:'2%', color:'white'}}>Learn more about this website. Or contact me.</h1>
                 </div>
                 <div className="contactRight">
                     <a 
@@ -47,7 +48,7 @@ function About(){
                         icon={faGithub} 
                         style=
                         {{
-                            color: "#898d94", 
+                            color: "white", 
                             height:'50px', 
                             width:'50px', 
                             margin:'20px'
@@ -87,6 +88,7 @@ function About(){
                     </a>
                 </div>
             </div>
+            <Footer />
         </>
     )
 }
