@@ -4,6 +4,7 @@ function HeaderComponent(){
             <div className="headerTitle">
                 <span className="headerTitleSmall">Welcome to</span>
                 <span className="headerTitleLarge">Bloggy!</span>
+                <p>Discover new ideas, stories and expertise from any topic.</p>
             </div>
             <img 
                 className="headerImage" 
