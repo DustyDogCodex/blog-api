@@ -39,9 +39,7 @@ function Login(){
                 password
             }, { withCredentials: true })
             .then(res => {
-                setTimeout(() => {
-                    window.location.replace('/')
-                }, 2000)
+                window.location.replace('/')
             }) 
             .catch(err => {
                 setRetryAlert(true)

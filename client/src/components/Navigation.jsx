@@ -41,7 +41,7 @@ function Navigation(){
                                     <Nav.Link href="/account">
                                     <img 
                                         className="navbarImage m-1" 
-                                        src="https://e1.pxfuel.com/desktop-wallpaper/467/133/desktop-wallpaper-pin-on-anime-y-mas-anime-avatar-girl.jpg" 
+                                        src={userInfo.avatar || "https://e1.pxfuel.com/desktop-wallpaper/467/133/desktop-wallpaper-pin-on-anime-y-mas-anime-avatar-girl.jpg"}
                                         alt="user avatar" 
                                     />
                                     </Nav.Link>
