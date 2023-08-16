@@ -1,16 +1,12 @@
+import axios from "axios"
 import { Container } from "react-bootstrap"
 import { HeaderComponent } from "../components/HeaderComponent"
 import { Sidebar } from "../components/Sidebar"
 import { PostsDisplay } from "../components/PostsDisplay"
-import { useEffect, useState, useContext } from "react"
-import axios from "axios"
+import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
-import { MyContext } from "../MyContext"
 
-function Homepage(){
-    //using context to check for user
-    const userInfo = useContext(MyContext)
-    console.log(userInfo)
+function Homepage(){    
     //using state to select posts to display
     const [ blogs, setBlogs ] = useState([])
 

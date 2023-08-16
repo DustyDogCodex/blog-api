@@ -38,6 +38,7 @@ function PostPage(){
             <div className="blogPost">
                 {loading
                     ?
+                    /* loading animation while data is being fetched */
                     (
                         <div
                             className="loadingAnimation"
@@ -49,6 +50,7 @@ function PostPage(){
                         </div>
                     )
                     :
+                    /* post to be displayed */
                     <> 
                         {currentPost.image
                             ? 

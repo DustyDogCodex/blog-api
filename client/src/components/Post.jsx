@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { CategoryBubble } from './CategoryBubble'
 
 /* This is the post component for controlling/styling individual posts. For the component that displays posts, please go to Posts.jsx */
-function Post({ id, title, summary, username, categories, created }){
+function Post({ id, title, username, post, image, categories, created }){
 
     //mapping categories to display as an array
     const categoryElements = categories.map((category,index) => 
@@ -18,22 +18,31 @@ function Post({ id, title, summary, username, categories, created }){
                 >
                     <div className="postTitle">{title}</div>
                 </Link>
-                <span>By {username}</span>
+
+                <p>
+                    By <strong>{username}</strong> on { new Intl.DateTimeFormat("en-US", { day: "numeric", month: "long" }).format(new Date(created)) }
+                </p>
+                
                 <div className="postCategories">
                     { categoryElements }
                 </div>
-                <span className="postCreatedAt">
-                    { new Date(created).toLocaleDateString() }
-                </span>
+                
                 <div className="postSummary">
-                    { summary }
+                    { post }
                 </div>
             </div>
-            <img 
-                src="https://img.freepik.com/free-photo/aerial-view-mountain-covered-fog-beautiful-pink-sky_181624-4676.jpg?t=st=1685049492~exp=1685050092~hmac=ff83ba7cda77f50cbaeae1890e17b274a0b720b2ffcfb46452aba5957aa8d790" 
-                alt="mountain at sunset" 
-                className="postImg" 
-            />
+
+            {/* conditionally rendering image */}
+            {image
+                ?
+                <img 
+                    src={`http://localhost:5000/uploads/${image}`} 
+                    alt="blog image" 
+                    className="postImg" 
+                />
+                :
+                ''
+            }
         </div>
     )
 }

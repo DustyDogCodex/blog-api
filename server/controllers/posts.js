@@ -17,7 +17,7 @@ const createNewBlog = (
             title,
             post,
             image: imagePath,
-            categories
+            categories: [ ...categories ]
         })
         
         //save new post

@@ -57,7 +57,7 @@
 /* styling for the homepage component */
 .home {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     min-height: 70vh;
 }
 
@@ -118,7 +118,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 70%;
 }
 
 .postCategories{
@@ -136,18 +135,11 @@
 }
 
 .postTitle{
-    font-size: 36px;
+    font-size: 32px;
     margin-top: 10px;
+    text-align: center;
     font-family: 'Permanent Marker', cursive;
     cursor: pointer;
-}
-
-.postCreatedAt{
-    font-size: 16px;
-    font-family: 'Roboto Mono', monospace;
-    font-style: italic;
-    color: rgb(112, 128, 144);
-    margin-bottom: 10px;
 }
 
 .postSummary{
@@ -177,7 +169,7 @@
     text-align: center;
     margin: 10px;
     font-family: 'Permanent Marker', cursive;
-    font-size: 4rem;
+    font-size: 3rem;
 }
 
 .blogCRUD{
@@ -351,16 +343,14 @@
 
 /* styling for footer */
 footer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
+    text-align: center;
     background: grey;
+    padding: 5px;
     color: aliceblue;
+    margin-top: 10px;
 }
 
-
-/* media query to make aboutHeader bigger on large screens */
+/* media query for large and xl screens */
 @media (min-width:1200px){
     .aboutHeader{
         font-size: 120px;
@@ -379,6 +369,7 @@ footer{
     }
 }
 
+/* for small and mobile screens */
 @media (max-width: 800px){
     .aboutSummary{
         flex-direction: column;
@@ -394,5 +385,33 @@ footer{
         display: flex;
         flex-direction: column;
         height: 1200px;
+    }
+
+    .home{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+    }
+
+    .sidebar{
+        width: 100%;
+        padding: 10px;
+    }
+
+    /* styling for posts */
+    .postsDisplay{
+        width: 100%;
+    }
+
+    .postTitle{
+        font-size: x-large;
+    }
+
+    .postCategories{
+        font-size: small;
+    }
+
+    .postSummary {
+        display: none;
     }
 }
