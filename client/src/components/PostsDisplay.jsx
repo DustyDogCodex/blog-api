@@ -17,7 +17,7 @@ function PostsDisplay({ blogs }){
 
     return(
         <div className="postsDisplay">
-            {blogElements}
+            {blogElements.reverse()}
         </div>
     )
 }

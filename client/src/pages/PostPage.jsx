@@ -7,7 +7,6 @@ function PostPage(){
     return(
         <Container className="postPage">
             <BlogPost/>
-            <Sidebar/>
         </Container>
     )
 }

@@ -14,8 +14,9 @@ function Sidebar(){
     //fetching available categories
     useEffect(() => {
         const getCategories = async() => {
-            const res = await axios.get('http://localhost:5000/category/')
-            setCategories(res.data)
+            axios.get('http://localhost:5000/category/')
+            .then(res => setCategories(res.data))
+            .catch(err => console.log(err))
         }
         getCategories()
     },[])
@@ -34,58 +35,51 @@ function Sidebar(){
 
     return(
         <div className="sidebar">
-            <span className="sidebarTitle">Discover more of what matters to you</span>
+            <span 
+                className="sidebarTitle"
+            >
+                Discover more of what matters to you
+            </span>
+
             <div className="sidebarList">
                 { categoriesElements }
             </div>
+
             <div style={{marginTop:'20px', borderTop:'1px solid black'}}>
-                    <a 
-                        href="https://github.com/DustyDogCodex/bloggy"
-                        target="_blank" 
-                        rel="noopener">
+                <a 
+                    href="https://github.com/DustyDogCodex/bloggy"
+                    target="_blank" 
+                    rel="noopener"
+                >
                     <FontAwesomeIcon 
                         icon={faGithub} 
-                        style=
-                        {{
-                            color: "black", 
-                            height:'30px', 
-                            width:'30px', 
-                            margin:'10px'
-                        }} 
+                        style={{ color: "black", height:'30px', width:'30px', margin:'10px' }} 
                     />
-                    </a>
-                    <a 
-                        href="https://twitter.com/VarunMalaviya2"
-                        target="_blank" 
-                        rel="noopener" >
+                </a>
+
+                <a 
+                    href="https://twitter.com/VarunMalaviya2"
+                    target="_blank" 
+                    rel="noopener" 
+                >
                     <FontAwesomeIcon 
                         icon={faTwitter} 
-                        style=
-                        {{
-                            color: "#055ffa", 
-                            height:'30px', 
-                            width:'30px', 
-                            margin:'10px'
-                        }} 
+                        style={{ color: "#055ffa", height:'30px', width:'30px', margin:'10px' }} 
                     />
-                    </a>
-                    <a 
-                        href="#" 
-                        target="_blank" 
-                        rel="noopener"
-                        onClick={() => window.location = 'mailto:varunmalaviya7@gmail.com'}>
+                </a>
+
+                <a 
+                    href="#" 
+                    target="_blank" 
+                    rel="noopener"
+                    onClick={() => window.location = 'mailto:varunmalaviya7@gmail.com'}
+                >
                     <FontAwesomeIcon 
                         icon={faEnvelope} 
-                        style=
-                        {{
-                            color: "#efc90b", 
-                            height:'30px', 
-                            width:'30px', 
-                            margin:'10px'
-                        }} 
+                        style={{ color: "#efc90b", height:'30px', width:'30px', margin:'10px' }} 
                     />
-                    </a>
-                </div>
+                </a>
+            </div>
         </div>
     )
 }

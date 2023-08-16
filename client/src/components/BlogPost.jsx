@@ -13,39 +13,25 @@ function BlogPost(){
     const blogId = location.pathname.split('/')[2]
 
     //using state variable to store currently displayed post's information
-    const [currentPost, setCurrentPost] = useState([])
+    const [ currentPost, setCurrentPost ] = useState([])
 
     //api call to fetch the selected blog post
     useEffect(() => {
         const getPost = async() => {
-        const res = await axios.get(`http://localhost:5000/post/${blogId}`)
-        setCurrentPost(res.data)
+            axios.get(`http://localhost:5000/post/${blogId}`)
+            .then(res => setCurrentPost(res.data))
+            .catch(err => console.log(err))
         }
         getPost()
     }, [blogId])
     
     return(
         <div className="blogPost">
-            <img 
-                src="https://img.freepik.com/free-photo/beautiful-shot-crystal-clear-lake-snowy-mountain-base-during-sunny-day_181624-5459.jpg?w=1800&t=st=1685055781~exp=1685056381~hmac=908a5fea6ad0fd99a4aabe0bc038b23220941a60ed5264fe6269b9645e4fbab4" 
-                alt="blog image" 
-                className="blogImg"
-            />
             <h1 className="blogTitle">
                 {currentPost.title}
-                <div className="blogCRUD">
-                    <FontAwesomeIcon 
-                        icon={faPenToSquare} 
-                        className="blogCRUDIcon"
-                        style={{color:'#1c71d8'}}
-                    />
-                    <FontAwesomeIcon 
-                        icon={faTrash} 
-                        className="blogCRUDIcon"
-                        style={{color:'#ec1313'}}
-                    />
-                </div>
             </h1>
+
+            {/* info about blod like author, date created */}
             <div className="blogInfo">
                 <span className="blogAuthor">
                     Written by 
@@ -56,10 +42,13 @@ function BlogPost(){
                         <strong> {currentPost.username} </strong>
                     </Link>
                 </span>
+
                 <span className="blogDate">
                    Created on { new Date(currentPost.createdAt).toLocaleDateString() }
                 </span>
             </div>
+
+            {/* blog content */}
             <p className="blogText">
                 {currentPost.summary}
             </p>

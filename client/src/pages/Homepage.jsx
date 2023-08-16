@@ -8,11 +8,11 @@ import { useLocation } from "react-router-dom"
 import { MyContext } from "../MyContext"
 
 function Homepage(){
-    //using context to check for user and then set it to him
+    //using context to check for user
     const userInfo = useContext(MyContext)
     console.log(userInfo)
     //using state to select posts to display
-    const [blogs, setBlogs] = useState([])
+    const [ blogs, setBlogs ] = useState([])
 
     //using useLocation to identify any query search parameters being passed to url
     const location = useLocation()
@@ -21,9 +21,9 @@ function Homepage(){
     //fetching data from our API
     useEffect(() => {
         const getBlogs = async() => {
-            const res = await axios.get(`http://localhost:5000/post/${searchQuery}`)
-            //setting fetched data as current blogs to be displayed
-            setBlogs(res.data)
+            axios.get(`http://localhost:5000/post/${searchQuery}`)
+            .then(res => setBlogs(res.data))
+            .catch(err => console.log(err))
         }
         getBlogs()
     }, [ searchQuery ])

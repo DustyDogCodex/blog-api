@@ -4,15 +4,6 @@ const Router = express.Router()
 
 const Post = require('../models/Posts')
 
-//Route for getting a blog post
-Router.get(
-    '/:id',
-    asyncHandler(async(req,res,next) => {
-        const post = await Post.findById(req.params.id)
-        res.status(200).json(post)
-    })
-)
-
 //Route for getting ALL blog posts belonging to a user or a category
 Router.get(
     '/',
@@ -34,6 +25,15 @@ Router.get(
             posts = await Post.find()
         }
         res.status(200).json(posts)
+    })
+)
+
+//Route for getting a blog post
+Router.get(
+    '/:id',
+    asyncHandler(async(req,res,next) => {
+        const post = await Post.findById(req.params.id)
+        res.status(200).json(post)
     })
 )
 

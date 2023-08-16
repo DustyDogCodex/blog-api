@@ -17,16 +17,14 @@ const PostSchema = new Schema({
         required: true
     },
     image: {
-        type: String,
-        required: false
+        type: String
     },
     username: {
         type: String,
         required: true
     },
     categories: {
-        type: Array,
-        required: false
+        type: Array
     }
 }, { timestamps: true } )
 

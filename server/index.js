@@ -16,8 +16,9 @@ dotenv.config()
 
 const app = express()
 app.use(cors({ 
-  origin: ['http://localhost:5173','http://localhost:5173/login'],
-  credentials: true }))
+    origin: ['http://localhost:5173'],
+    credentials: true 
+}))
 app.use(express.json())
 
 //mongodb connection setup
@@ -27,23 +28,23 @@ mongoose.connect(process.env.MONGO_URL)
 
 //setting up express sessions and initializing passportjs
 app.use(session({ 
-  secret: process.env.SESSION_SECRET,
-  resave: false, 
-  saveUninitialized: true,
-  cookie: { 
-    sameSite: "none",
-    secure: false,  //for dev environment
-    maxAge: 24 * 60 * 60 * 1000 //one day 
-  }
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(express.urlencoded({ extended: false }));
+    secret: process.env.SESSION_SECRET,
+    resave: false, 
+    saveUninitialized: true,
+    cookie: { 
+        sameSite: "lax",
+        secure: false,  //for dev environment
+        maxAge: 24 * 60 * 60 * 1000 //one day 
+    }
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(express.urlencoded({ extended: false }))
 
 //creating local variables using middleware
 app.use(function(req, res, next) {
-  res.locals.currentUser = req.user;
-  next();
+    res.locals.currentUser = req.user;
+    next();
 });
 
 //setting up storage for user uploaded files using multer.
@@ -52,7 +53,8 @@ const storage = multer.diskStorage({
         cb(null, "server/images")
     }, 
     filename: (req, file, cb) => {
-        cb(null, "hello.jpg")
+        //randomizing file name to avoid filename conflicts
+        cb(null, Date.now() + "-" + Math.round((Math.random() * 1E9)) + ".jpg")
     }
 })
 
@@ -62,7 +64,7 @@ app.post(
     '/upload',
     upload.single("file"),
     (req,res) => {
-      res.status(200).json('File uploaded!')
+        res.status(200).json('File uploaded!')
     }
 )
 
