@@ -2,6 +2,7 @@ import { Container } from "react-bootstrap"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
+import foShizzle from '../assets/snoop.gif'
 
 /* this is the page users will be directed to when they click on a blog post to view it */
 function PostPage(){
@@ -10,6 +11,9 @@ function PostPage(){
     const location = useLocation()
     const blogId = location.pathname.split('/')[2]
 
+    //variables for loading animation
+    const [ loading, setLoading ] = useState(true)
+
     //using state variable to store currently displayed post's information
     const [ currentPost, setCurrentPost ] = useState([])
 
@@ -17,50 +21,77 @@ function PostPage(){
     useEffect(() => {
         const getPost = async() => {
             axios.get(`http://localhost:5000/post/${blogId}`)
-            .then(res => setCurrentPost(res.data))
+            .then(res => { 
+                setCurrentPost(res.data)
+                setLoading(false)
+            })
             .catch(err => console.log(err))
         }
         getPost()
-    }, [ blogId ])
+    }, [])
+
+    //editing retrieved post to display it the way it was created by user
+    const editedPost = currentPost?.post?.split('\n')
 
     return(
         <Container className="postPage">
             <div className="blogPost">
-                {currentPost.image
-                    ? 
-                    <img 
-                        src='https://images7.alphacoders.com/681/681197.jpg' 
-                        alt="" 
-                    />
-                    :
-                    'No associated image'
-                }
-
-                <h1 className="blogTitle">
-                    {currentPost.title}
-                </h1>
-
-                {/* info about blog like author, date created */}
-                <div className="blogInfo">
-                    <span className="blogAuthor">
-                        Written by 
-                        <Link 
-                            to={`/?username=${currentPost.username}`} 
-                            className="link"
+                {loading
+                    ?
+                    (
+                        <div
+                            className="loadingAnimation"
                         >
-                            <strong> {currentPost.username} </strong>
-                        </Link>
-                    </span>
+                            <img 
+                                src={foShizzle} 
+                                alt="Our developers are loading your stuff"
+                            />
+                        </div>
+                    )
+                    :
+                    <> 
+                        {currentPost.image
+                            ? 
+                            <img 
+                                src='https://images7.alphacoders.com/681/681197.jpg' 
+                                alt="" 
+                            />
+                            :
+                            ''
+                        }
 
-                    <span className="blogDate">
-                        Created on { new Date(currentPost.createdAt).toLocaleDateString() }
-                    </span>
-                </div>
+                        <h1 className="blogTitle">
+                            {currentPost.title}
+                        </h1>
 
-                {/* blog content */}
-                <p className="blogText">
-                    {currentPost.summary}
-                </p>
+                        {/* info about blog like author, date created */}
+                        <div className="blogInfo">
+                            <span className="blogAuthor">
+                                Written by 
+                                <Link 
+                                    to={`/?username=${currentPost.username}`} 
+                                    className="link"
+                                >
+                                    <strong> {currentPost.username} </strong>
+                                </Link>
+                            </span>
+
+                            <span className="blogDate">
+                                Created on { new Date(currentPost.createdAt).toLocaleDateString() }
+                            </span>
+                        </div>
+
+                        {/* blog content */}
+                        <p className="blogText">
+                            {editedPost.map((part,index) => 
+                                <span key={index}>
+                                    {part}
+                                    <br />
+                                </span>
+                            )}
+                        </p>
+                    </>
+                }
             </div>
         </Container>
     )

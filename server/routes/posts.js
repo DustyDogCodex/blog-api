@@ -7,7 +7,7 @@ const Post = require('../models/Posts')
 //Route for getting ALL blog posts belonging to a user or a category
 Router.get(
     '/',
-    asyncHandler(async(req,res,next) => {
+    asyncHandler(async(req,res) => {
         //identifying the query sent in the request
         const username = req.query.username
         const category = req.query.category
@@ -28,29 +28,19 @@ Router.get(
     })
 )
 
-//Route for getting a blog post
+//Route for getting a selected blog post by id
 Router.get(
     '/:id',
-    asyncHandler(async(req,res,next) => {
+    asyncHandler(async(req,res) => {
         const post = await Post.findById(req.params.id)
         res.status(200).json(post)
-    })
-)
-
-//Route for creating new blog posts
-Router.post(
-    '/',
-    asyncHandler(async(req,res,next) => {
-        const newPost = new Post(req.body)
-        const savedPost = await newPost.save()
-        res.status(200).json(savedPost)
     })
 )
 
 //Route for updating a blog post
 Router.put(
     '/:id',
-    asyncHandler(async(req,res,next) => {
+    asyncHandler(async(req,res) => {
         const post = await Post.findById(req.params.id)
         
         //checking to see if the correct user is updating this post

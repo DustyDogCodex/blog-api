@@ -9,10 +9,9 @@ const { Schema } = mongoose
 const PostSchema = new Schema({
     title: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
-    summary: {
+    post: {
         type: String,
         required: true
     },
