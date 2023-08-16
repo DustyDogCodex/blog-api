@@ -26,11 +26,21 @@ function PostPage(){
     return(
         <Container className="postPage">
             <div className="blogPost">
+                {currentPost.image
+                    ? 
+                    <img 
+                        src='https://images7.alphacoders.com/681/681197.jpg' 
+                        alt="" 
+                    />
+                    :
+                    'No associated image'
+                }
+
                 <h1 className="blogTitle">
                     {currentPost.title}
                 </h1>
 
-                {/* info about blod like author, date created */}
+                {/* info about blog like author, date created */}
                 <div className="blogInfo">
                     <span className="blogAuthor">
                         Written by 

@@ -22,40 +22,40 @@ function App() {
 
   return (
     <>
-      <Navigation/>
-      <BrowserRouter>
-        <Routes>
-          <Route 
-            path='/' 
-            element={ <Homepage/> }
-          />
-          <Route 
-            path='register' 
-            element={ userInfo ? <Homepage/> : <Register/> }
-          />
-          <Route 
-            path='login' 
-            element={ userInfo ? <Homepage/> : <Login/> }
-          />
-          <Route 
-            path='post/:id' 
-            element={ <PostPage/> }
-          />
-          <Route 
-            path='account' 
-            element={ userInfo ? <Account/> : <Login/> }
-          />
-          <Route 
-            path='addblog' 
-            element={ userInfo ? <AddBlog/> : <Register/> }
-          />
-          <Route 
-            path='about' 
-            element={ <About/> }
-          />
-        </Routes>
-      </BrowserRouter>
-      <Footer/>
+        <Navigation/>
+        <BrowserRouter>
+            <Routes>
+                <Route 
+                    path='/' 
+                    element={ <Homepage/> }
+                />
+                <Route 
+                    path='register' 
+                    element={ userInfo ? <Homepage/> : <Register/> }
+                />
+                <Route 
+                    path='login' 
+                    element={ userInfo ? <Homepage/> : <Login/> }
+                />
+                <Route 
+                    path='post/:id' 
+                    element={ <PostPage/> }
+                />
+                <Route 
+                    path='account' 
+                    element={ userInfo ? <Account/> : <Login/> }
+                />
+                <Route 
+                    path='addblog' 
+                    element={ userInfo ? <AddBlog/> : <Login/> }
+                />
+                <Route 
+                    path='about' 
+                    element={ <About/> }
+                />
+            </Routes>
+        </BrowserRouter>
+        <Footer/>
     </>
   )
 }
