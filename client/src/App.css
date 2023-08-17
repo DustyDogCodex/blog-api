@@ -12,12 +12,6 @@
     padding: 5%;
 }
 
-.navbarImage {
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-}
-
 /* styling for header component */
 .headerComponent {
     display: flex;
@@ -201,16 +195,6 @@
     font-weight: 900;
 }
 
-/* styling for the Account page */
-.account{
-    margin-top: 50px;
-    display: flex;
-}
-
-.accountContent{
-    flex: 9;
-}
-
 /* styling for login page and register pages. They use the same class since styling for both of these pages is identical */
 .login{
     height: 95vh;
@@ -239,10 +223,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 320px;
+    height: 20rem;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
-    font-size: 72px;
+    font-size: 5rem;
 }
 
 .aboutSummary{
@@ -334,15 +318,6 @@
     justify-content: center;
     align-items: center;
     padding: 6%;
-}
-
-/* styling for footer */
-footer{
-    text-align: center;
-    background: grey;
-    padding: 5px;
-    color: aliceblue;
-    margin-top: 10px;
 }
 
 /* media query for large and xl screens */

@@ -1,10 +1,11 @@
-import axios from "axios";
-import { useContext } from "react";
-import { Navbar, Container, Nav, Button, NavDropdown } from "react-bootstrap"
-import { MyContext } from "../MyContext";
+import axios from "axios"
+import { useContext } from "react"
+import { Navbar, Container, Nav, Button } from "react-bootstrap"
+import { MyContext } from "../MyContext"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faUser } from "@fortawesome/free-solid-svg-icons"
 
 function Navigation(){
-    //same as in our browser router, certain things in the nav bar will be hidden depending one whether a user is logged in or not
     //using context to check for user
     const { userInfo } = useContext(MyContext)
 
@@ -44,19 +45,31 @@ function Navigation(){
                                 userInfo 
                                     ?   
                                     /* if user is logged in, display avatar and link to account */
-                                    <div style={{display:'flex', alignItems:'center'}}>
+                                    <div 
+                                        style={{display:'flex', alignItems:'center'}}
+                                    >
                                         <Nav.Link href="/account">
-                                            <img 
-                                                className="navbarImage m-1" 
-                                                src={userInfo.avatar || "https://e1.pxfuel.com/desktop-wallpaper/467/133/desktop-wallpaper-pin-on-anime-y-mas-anime-avatar-girl.jpg"}
-                                                alt="user avatar" 
-                                            />
+                                            {/* conditionally rendering avatar or icon */}
+                                            {userInfo.avatar
+                                                ?
+                                                (
+                                                    <img 
+                                                        style={{ width:'2rem', height:'2rem', borderRadius:'100%' }}
+                                                        src={`http://localhost:5000/uploads/${userInfo.avatar}`}
+                                                        alt="user avatar" 
+                                                    />
+                                                )
+                                                :
+                                                <FontAwesomeIcon 
+                                                    icon={faUser} 
+                                                    style={{ color:'white', height:'1.5rem', width:'1.5rem' }} 
+                                                />
+                                            }                                            
                                         </Nav.Link>
 
                                         {/* Logout button */}
                                         <Button 
                                             variant="danger" 
-                                            className="m-1" 
                                             type='button'
                                             onClick={logout}
                                         >
@@ -65,7 +78,7 @@ function Navigation(){
                                     </div>
                                     :   
                                     /* if no logged in user, links to login and register */
-                                    <div style={{display:'flex'}}>
+                                    <div style={{ display:'flex' }}>
                                         <Nav.Link href="/login">Login</Nav.Link> 
                                         <Nav.Link href="/register">Register</Nav.Link>
                                     </div>
