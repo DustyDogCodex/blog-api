@@ -39,6 +39,7 @@ function AddBlog() {
         const formData = new FormData()
 
         formData.append('username', userInfo.username)
+        formData.append('userId', userInfo._id)
         formData.append('title', data.title)
         formData.append('post', data.post)
         formData.append('categories', categories)

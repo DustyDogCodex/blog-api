@@ -1,15 +1,13 @@
 import { Container } from "react-bootstrap"
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import foShizzle from '../assets/snoop.gif'
 
 /* this is the page users will be directed to when they click on a blog post to view it */
 function PostPage(){
-    //using useLocation to identify id of the blog post
-    //then using api call to fetch and display that individual post
-    const location = useLocation()
-    const blogId = location.pathname.split('/')[2]
+    //grabbing blogid from params
+    const { blogId } = useParams()
 
     //variables for loading animation
     const [ loading, setLoading ] = useState(true)

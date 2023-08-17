@@ -18,6 +18,10 @@ const PostSchema = new Schema({
     image: {
         type: String
     },
+    userId: {
+        type: mongoose.ObjectId,
+        required: true
+    },
     username: {
         type: String,
         required: true

@@ -3,7 +3,7 @@
 import { Link } from "react-router-dom"
 import { CategoryBubble } from './CategoryBubble'
 
-function Post({ id, title, username, post, image, categories, created }){
+function Post({ id, userId, title, username, post, image, categories, created }){
 
     //mapping categories to display as an array
     const categoryElements = categories.map((category,index) => 
@@ -14,9 +14,13 @@ function Post({ id, title, username, post, image, categories, created }){
         <div className="post">
             <div className="postContent">
                 {/* username */}
-                <p style={{margin:'0%', color:'rgba(128,128,128)'}}>
+                <Link
+                    to={`/user/${userId}`}
+                    style={{margin:'0%', color:'rgba(128,128,128)'}}
+                    className="link"
+                >
                     {username}
-                </p>
+                </Link>
                 
                 {/* link to postPage for selected blog post */}
                 <Link 

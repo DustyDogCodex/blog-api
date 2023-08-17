@@ -3,16 +3,20 @@ const asyncHandler = require('express-async-handler')
 const bcrypt = require('bcrypt')
 const Router = express.Router()
 
+//imported models
 const User = require('../models/Users')
 const Post = require('../models/Posts')
 
 //Route for getting user account info
 Router.get(
     '/:id',
-    asyncHandler(async(req,res,next) => {
+    asyncHandler(async(req,res) => {
+        //finding the user in database using params
         const user = await User.findById(req.params.id)
+
         //taking out the password as it shouldn't be shown publicly. All other info from the selected user document is passed into the others object using javascript's rest property.
         const { password, ...others } = user._doc
+
         res.status(200).json(others)
     })
 )
@@ -20,7 +24,7 @@ Router.get(
 //Route for updating user information
 Router.put(
     '/:id', 
-    asyncHandler(async(req,res,next) => {
+    asyncHandler(async(req,res) => {
         if(req.body.userId === req.params.id){
             //checking for an update password. If user is sending a new password, this block will hash it before storing
             if(req.body.password){
@@ -43,7 +47,7 @@ Router.put(
 //Route for deleting user account
 Router.delete(
     '/:id', 
-    asyncHandler(async(req,res,next) => {
+    asyncHandler(async(req,res) => {
         if(req.body.userId === req.params.id){
             //find selected user account in our database
             const user = await User.findById(req.params.id)

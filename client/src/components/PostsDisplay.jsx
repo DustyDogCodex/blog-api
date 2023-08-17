@@ -8,6 +8,7 @@ function PostsDisplay({ blogs }){
             id={blog._id} 
             title={blog.title}
             username={blog.username}  
+            userId={blog.userId}
             post={blog.post} 
             image={blog.image}
             categories={blog.categories} 

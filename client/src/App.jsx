@@ -12,6 +12,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Footer } from './components/Footer';
 import { useContext } from 'react';
 import { MyContext } from './MyContext';
+import UserProfile from './pages/UserProfile';
 
 function App() {
   //using context to check for a logged in user.
@@ -38,8 +39,12 @@ function App() {
                     element={ userInfo ? <Homepage/> : <Login/> }
                 />
                 <Route 
-                    path='post/:id' 
+                    path='post/:blogId' 
                     element={ <PostPage/> }
+                />
+                <Route 
+                    path='user/:userId' 
+                    element={ <UserProfile /> }
                 />
                 <Route 
                     path='account' 

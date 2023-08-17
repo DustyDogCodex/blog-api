@@ -28,11 +28,27 @@ Router.get(
     })
 )
 
+//fetching all posts from a single user
+Router.get(
+    '/user/:userId',
+    asyncHandler(async(req,res) => {
+        //grabbing userId from params
+        const { userId } = req.params
+
+        //find posts with associated userid
+        const posts = await Post.find({ userId })
+
+        //send posts to client
+        res.status(200).send(posts)
+    })
+)
+
 //Route for getting a selected blog post by id
 Router.get(
     '/:id',
     asyncHandler(async(req,res) => {
         const post = await Post.findById(req.params.id)
+        
         res.status(200).json(post)
     })
 )
