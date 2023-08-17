@@ -1,7 +1,8 @@
+/* Component for rectangle box that displays a brief summary of a blog post on the homepage. For the component that displays posts, please go to PostsDisplay.jsx */
+
 import { Link } from "react-router-dom"
 import { CategoryBubble } from './CategoryBubble'
 
-/* This is the post component for controlling/styling individual posts. For the component that displays posts, please go to Posts.jsx */
 function Post({ id, title, username, post, image, categories, created }){
 
     //mapping categories to display as an array
@@ -12,24 +13,33 @@ function Post({ id, title, username, post, image, categories, created }){
     return(
         <div className="post">
             <div className="postContent">
+                {/* username */}
+                <p style={{margin:'0%', color:'rgba(128,128,128)'}}>
+                    {username}
+                </p>
+                
+                {/* link to postPage for selected blog post */}
                 <Link 
                     to={`/post/${id}`} 
                     className="link"
                 >
                     <div className="postTitle">{title}</div>
                 </Link>
-
-                <p>
-                    By <strong>{username}</strong> on { new Intl.DateTimeFormat("en-US", { day: "numeric", month: "long" }).format(new Date(created)) }
-                </p>
                 
-                <div className="postCategories">
+                {/* category tags */}
+                <div>
                     { categoryElements }
                 </div>
                 
+                {/* brief summary of the post */}
                 <div className="postSummary">
                     { post }
                 </div>
+
+                {/* date of creation */}
+                <p style={{ marginTop:'0.3rem', color:'rgba(128,128,128)' }}>
+                    { new Intl.DateTimeFormat("en-US", { day: "numeric", month: "long" }).format(new Date(created)) }
+                </p>
             </div>
 
             {/* conditionally rendering image */}

@@ -6,6 +6,7 @@ function HeaderComponent(){
                 <span className="headerTitleLarge">Bloggy!</span>
                 <p>Discover new ideas, stories and expertise from any topic.</p>
             </div>
+            
             <img 
                 className="headerImage" 
                 src="https://wallpapercave.com/wp/wp2532971.jpg" 

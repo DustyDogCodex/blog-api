@@ -5,7 +5,8 @@ const multer = require('multer')
 const dotenv = require('dotenv')
 const passport = require('passport')
 const session = require('express-session')
-//all imported routes
+const path = require('path')
+//all imported routes and controllers
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
 const postRoute = require('./routes/posts')
@@ -28,7 +29,7 @@ mongoose.connect(process.env.MONGO_URL)
 .then(console.log('Established connection to database!'))
 .catch(err => console.log(err))
 
-//setting up express sessions and initializing passportjs
+/* ------------ Express sessions and Passportjs ---------------------- */ 
 app.use(session({ 
     secret: process.env.SESSION_SECRET,
     resave: false, 
@@ -49,7 +50,9 @@ app.use(function(req, res, next) {
     next()
 })
 
-/* -------------ROUTES INVOLVING FILE UPLOAD ------------------------------------- */
+/* ------------------------------------------------------------------ */
+
+/* -------------ROUTES INVOLVING FILE UPLOAD ------------------------ */
 
 //setting up storage for user uploaded files using multer
 const storage = multer.diskStorage({
@@ -67,7 +70,10 @@ const upload = multer({ storage })
 //routes involving image uploads
 app.post('/post/new', upload.single("image"), createNewBlog)
 
-/* ------------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------ */
+
+//static folder containing uploaded user images
+app.use('/uploads', express.static(path.join(__dirname + '/uploadedImages')))
 
 /* ---------------------ROUTES---------------------------------- */
 
