@@ -28,7 +28,11 @@ function Homepage(){
         <>
             <HeaderComponent />
             <Container fluid='xxl' className="home">
-                <PostsDisplay blogs={blogs}/>
+                <div
+                    className="homepagePostsDisplay"
+                >
+                    <PostsDisplay blogs={blogs} />
+                </div>
                 <Sidebar />
             </Container>
         </>

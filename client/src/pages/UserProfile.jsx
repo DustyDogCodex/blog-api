@@ -69,7 +69,7 @@ function UserProfile() {
                     >
                         {/* left hand side of page with user created posts */}
                         <div
-                            style={{ width:'75%' }}
+                            style={{ width:'70%' }}
                         >
                             {/* username/heading */}
                             <h1
@@ -103,7 +103,7 @@ function UserProfile() {
 
                         {/* right hand side with user about me */}
                         <div
-                            style={{ width:'25%', padding:'2rem 1rem' }}
+                            style={{ width:'30%', height:'fit-content', padding:'2rem 1rem', border:'1px solid black' }}
                         >
                             {/* User avatar if it exists */}
                             {userProfile.avatar
