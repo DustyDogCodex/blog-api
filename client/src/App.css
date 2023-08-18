@@ -12,17 +12,6 @@
     padding: 5%;
 }
 
-/* styling for the homepage component */
-.home {
-    display: flex;
-    justify-content: flex-start;
-    min-height: 70vh;
-}
-
-.homepagePostsDisplay{
-    width: 75%;
-}
-
 /* styling for the sidebar component */
 .sidebar {
     display: flex;
@@ -300,11 +289,6 @@
         width: 100%;
         padding: 1rem;
         border-bottom: 1px solid rgba(211, 211, 211, 0.6);
-    }
-
-    /* styling for posts */
-    .homepagePostsDisplay{
-        width: 100%;
     }
 
     .postTitle{

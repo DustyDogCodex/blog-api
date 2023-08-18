@@ -24,15 +24,16 @@ function Homepage(){
         getBlogs()
     }, [ searchQuery ])
 
-
-
     return(
         <>
-            <Hero coverPosts={blogs.slice(0,2)}/>
+            <Hero coverPosts={blogs.slice(0,2)} />
 
-            <Container fluid='xxl' className="home">
+            <Container 
+                fluid='xxl' 
+                style={{ display:'flex', justifyContent:'flex-start', marginBottom:'2rem' }}
+            >
                 <div
-                    className="homepagePostsDisplay"
+                    style={{ width:'75%' }}
                 >
                     <PostsDisplay blogs={blogs} />
                 </div>

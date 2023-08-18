@@ -17,8 +17,10 @@ function PostsDisplay({ blogs }){
     )
 
     return(
-        <div className="postsDisplay">
-            {blogElements.reverse()}
+        <div 
+            style={{ marginBottom:'3rem' }}
+        >
+            { blogElements.reverse() }
         </div>
     )
 }

@@ -46,7 +46,7 @@ function Navigation(){
             `}
         </style>
 
-        <Navbar variant="custom" expand="lg" sticky="top">
+        <Navbar variant="custom" expand="lg" sticky="top" className="mb-5">
             <Container className="d-flex justify-space-between">
                 <Navbar.Brand href="/">Bloggy</Navbar.Brand>
 

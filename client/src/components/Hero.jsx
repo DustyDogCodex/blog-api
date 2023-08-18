@@ -1,30 +1,57 @@
 import { Container } from "react-bootstrap"
 
 function Hero({ coverPosts }){
-    //main posts for hero
-    console.log(coverPosts)
-
+    //selecting the most recent post as our cover post
+    const latest = coverPosts.toReversed()
+    const mainPost = latest[0]
+    
     return(
         <Container
-            style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', height:'50vh' }}
+            style={{ display:'flex', alignItems:'center', justifyContent:'center', height:'40rem', border:'1px solid black', padding:'0' }}
         >
-            <div 
-                style={{ display:'flex', width:'100%', border:'1px solid red' }}
+            {/* main cover article */}
+            <div
+                style={{ height:'100%', width:'70%', border:'1px solid black' }}
             >
-                {/* main cover article */}
+                {/* cover image */}
                 <div
-                    style={{ width:'70%', height:'100%', border:'1px solid black' }}
+                    style={{ display:'flex', alignItems:'center', justifyContent:'center', height:'65%' }}
                 >
-                    
+                    <img 
+                        src={`http://localhost:5000/uploads/${mainPost?.image}`} 
+                        alt='posts image'
+                        style={{ height:'100%', width:'100%', objectFit:'contain' }} 
+                    />
                 </div>
-
-                {/* new/featured posts section */}
+                
+                {/* title and subtitle */}
                 <div
-                    style={{ width:'30%' }}
+                    style={{ height:'35%', display:'flex' }}
                 >
-                    <h3>New</h3>
+                    <h1
+                        style={{ width:'50%', fontFamily:'Permanent Marker, cursive' }}
+                    >
+                        {mainPost?.title}
+                    </h1>
+
+                    <h5>{mainPost?.subtitle}</h5>
                 </div>
             </div>
+
+            {/* new/featured posts section */}
+            <div
+                style={{ height:'100%', width:'30%', display:'flex', flexDirection:'column', background:'rgb(3, 0, 28)' }}
+            >
+                {/* heading */}
+                <h3
+                    style={{color: "gold", fontFamily:'Roboto Mono, cursive'}}
+                >
+                    New
+                </h3>
+
+                {/* post snippets */}
+                
+            </div> 
         </Container>
     )
 }
