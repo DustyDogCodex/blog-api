@@ -1,6 +1,6 @@
 import axios from "axios"
 import { Container } from "react-bootstrap"
-import { HeaderComponent } from "../components/HeaderComponent"
+import { Hero } from "../components/Hero"
 import { Sidebar } from "../components/Sidebar"
 import { PostsDisplay } from "../components/PostsDisplay"
 import { useEffect, useState } from "react"
@@ -26,7 +26,8 @@ function Homepage(){
 
     return(
         <>
-            <HeaderComponent />
+            <Hero coverPosts={blogs}/>
+            
             <Container fluid='xxl' className="home">
                 <div
                     className="homepagePostsDisplay"

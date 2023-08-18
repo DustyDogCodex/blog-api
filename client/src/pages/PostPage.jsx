@@ -32,8 +32,8 @@ function PostPage(){
     const editedPost = currentPost?.post?.split('\n')
 
     return(
-        <Container className="postPage">
-            <div className="blogPost">
+        <Container style={{ display:'flex', marginBottom:'2rem' }}>
+            <div style={{ padding:'2rem 1rem', width:'100%' }}>
                 {loading
                     ?
                     /* loading animation while data is being fetched */
@@ -52,15 +52,22 @@ function PostPage(){
                     <> 
                         {currentPost.image
                             ? 
-                            <img 
-                                src='https://images7.alphacoders.com/681/681197.jpg' 
-                                alt="" 
-                            />
+                            <div
+                                style={{ width:'100%', display:'flex', alignItems:'center', justifyContent:'center' }}
+                            >
+                                <img 
+                                    src={`http://localhost:5000/uploads/${currentPost.image}`} 
+                                    alt="post's image" 
+                                    style={{ maxWidth:'100%', maxHeight:'40rem' }}
+                                />
+                            </div>
                             :
                             ''
                         }
 
-                        <h1 className="blogTitle">
+                        <h1 
+                            style={{ textAlign:'center', margin:'1rem', fontFamily:'Permanent Marker, cursive', fontSize:'3rem' }}
+                        >
                             {currentPost.title}
                         </h1>
 

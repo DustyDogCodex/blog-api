@@ -52,7 +52,7 @@ function Post({ id, userId, title, username, post, image, categories, created })
                 <img 
                     src={`http://localhost:5000/uploads/${image}`} 
                     alt="blog image" 
-                    className="postImg" 
+                    style={{ width:'25%', height:'12rem', objectFit:'cover', borderRadius:'2rem' }}
                 />
                 :
                 ''

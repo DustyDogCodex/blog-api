@@ -16,7 +16,7 @@ function AddBlog() {
     const [ emptyTag, setEmptyTag ] = useState(false)
     const [ duplicateTag, setDuplicateTag ] = useState(false)
     const [ categories, setCategories ] = useState([])
-
+    console.log('cats',categories)
     //variable to track image upload
     const [ image, setImage ] = useState('')
 
@@ -27,6 +27,7 @@ function AddBlog() {
             return 
         } else if (categories?.includes(catInput)) {
             setDuplicateTag(true)
+            return
         } else {
             setCategories([ ...categories, catInput ])
             setCatInput('')
@@ -58,7 +59,7 @@ function AddBlog() {
             { withCredentials: true }
         )
         .then(res => {
-            if (res.status === 'success'){
+            if (res.data === 'success'){
                 window.location.assign('/')
             }
         })
@@ -149,8 +150,7 @@ function AddBlog() {
                     <Form.Control
                         type="file"
                         name="image"
-                        value={image}
-                        onChange={(e) => setImage(e.target.file)}
+                        onChange={e => setImage(e.target.files[0])}
                     />
                 </Form.Group>
                 
@@ -169,7 +169,7 @@ function AddBlog() {
                     {/* inputs for creating and adding tags to post */}
                     <div className='d-flex flex-col justify-content-between px-5'>
                         <div
-                            className='d-flex '
+                            className='d-flex'
                         >
                             <Form.Control
                                 type="text"

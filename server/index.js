@@ -36,7 +36,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: { 
         sameSite: "lax",
-        secure: false,  //for dev environment
+        secure: 'auto',  //for dev environment
         maxAge: 24 * 60 * 60 * 1000 //one day 
     }
 }))
@@ -73,7 +73,7 @@ app.post('/post/new', upload.single("image"), createNewBlog)
 /* ------------------------------------------------------------------ */
 
 //static folder containing uploaded user images
-app.use('/uploads', express.static(path.join(__dirname + '/uploadedImages')))
+app.use('/uploads', express.static('server/images'))
 
 /* ---------------------ROUTES---------------------------------- */
 
