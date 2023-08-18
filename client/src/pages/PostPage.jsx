@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
-import foShizzle from '../assets/snoop.gif'
+import Loading from "../components/Loading"
 
 /* this is the page users will be directed to when they click on a blog post to view it */
 function PostPage(){
@@ -36,17 +36,7 @@ function PostPage(){
             <div style={{ padding:'2rem 1rem', width:'100%' }}>
                 {loading
                     ?
-                    /* loading animation while data is being fetched */
-                    (
-                        <div
-                            className="loadingAnimation"
-                        >
-                            <img 
-                                src={foShizzle} 
-                                alt="Our developers are loading your stuff"
-                            />
-                        </div>
-                    )
+                    <Loading />
                     :
                     /* post to be displayed */
                     <> 

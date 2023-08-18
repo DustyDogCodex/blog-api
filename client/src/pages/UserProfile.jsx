@@ -2,8 +2,8 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { Container } from "react-bootstrap"
 import { useParams } from "react-router-dom"
-import foShizzle from '../assets/snoop.gif'
 import { PostsDisplay } from "../components/PostsDisplay"
+import Loading from "../components/Loading"
 
 function UserProfile() {
     //grab user id from params
@@ -48,19 +48,8 @@ function UserProfile() {
         <Container>
             {loadingUser
                 ?
-                (
-                    /* loading animation while data is being fetched */
-                    (
-                        <div
-                            className="loadingAnimation"
-                        >
-                            <img 
-                                src={foShizzle} 
-                                alt="Our developers are loading your stuff"
-                            />
-                        </div>
-                    )
-                )
+                //loading animation
+                <Loading />
                 :
                 (
                     //main content of page

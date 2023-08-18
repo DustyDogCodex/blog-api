@@ -69,7 +69,7 @@ function Navigation(){
                                     <div 
                                         style={{display:'flex', alignItems:'center'}}
                                     >
-                                        <Nav.Link href="/account">
+                                        <Nav.Link href="/dashboard">
                                             {/* conditionally rendering avatar or icon */}
                                             {userInfo.avatar
                                                 ?

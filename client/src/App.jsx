@@ -1,18 +1,20 @@
 import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { Navigation } from './components/Navigation'
 import { About } from './components/About'
-import { Homepage } from './pages/Homepage';
-import { PostPage } from './pages/PostPage';
-import { AddBlog } from './pages/AddBlog';
-import { Account } from './pages/Account';
-import { Login } from './pages/Login';
-import { Register } from './pages/Register';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Footer } from './components/Footer';
-import { useContext } from 'react';
-import { MyContext } from './MyContext';
-import UserProfile from './pages/UserProfile';
+import { Homepage } from './pages/Homepage'
+import { PostPage } from './pages/PostPage'
+import { AddBlog } from './pages/AddBlog'
+import { Account } from './pages/Account'
+import { Login } from './pages/Login'
+import { Register } from './pages/Register'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Footer } from './components/Footer'
+import { useContext } from 'react'
+import { MyContext } from './MyContext'
+import UserProfile from './pages/UserProfile'
+import Dashboard from './pages/Dashboard'
+import MyPosts from './pages/MyPosts'
 
 function App() {
   //using context to check for a logged in user.
@@ -46,10 +48,14 @@ function App() {
                     path='user/:userId' 
                     element={ <UserProfile /> }
                 />
+                {/* user dashboard and associated subroutes */}
                 <Route 
-                    path='account' 
-                    element={ userInfo ? <Account/> : <Login/> }
-                />
+                    path='dashboard' 
+                    element={ userInfo ? <Dashboard /> : <Login/> }
+                >
+                    <Route index element={<MyPosts />} />
+                    <Route path='account' element={<Account />} />
+                </Route>
                 <Route 
                     path='addblog' 
                     element={ userInfo ? <AddBlog/> : <Login/> }

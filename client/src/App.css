@@ -3,15 +3,6 @@
     box-sizing: border-box;
 }
 
-/* loading animation used in various pages */
-.loadingAnimation {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 5%;
-}
-
 /* styling for the sidebar component */
 .sidebar {
     display: flex;
