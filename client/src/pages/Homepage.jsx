@@ -10,7 +10,7 @@ function Homepage(){
     //using state to select posts to display
     const [ blogs, setBlogs ] = useState([])
 
-    //using useLocation to identify any query search parameters being passed to url
+    //using useLocation to identify any query search parameters present in url
     const location = useLocation()
     const searchQuery = location.search
 

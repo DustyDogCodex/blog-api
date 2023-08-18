@@ -25,7 +25,28 @@ function Navigation(){
     }
 
     return(
-        <Navbar bg="info" variant="dark" expand="lg" sticky="top">
+        <>
+        {/* custom background color for navbar */}
+        <style type="text/css">
+            {`
+                .navbar-custom {
+                    background: rgb(255, 172, 28);
+                }
+                .nav-link, .navbar-brand{
+                    color: white;
+                }
+                .navbar-brand{
+                    font-size: 2.5rem;
+                    font-family: 'Permanent Marker', cursive;
+                }
+                .nav-link{
+                    font-size: 1.1rem;
+                    font-family: 'Roboto Mono', sans-serif;
+                }
+            `}
+        </style>
+
+        <Navbar variant="custom" expand="lg" sticky="top">
             <Container className="d-flex justify-space-between">
                 <Navbar.Brand href="/">Bloggy</Navbar.Brand>
 
@@ -89,6 +110,7 @@ function Navigation(){
                 </div>
             </Container>
         </Navbar>
+    </>
     )
 }
 

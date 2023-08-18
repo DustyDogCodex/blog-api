@@ -23,7 +23,7 @@ function App() {
 
   return (
     <>
-        <Navigation/>
+        <Navigation />
         <BrowserRouter>
             <Routes>
                 <Route 
