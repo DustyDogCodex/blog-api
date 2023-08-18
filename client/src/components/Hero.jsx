@@ -1,35 +1,36 @@
 import { Container } from "react-bootstrap"
+import Trending from "./Trending"
 
 function Hero({ coverPosts }){
     //selecting the most recent post as our cover post
-    const latest = coverPosts.toReversed()
-    const mainPost = latest[0]
+    let mainPost = coverPosts[2]
+    let trendingPosts = coverPosts.slice(0,3)
     
     return(
         <Container
-            style={{ display:'flex', alignItems:'center', justifyContent:'center', height:'40rem', border:'1px solid black', padding:'0' }}
+            style={{ display:'flex', alignItems:'center', justifyContent:'center', height:'45rem', padding:'0', marginTop:'2rem', marginBottom:'2rem' }}
         >
             {/* main cover article */}
             <div
-                style={{ height:'100%', width:'70%', border:'1px solid black' }}
+                style={{ height:'100%', width:'70%' }}
             >
                 {/* cover image */}
                 <div
-                    style={{ display:'flex', alignItems:'center', justifyContent:'center', height:'65%' }}
+                    style={{ display:'flex', alignItems:'center', justifyContent:'center', height:'70%', background:'rgb(211,211,211)' }}
                 >
                     <img 
                         src={`http://localhost:5000/uploads/${mainPost?.image}`} 
                         alt='posts image'
-                        style={{ height:'100%', width:'100%', objectFit:'contain' }} 
+                        style={{ height:'100%', width:'100%', objectFit:'fill' }} 
                     />
                 </div>
                 
                 {/* title and subtitle */}
                 <div
-                    style={{ height:'35%', display:'flex' }}
+                    style={{ height:'30%', display:'flex' }}
                 >
                     <h1
-                        style={{ width:'50%', fontFamily:'Permanent Marker, cursive' }}
+                        style={{ width:'50%', fontFamily:'Roboto Mono, cursive' }}
                     >
                         {mainPost?.title}
                     </h1>
@@ -44,13 +45,20 @@ function Hero({ coverPosts }){
             >
                 {/* heading */}
                 <h3
-                    style={{color: "gold", fontFamily:'Roboto Mono, cursive'}}
+                    style={{ color: "gold", fontSize:'2.5rem' , fontFamily:'Roboto Mono, cursive', margin:'1rem' }}
                 >
                     New
                 </h3>
 
-                {/* post snippets */}
-                
+                {/* new/trending posts section */}
+                {trendingPosts.map((post,index) => 
+                    <Trending 
+                        key={index}
+                        postId={post._id}
+                        title={post.title}
+                        subtitle={post.subtitle}
+                    />
+                ).toReversed()}
             </div> 
         </Container>
     )

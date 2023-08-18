@@ -26,7 +26,7 @@ function Homepage(){
 
     return(
         <>
-            <Hero coverPosts={blogs.slice(0,2)} />
+            <Hero coverPosts={blogs.slice(0,3)} />
 
             <Container 
                 fluid='xxl' 
