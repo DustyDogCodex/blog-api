@@ -7,7 +7,19 @@ const { Schema } = mongoose
 //setting categories to type Arraya since users can add multiple categories to their posts.
 
 const PostSchema = new Schema({
+    userId: {
+        type: mongoose.ObjectId,
+        required: true
+    },
+    username: {
+        type: String,
+        required: true
+    },
     title: {
+        type: String,
+        required: true
+    },
+    subtitle: {
         type: String,
         required: true
     },
@@ -17,14 +29,6 @@ const PostSchema = new Schema({
     },
     image: {
         type: String
-    },
-    userId: {
-        type: mongoose.ObjectId,
-        required: true
-    },
-    username: {
-        type: String,
-        required: true
     },
     categories: {
         type: Array

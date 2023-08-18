@@ -42,6 +42,7 @@ function AddBlog() {
         formData.append('username', userInfo.username)
         formData.append('userId', userInfo._id)
         formData.append('title', data.title)
+        formData.append('subtitle', data.subtitle)
         formData.append('post', data.post)
         formData.append('categories', categories)
 
@@ -109,6 +110,31 @@ function AddBlog() {
                                 
                                 {errors.title.type == 'maxLength' && <Alert variant='danger' dismissible>
                                     Title cannot be more than 200 characters
+                                </Alert>}
+                            </div>
+                        )}
+                    </Form.Group>
+
+                    <Form.Group
+                        as={Col}
+                        md="4"
+                    >
+                        <Form.Label>Subtitle</Form.Label>
+                        <Form.Control
+                            {...register('subtitle', { required: true, maxLength: 300 })}
+                            type="text"
+                            placeholder='Enter a subtitle for your post'
+                        />
+                        {errors.subtitle && (
+                            <div
+                                className='d-flex align-items-center justify-content-center my-2'
+                            >
+                                {errors.subtitle.type == 'required' && <Alert variant='danger' dismissible> 
+                                    Subtitle is required
+                                </Alert>}
+                                
+                                {errors.subtitle.type == 'maxLength' && <Alert variant='danger' dismissible>
+                                    Subtitle cannot be more than 300 characters
                                 </Alert>}
                             </div>
                         )}

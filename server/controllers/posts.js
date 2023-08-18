@@ -6,7 +6,7 @@ const createNewBlog = (
     '/new',
     asyncHandler(async(req,res) => {
         //extract blog info from req.body
-        const { userId, username, title, post, categories } = req.body 
+        const { userId, username, title, subtitle, post, categories } = req.body 
         
         //checking for uploaded image
         const imagePath = req.file ? req.file.filename : ''
@@ -16,6 +16,7 @@ const createNewBlog = (
             username,
             userId,
             title,
+            subtitle,
             post,
             image: imagePath,
             categories: categories.split(',')

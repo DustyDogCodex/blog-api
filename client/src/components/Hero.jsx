@@ -1,16 +1,21 @@
+import { Container } from "react-bootstrap"
+
 function Hero({ coverPosts }){
+    //main posts for hero
+    console.log(coverPosts)
+
     return(
-        <div 
+        <Container
             style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', height:'50vh' }}
         >
             <div 
-                style={{ display:'flex', }}
+                style={{ display:'flex', width:'100%', border:'1px solid red' }}
             >
                 {/* main cover article */}
                 <div
-                    style={{ width:'70%' }}
+                    style={{ width:'70%', height:'100%', border:'1px solid black' }}
                 >
-                    main cover article
+                    
                 </div>
 
                 {/* new/featured posts section */}
@@ -20,7 +25,7 @@ function Hero({ coverPosts }){
                     <h3>New</h3>
                 </div>
             </div>
-        </div>
+        </Container>
     )
 }
 

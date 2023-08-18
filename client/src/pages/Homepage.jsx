@@ -24,10 +24,12 @@ function Homepage(){
         getBlogs()
     }, [ searchQuery ])
 
+
+
     return(
         <>
-            <Hero coverPosts={blogs}/>
-            
+            <Hero coverPosts={blogs.slice(0,2)}/>
+
             <Container fluid='xxl' className="home">
                 <div
                     className="homepagePostsDisplay"
