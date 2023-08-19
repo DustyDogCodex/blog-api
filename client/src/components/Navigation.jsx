@@ -47,14 +47,15 @@ function Navigation(){
         </style>
 
         <Navbar variant="custom" expand="lg" sticky="top">
-            <Container className="d-flex justify-space-between">
+            <Container style={{ display:'flex', justifyContent:'space-between' }}>
                 <Navbar.Brand href="/">Bloggy</Navbar.Brand>
 
                 {/* collapsible nav menu */}
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav
-                        className="me-auto d-flex align-items-center justify-content-center"
+                        className="justify-content-end align-items-center"
+                        style={{ width:'100%' }}
                     >
                         <Nav.Link href="/about">Who We Are</Nav.Link>
                         <Nav.Link href="/addblog">Write</Nav.Link>
