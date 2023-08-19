@@ -35,7 +35,7 @@ function Homepage(){
                 <div
                     style={{ width:'75%' }}
                 >
-                    <PostsDisplay blogs={blogs} />
+                    <PostsDisplay blogs={blogs} dashboard={false}/>
                 </div>
                 <Sidebar />
             </Container>

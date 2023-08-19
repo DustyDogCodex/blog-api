@@ -1,6 +1,6 @@
 import { Post } from "./Post";
 
-function PostsDisplay({ blogs }){
+function PostsDisplay({ blogs, dashboard }){
     //individual blogs for display
     const blogElements = blogs.map((blog,index) => 
         <Post 
@@ -13,6 +13,7 @@ function PostsDisplay({ blogs }){
             image={blog.image}
             categories={blog.categories} 
             created={blog.createdAt} 
+            dashboard={dashboard}
         />
     )
 

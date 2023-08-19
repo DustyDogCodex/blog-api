@@ -40,40 +40,6 @@
 }
 
 /* styling for the post component/individual post displays */
-.post {
-    padding: 1rem 0rem;
-    border-bottom: 1px solid rgba(211, 211, 211,0.6);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.postContent {
-    margin-top: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: flex-start;
-}
-
-.categoryBubble{
-    font-family: 'Raleway', sans-serif;
-    font-size: 0.9rem;
-    margin-right: 0.2rem;
-    padding: 8px;
-    background: skyblue;
-    color: gold;
-    border-radius: 1rem;
-    cursor: pointer;
-}
-
-.postTitle{
-    font-size: 1.6rem;
-    margin: 0.2rem 0rem;
-    font-family: 'Permanent Marker', cursive;
-    cursor: pointer;
-}
-
 .postSummary{
     margin-top: 0.5rem;
     text-align: left;

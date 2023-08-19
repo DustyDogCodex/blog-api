@@ -39,7 +39,14 @@ function MyPosts() {
                 <Loading />
                 :
                 //displaying user's posts after data is fetched from server
-                <PostsDisplay blogs={posts} />
+                <>
+                    <h1
+                        style={{ margin:'1rem 0rem', fontSize:'2rem'}}
+                    >
+                        {userInfo.username}'s posts
+                    </h1>
+                    <PostsDisplay blogs={posts} dashboard={true}/>
+                </>
             }
         </Container>
     )
