@@ -2,20 +2,35 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons"
 import { usersAndImages } from "../assets/usersAndImages"
 import { Spotlight } from "./Spotlight"
-import { faEnvelope } from "@fortawesome/free-regular-svg-icons"
-import { Footer } from "./Footer"
+import { Container } from "react-bootstrap"
 
 function About(){
+    //mapping usernames + avatars into soptlight components for display in user spotlights section
     const spotLightElements = usersAndImages.map((user,index) => 
-        <Spotlight key={index} avatar={user.avatar} username={user.username}/> )
+        <Spotlight 
+            key={index} 
+            avatar={user.avatar} 
+            username={user.username}
+        /> 
+    )
 
     return(
         <>
-            <div className="aboutHeader">
+            {/* Main heading */}
+            <div 
+                style={{ display:'flex', alignItems:'center', justifyContent:'center', height:'20rem', borderBottom:'1px solid black', fontSize:'5rem' }}
+            >
                 <p>New ideas start <strong>here.</strong></p> 
             </div>
-            <div className="aboutSummary">
-                <div className="summaryLeft">
+
+            {/* about us/introduction section. This is split in 2 sections */}
+            <div 
+                style={{ display:'flex', justifyContent:'space-between', alignItems:'center', borderBottom:'1px solid black' }}
+            >
+                {/* left hand section */}
+                <div
+                    style={{ width:'50%', height:'100%', padding:'2rem 4rem', borderRight:'1px solid black' }}
+                >
                     <p>
                         Welcome to Bloggy, the cutting-edge digital platform, that provides unparalleled coverage and analysis of the latest groundbreaking trends, technologies, and advancements shaping the tech landscape. Our expert contributors leverage their deep domain expertise to deliver thought-provoking articles and curated insights, keeping our readers at the forefront of the digital revolution. With a seamless user experience and an intuitive interface, you can easily dive into our content ecosystem, spanning areas like artificial intelligence, blockchain, cloud computing, Internet of Things (IoT) and quantum computing to stay ahead of the innovation curve.
                     </p>
@@ -24,69 +39,91 @@ function About(){
                         At Bloggy, we are passionate about fueling tech-driven disruption and empowering the global tech community. Bloggy serves as a melting pot of knowledge, fostering collaboration and driving synergies between diverse stakeholders. From startups to Fortune 500 companies, our exclusive features and in-depth interviews shed light on the strategies employed by trailblazing entrepreneurs and visionaries, unlocking the secrets behind their unprecedented success. Seamlessly integrating multimedia content, Bloggy is an immersive destination where tech aficionados can satiate their thirst for disruptive innovations, uncover emerging trends, and explore the frontiers of tomorrow's technologies.
                     </p>
                 </div>
-                <div className="summaryRight">
-                    <video muted="" loop="infinite" playsInline={true} autoPlay={true} data-src="https://cdn.dribbble.com/users/975591/screenshots/15061825/media/dda67eaae00bea483c877ab5ae438d3e.mp4" data-video-small="https://cdn.dribbble.com/users/975591/screenshots/15061825/media/a9d49a36c1cef4c09eec37e65c0a7881.mp4" data-video-medium="https://cdn.dribbble.com/users/975591/screenshots/15061825/media/7bfab71f65e6e1e2c38eae1c96b8c20d.mp4" data-video-large="https://cdn.dribbble.com/users/975591/screenshots/15061825/media/dda67eaae00bea483c877ab5ae438d3e.mp4" src="https://cdn.dribbble.com/users/975591/screenshots/15061825/media/a9d49a36c1cef4c09eec37e65c0a7881.mp4"></video>
+
+                {/* right hand section with video */}
+                <div 
+                    style={{ width:'50%', height:'100%', display:'flex', alignItems:'center', justifyContent:'center' }}
+                >
+                    <video 
+                        style={{ width:'30rem', height:'30rem' }}
+                        muted="" 
+                        loop="infinite" 
+                        playsInline={true} 
+                        autoPlay={true} 
+                        data-src="https://cdn.dribbble.com/users/975591/screenshots/15061825/media/dda67eaae00bea483c877ab5ae438d3e.mp4" 
+                        data-video-small="https://cdn.dribbble.com/users/975591/screenshots/15061825/media/a9d49a36c1cef4c09eec37e65c0a7881.mp4" 
+                        data-video-medium="https://cdn.dribbble.com/users/975591/screenshots/15061825/media/7bfab71f65e6e1e2c38eae1c96b8c20d.mp4" 
+                        data-video-large="https://cdn.dribbble.com/users/975591/screenshots/15061825/media/dda67eaae00bea483c877ab5ae438d3e.mp4" 
+                        src="https://cdn.dribbble.com/users/975591/screenshots/15061825/media/a9d49a36c1cef4c09eec37e65c0a7881.mp4" 
+                    />
                 </div>
             </div>
-            <div className="aboutUserSpotLight">
-                <h1 style={{marginBottom:'30px'}}>A melting pot of curious minds.</h1>
-                <p>Bloggy is fueled by a vibrant community of users. From passionate enthusiasts to seasoned experts, users flock to Bloggy to share their ideas, experiences, and perspectives. Engaging in lively discussions, they contribute to a diverse tapestry of knowledge and insights. With a spirit of inclusivity and collaboration, Bloggy encourages users of all backgrounds to actively participate and connect with one another. Together, they form a dynamic network that fuels the growth and vitality of the platform, making Bloggy a thriving hub for engaging content and meaningful interactions.</p>
-                <div className="userSpotLight">
+
+            {/* user spotlight section */}
+            <div 
+                style={{ display:'flex', alignItems:'center', flexDirection:'column', justifyContent:'center', padding:'3.5% 15%', textAlign:'center', background:'#ffd1b9' }}
+            >
+                <h1 style={{ fontSize:'5rem', marginBottom:'2rem' }}>A melting pot of curious minds.</h1>
+                
+                <p style={{ fontSize:'1.2rem' }}>Bloggy is fueled by a vibrant community of users. From passionate enthusiasts to seasoned experts, users flock to Bloggy to share their ideas, experiences, and perspectives. Engaging in lively discussions, they contribute to a diverse tapestry of knowledge and insights. With a spirit of inclusivity and collaboration, Bloggy encourages users of all backgrounds to actively participate and connect with one another. Together, they form a dynamic network that fuels the growth and vitality of the platform, making Bloggy a thriving hub for engaging content and meaningful interactions.</p>
+                
+                {/* user spotlight display */}
+                <div 
+                    style={{ 
+                        width:'100%', 
+                        height:'40rem', 
+                        display:'grid', 
+                        padding:'2rem', 
+                        gap:'3%', 
+                        gridTemplateColumns:'repeat(3,1fr)', 
+                        gridTemplateRows:'repeat(4,1fr)' 
+                    }}
+                >
                     { spotLightElements }
                 </div>
             </div>
-            <div className="contact">
-                <div className="contactLeft">
-                    <h1 style={{fontSize:'72px', padding:'2%', color:'white'}}>Learn more about this website. Or contact me.</h1>
+
+            {/* contact me section */}
+            <div
+                style={{ display:'flex', background:'#34a245' }}
+            >
+                <Container style={{ display:'flex' }}>
+                {/* left hand section */}
+                <div 
+                    className="contactSection"
+                    style={{ borderRight:'1px solid black' }}
+                >
+                    <h1 
+                        style={{ fontSize:'4.5rem', padding:'2%', color:'white' }}
+                    >
+                        Learn more about this website. Or contact me.
+                    </h1>
                 </div>
-                <div className="contactRight">
+
+                {/* right hand section */}
+                <div className="contactSection">
                     <a 
                         href="https://github.com/DustyDogCodex/bloggy"
                         target="_blank" 
-                        rel="noopener">
-                    <FontAwesomeIcon 
-                        icon={faGithub} 
-                        style=
-                        {{
-                            color: "white", 
-                            height:'50px', 
-                            width:'50px', 
-                            margin:'20px'
-                        }} 
-                    />
+                        rel="noopener"
+                    >
+                        <FontAwesomeIcon 
+                            icon={faGithub} 
+                            style={{ color: "white", height:'50px', width:'50px', margin:'20px' }} 
+                        />
                     </a>
                     <a 
                         href="https://twitter.com/VarunMalaviya2"
                         target="_blank" 
-                        rel="noopener" >
-                    <FontAwesomeIcon 
-                        icon={faTwitter} 
-                        style=
-                        {{
-                            color: "#055ffa", 
-                            height:'50px', 
-                            width:'50px', 
-                            margin:'20px'
-                        }} 
-                    />
-                    </a>
-                    <a 
-                        href="#" 
-                        target="_blank" 
-                        rel="noopener"
-                        onClick={() => window.location = 'mailto:varunmalaviya7@gmail.com'}>
-                    <FontAwesomeIcon 
-                        icon={faEnvelope} 
-                        style=
-                        {{
-                            color: "#efc90b", 
-                            height:'50px', 
-                            width:'50px', 
-                            margin:'20px'
-                        }} 
-                    />
+                        rel="noopener" 
+                    >
+                        <FontAwesomeIcon 
+                            icon={faTwitter} 
+                            style={{ color: "#055ffa", height:'50px', width:'50px', margin:'20px' }} 
+                        />
                     </a>
                 </div>
+                </Container>
             </div>
         </>
     )

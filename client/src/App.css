@@ -3,6 +3,13 @@
     box-sizing: border-box;
 }
 
+/* this class is to remove the color and text decoration from link/anchor tags */
+.link {
+    text-decoration: none;
+    color: black;
+    margin: 0%;
+}
+
 /* styling for the sidebar component */
 .sidebar {
     display: flex;
@@ -124,112 +131,12 @@
     background-size: cover;
 }
 
-/* this class is to remove the color and text decoration from link/anchor tags */
-.link{
-    text-decoration: none;
-    color: black;
-    margin: 0%;
-}
-
-/* styling for the About component/Who We Are page */
-.aboutHeader{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 20rem;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    font-size: 5rem;
-}
-
-.aboutSummary{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid black;
-}
-
-.summaryLeft{
-    width: 50%;
-    height: 100%;
-    padding: 30px 60px;
-    border-right: 1px solid black;
-}
-
-.summaryRight{
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.summaryRight > video{
-    width: 500px;
-    height: 500px;
-}
-
-.aboutUserSpotLight{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    padding: 5% 10%;
-    text-align: center;
-    background: #ffd1b9;
-}
-
-.aboutUserSpotLight > h1 {
-    font-size: 72px;
-}
-
-.spotLight {
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    height: 100px;
-    width: 100%;
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.userSpotLight{
-    width: 100%;
-    height: 600px;
-    display: grid;
-    padding: 30px;
-    gap: 3%;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-}
-
-.spotLightImg{
-    height: 60px;
-    width: 60px;
-    border-radius: 100%;
-}
-
-.contact{
-    display: flex;
-    background: #34a245;
-}
-
-.contactLeft{
-    width: 50%;
-    border-right: 1px solid black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10%;
-}
-
-.contactRight{
+/* styling for the contact section in about component */
+.contactSection{
     width: 50%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     padding: 6%;
 }
 

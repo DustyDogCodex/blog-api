@@ -1,8 +1,10 @@
 function Spotlight({ avatar, username }){
     return(
-        <div className="spotLight">
+        <div 
+            style={{ borderTop:'1px solid black', borderBottom:'1px solid black', height:'6.5rem', width:'100%', fontSize:'2rem', display:'flex', alignItems:'center', justifyContent:'space-around' }}
+        >
             <img 
-                className='spotLightImg' 
+                style={{ height:'4rem', width:'4rem', borderRadius:'100%' }}
                 src={avatar} 
                 alt={`${username}'s avatar`}
             />
