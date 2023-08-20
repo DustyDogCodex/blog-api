@@ -145,12 +145,17 @@ function Post({ id, userId, title, username, post, image, categories, created, d
             {/* CRUD icons, these will only be displayed if post's userId == logged in user's userId AND these posts are currently displayed on the user's dashboard */}
             {dashboard && (
                 <div
-                    style={{ marginLeft:'1rem'}}
+                    style={{ marginLeft:'1rem' }}
                 >
-                    <FontAwesomeIcon 
-                        icon={faPenToSquare} 
-                        style={{ color:'skyblue', height:'1.6rem', cursor:'pointer' }}
-                    />
+                    <Link
+                        to={`edit/${id}`}
+                    >
+                        <FontAwesomeIcon 
+                            icon={faPenToSquare} 
+                            style={{ color:'skyblue', height:'1.6rem', cursor:'pointer' }}
+                        />
+                    </Link>
+                    
                     <FontAwesomeIcon 
                         icon={faTrash} 
                         style={{ color:'red', height:'1.6rem', cursor:'pointer' }}

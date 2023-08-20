@@ -15,6 +15,7 @@ import { MyContext } from './MyContext'
 import UserProfile from './pages/UserProfile'
 import Dashboard from './pages/Dashboard'
 import MyPosts from './pages/MyPosts'
+import EditPost from './components/EditPost'
 
 function App() {
   //using context to check for a logged in user.
@@ -55,6 +56,7 @@ function App() {
                 >
                     <Route index element={<MyPosts />} />
                     <Route path='account' element={<Account />} />
+                    <Route path='edit/:postId' element={<EditPost />} />
                 </Route>
                 <Route 
                     path='addblog' 
