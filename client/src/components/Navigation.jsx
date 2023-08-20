@@ -3,7 +3,7 @@ import { useContext } from "react"
 import { Navbar, Container, Nav, Button } from "react-bootstrap"
 import { MyContext } from "../MyContext"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faUser } from "@fortawesome/free-solid-svg-icons"
+import { faUser, faBars } from "@fortawesome/free-solid-svg-icons"
 
 function Navigation(){
     //using context to check for user
@@ -43,6 +43,12 @@ function Navigation(){
                     font-size: 1.1rem;
                     font-family: 'Roboto Mono', sans-serif;
                 }
+                .navbar-toggler{
+                    border: 1px solid white;
+                }
+                .navbar-toggler:focus{
+                    box-shadow: 2px 2px white;
+                }
             `}
         </style>
 
@@ -51,7 +57,12 @@ function Navigation(){
                 <Navbar.Brand href="/">Bloggy</Navbar.Brand>
 
                 {/* collapsible nav menu */}
-                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                <Navbar.Toggle aria-controls="basic-navbar-nav">
+                    <FontAwesomeIcon 
+                        icon={faBars} 
+                        style={{color: "#ffffff", height:'2rem'}} 
+                    />
+                </Navbar.Toggle>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav
                         className="justify-content-end align-items-center"
