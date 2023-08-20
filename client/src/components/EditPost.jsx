@@ -1,9 +1,9 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Button, Container, Alert } from "react-bootstrap"
-import { useParams } from "react-router-dom"
+import { Link, Navigate, useParams } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTrash } from "@fortawesome/free-solid-svg-icons"
+import { faTrash, faXmark } from "@fortawesome/free-solid-svg-icons"
 import { useForm } from "react-hook-form"
 import Loading from "./Loading"
 import { CategoryBubble } from "./CategoryBubble"
@@ -22,7 +22,7 @@ function EditPost() {
     const [ catInput, setCatInput ] = useState('')
     const [ emptyTag, setEmptyTag ] = useState(false)
     const [ duplicateTag, setDuplicateTag ] = useState(false)
-    const [ categories, setCategories ] = useState([])
+    const [ categories, setCategories ] = useState()
 
     //function to add category tags and validate input
     function addTag(){
@@ -47,7 +47,7 @@ function EditPost() {
             axios.get(`http://localhost:5000/post/${postId}`)
             .then(res => { 
                 setBlog(res.data)
-                setCategories([ ...blog.categories ])
+                setCategories(res.data.categories)
                 setLoading(false)
             })
             .catch(err => console.log(err))
@@ -152,7 +152,7 @@ function EditPost() {
                     <div
                         style={{ marginTop:'1rem' }}
                     >
-                        <label>Title</label>
+                        <label style={{ marginRight:'2rem' }}>Title</label>
                         <input
                             {...register('title', { required: true, maxLength: 200 })}
                             type="text" 
@@ -184,9 +184,9 @@ function EditPost() {
                     </div>
             
                     <div
-                        style={{ marginTop:'1rem' }}
+                        className="mt-2"
                     >
-                        <label>Subtitle</label>
+                        <label style={{ marginRight:'2rem' }}>Subtitle</label>
                         <input
                             {...register('subtitle', { required: true, })}
                             type="text" 
@@ -201,9 +201,9 @@ function EditPost() {
                     </div>
 
                     <div
-                        style={{ marginTop:'1rem' }}
+                        className="mt-2"
                     >
-                        <label>Post</label>
+                        <label className="mb-2">Post</label>
                         <textarea
                             rows={20}
                             {...register('post', { required: true, })} 
@@ -222,9 +222,20 @@ function EditPost() {
                         className='d-flex justify-content-evenly border p-2'
                     >    
                         {/* display for user added category tags */}
-                        <div>
+                        <div
+                            style={{ display:'flex', flexWrap:'wrap' }}
+                        >
                             {categories?.map((cat,index) => 
-                                <CategoryBubble key={index} category={cat} />
+                                <div
+                                    style={{ display:'flex' }}
+                                >
+                                    <CategoryBubble key={index} category={cat} />
+                                    <FontAwesomeIcon 
+                                        icon={faXmark} 
+                                        style={{ color:'red' }} 
+                                        onClick={() => setCategories(categories.filter(category => category !== cat))}
+                                    />
+                                </div>
                             )}
                         </div>
                         
@@ -276,14 +287,28 @@ function EditPost() {
 
                     {/* buttons to save or cancel editing the post */}
                     <div
-                        style={{ 
-                            display:'flex', 
-                            alignItems:'center', 
-                            justifyContent:'center' 
-                        }}
+                        className="d-flex align-items-center justify-content-center mt-4"
                     >
-                        <Button variant="success">Save</Button>
-                        <Button variant="info" style={{ color:'white', marginLeft:'3rem' }}>Cancel</Button>
+                        <Button 
+                            variant="success"
+                            style={{ borderRadius:'1rem' }}
+                        >
+                            Save
+                        </Button>
+                        
+                        <Link 
+                            to={'/dashboard'} 
+                            className="link"
+                            style={{ 
+                                background:'skyblue', 
+                                color:'white', 
+                                marginLeft:'3rem',
+                                padding:'0.5rem 0.8rem',
+                                borderRadius:'1rem' 
+                            }}
+                        >
+                            Cancel
+                        </Link>
                     </div>   
                 </>
             }           

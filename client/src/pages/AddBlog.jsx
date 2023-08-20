@@ -191,9 +191,20 @@ function AddBlog() {
                     className='d-flex justify-content-evenly border p-2'
                 >    
                     {/* display for user added category tags */}
-                    <div>
+                    <div
+                        style={{ display:'flex', flexWrap:'wrap' }}
+                    >
                         {categories?.map((cat,index) => 
-                            <CategoryBubble key={index} category={cat} />
+                            <div
+                                style={{ display:'flex' }}
+                            >
+                                <CategoryBubble key={index} category={cat} />
+                                <FontAwesomeIcon 
+                                    icon={faXmark} 
+                                    style={{ color:'red' }} 
+                                    onClick={() => setCategories(categories.filter(category => category !== cat))}
+                                />
+                            </div>
                         )}
                     </div>
 
