@@ -3,6 +3,7 @@ import { useContext, useState } from 'react'
 import { Container, Button, Col, Form, Row, Alert } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { MyContext } from '../MyContext'
+import { CategoryBubble } from '../components/CategoryBubble'
 
 function AddBlog() {
     //grabbing user name from userinfo stored in context
@@ -16,7 +17,7 @@ function AddBlog() {
     const [ emptyTag, setEmptyTag ] = useState(false)
     const [ duplicateTag, setDuplicateTag ] = useState(false)
     const [ categories, setCategories ] = useState([])
-    console.log('cats',categories)
+    
     //variable to track image upload
     const [ image, setImage ] = useState('')
 
@@ -84,7 +85,7 @@ function AddBlog() {
             >
                 {/* title */}
                 <h1 
-                    style={{fontFamily:'Permanent Marker, cursive', color:'green', textAlign: 'center'}}
+                    style={{ fontFamily:'Permanent Marker, cursive', color:'green', textAlign: 'center' }}
                 >
                     Create a new blog post!
                 </h1>
@@ -104,13 +105,17 @@ function AddBlog() {
                             <div
                                 className='d-flex align-items-center justify-content-center my-2'
                             >
-                                {errors.title.type == 'required' && <Alert variant='danger' dismissible> 
-                                    Title is required
-                                </Alert>}
+                                {errors.title.type == 'required' && 
+                                    <Alert variant='danger' dismissible> 
+                                        Title is required
+                                    </Alert>
+                                }
                                 
-                                {errors.title.type == 'maxLength' && <Alert variant='danger' dismissible>
-                                    Title cannot be more than 200 characters
-                                </Alert>}
+                                {errors.title.type == 'maxLength' && 
+                                    <Alert variant='danger' dismissible>
+                                        Title cannot be more than 200 characters
+                                    </Alert>
+                                }
                             </div>
                         )}
                     </Form.Group>
@@ -188,7 +193,7 @@ function AddBlog() {
                     {/* display for user added category tags */}
                     <div>
                         {categories?.map((cat,index) => 
-                            <Button key={index} variant='warning' className='m-1'>{cat}</Button>
+                            <CategoryBubble key={index} category={cat} />
                         )}
                     </div>
 

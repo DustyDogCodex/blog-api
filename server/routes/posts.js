@@ -62,7 +62,7 @@ Router.put(
         
         //find post by Id and update it
         await Post.findByIdAndUpdate(
-            req.params.id, 
+            id, 
             {
                 $set: req.body
             }, 
