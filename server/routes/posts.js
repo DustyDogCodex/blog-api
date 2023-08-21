@@ -58,19 +58,25 @@ Router.get(
 Router.delete(
     '/:id',
     asyncHandler(async(req,res) => {
-        const post = await Post.findById(req.params.id)
-        
-        //checking to see if the correct user is deleting this post
-        if(post.username === req.body.username){
-            try {
-                await Post.findByIdAndDelete(req.params.id) 
-                res.status(200).json('Post was deleted!')
-            } catch (error) {
-                res.status(500).json(error)
-            }
-        } else {
-            res.status(401).json('Naughty boy you can only delete your own posts!')
+        //grab post id from req
+        const { id } = req.params
+
+        //find selected post
+        const selectedPost = await Post.findById(id)
+
+        //delete any images associated with post from server
+        if(selectedPost.image){
+            fs.unlink('server/images/' + selectedPost.image, (err) => {
+                if (err) {
+                    console.log(err)
+                }
+            })
         }
+
+        //delete post
+        await Post.findByIdAndDelete(id) 
+                
+        res.status(200).send('deleted')
     })
 )
 

@@ -4,14 +4,11 @@ import { CategoryBubble } from './CategoryBubble'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons"
 import { faTrash, faXmark } from "@fortawesome/free-solid-svg-icons"
-import { useContext, useState } from "react"
-import { MyContext } from "../MyContext"
+import { useState } from "react"
 import { Button } from "react-bootstrap"
+import axios from "axios"
 
 function Post({ id, userId, title, username, post, image, categories, created, dashboard }){
-    //getting user info from context
-    const { userInfo } = useContext(MyContext)
-
     //toggle for confirm delete post popup
     const [ confirmDelete, setConfirmDelete ] = useState(false)
 
@@ -20,36 +17,81 @@ function Post({ id, userId, title, username, post, image, categories, created, d
         <CategoryBubble key={index} category={category} />
     )
 
+    //delete post api call
+    function deletePost(){
+        axios.delete(`http://localhost:5000/post/${id}`)
+        .then(res => {
+            if(res.data === 'deleted'){
+                window.location.replace('/dashboard')
+            }
+        })
+        .catch(err => console.log(err))
+    }
+
     //delete confirm popup
     if(confirmDelete){
         return(
             <div
-                style={{ position:'fixed', top:'0', right:'0', zIndex:'20', height:'100vh', width:'100vw', background:'rgba(211,211,211,0.6)', display:'flex', alignItems:'center', justifyContent:'center' }}
+                style={{ 
+                    position:'fixed', 
+                    top:'0', 
+                    right:'0', 
+                    zIndex:'20', 
+                    height:'100vh', 
+                    width:'100vw', 
+                    background:'rgba(211,211,211,0.6)', 
+                    display:'flex', 
+                    alignItems:'center', 
+                    justifyContent:'center' 
+                }}
             >
                 {/* centered div with main content */}
                 <div
-                    style={{ width:'fit-content', height:'fit-content', background:'white', borderRadius:'3rem', padding: '2% 5%' }}
+                    style={{ 
+                        width:'fit-content', 
+                        height:'fit-content', 
+                        background:'white', 
+                        borderRadius:'3rem', 
+                        padding: '2% 5%' 
+                    }}
                 >
                     {/* heading + close popup button */}
                     <div
-                        style={{ display:'flex', justifyContent:'space-around', alignItems:'center' }}
+                        style={{ 
+                            display:'flex', 
+                            justifyContent:'space-around', 
+                            alignItems:'center' 
+                        }}
                     >
                         <h2>Confirm Delete</h2> 
                         <FontAwesomeIcon 
                             icon={faXmark} 
-                            style={{ color:'red', height:'3rem', cursor:'pointer' }} 
+                            style={{ 
+                                color:'red', 
+                                height:'3rem', 
+                                cursor:'pointer' 
+                            }} 
                             onClick={() => setConfirmDelete(!confirmDelete)}    
                         />
                     </div>
 
                     {/* yes/no buttons + confirm delete message */}
                     <div
-                        style={{ marginTop:'10%', display:'flex', flexDirection:'column', alignItems:"center", justifyContent:'center'  }}
+                        style={{ 
+                            marginTop:'10%', 
+                            display:'flex', 
+                            flexDirection:'column', 
+                            alignItems:"center", 
+                            justifyContent:'center'  
+                        }}
                     >
                         <h3>Are you sure you want to delete:</h3>
                         
                         <h4 
-                            style={{ fontFamily:'Permanent Marker, cursive', fontSize:'2rem' }}
+                            style={{ 
+                                fontFamily:'Permanent Marker, cursive', 
+                                fontSize:'2rem' 
+                            }}
                         >
                             {title}
                         </h4>
@@ -57,7 +99,13 @@ function Post({ id, userId, title, username, post, image, categories, created, d
                         <div
                             style={{ marginTop:'2%' }}
                         >
-                            <Button variant="danger">Yes</Button>
+                            <Button 
+                                variant="danger"
+                                onClick={deletePost}
+                            >
+                                Yes
+                            </Button>
+
                             <Button 
                                 variant="success" 
                                 style={{ marginLeft:'1rem' }}
@@ -106,7 +154,12 @@ function Post({ id, userId, title, username, post, image, categories, created, d
                     className="link"
                 >
                     <h2
-                        style={{ fontSize:'1.6rem', margin:'0.2rem 0rem', fontFamily:'Permanent Marker, cursive', cursor:'pointer' }}
+                        style={{ 
+                            fontSize:'1.6rem', 
+                            margin:'0.2rem 0rem', 
+                            fontFamily:'Permanent Marker, cursive', 
+                            cursor:'pointer' 
+                        }}
                     >
                         {title}
                     </h2>
@@ -125,7 +178,12 @@ function Post({ id, userId, title, username, post, image, categories, created, d
                 </div>
 
                 {/* date of creation */}
-                <p style={{ marginTop:'0.3rem', color:'rgba(128,128,128)' }}>
+                <p 
+                    style={{ 
+                        marginTop:'0.3rem', 
+                        color:'rgba(128,128,128)' 
+                    }}
+                >
                     { new Intl.DateTimeFormat("en-US", { day: "numeric", month: "long" }).format(new Date(created)) }
                 </p>
             </div>
@@ -136,7 +194,13 @@ function Post({ id, userId, title, username, post, image, categories, created, d
                 <img 
                     src={`http://localhost:5000/uploads/${image}`} 
                     alt="blog image" 
-                    style={{ width:'25%', height:'12rem', objectFit:'cover', borderRadius:'2rem', marginLeft:'1rem' }}
+                    style={{ 
+                        width:'25%', 
+                        height:'12rem', 
+                        objectFit:'cover', 
+                        borderRadius:'2rem', 
+                        marginLeft:'1rem' 
+                    }}
                 />
                 :
                 ''
