@@ -338,18 +338,12 @@ function EditPost() {
                     <div
                         className="d-flex align-items-center justify-content-center mt-4"
                     >
-                        <button
+                        <Button
                             type="submit"
-                            style={{ 
-                                background: 'green',
-                                color:'white',
-                                padding:'0.5rem 0.8rem',
-                                border:'none',
-                                borderRadius:'1rem'
-                            }}
+                            variant="success"
                         >
                             Save
-                        </button>
+                        </Button>
                         
                         <Link 
                             to={'/dashboard'} 

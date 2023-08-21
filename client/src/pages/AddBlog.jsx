@@ -4,6 +4,8 @@ import { Container, Button, Col, Form, Row, Alert } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { MyContext } from '../MyContext'
 import { CategoryBubble } from '../components/CategoryBubble'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
 function AddBlog() {
     //grabbing user name from userinfo stored in context
@@ -100,6 +102,10 @@ function AddBlog() {
                             {...register('title', { required: true, maxLength: 200 })}
                             type="text"
                             placeholder='Enter the title for your post'
+                            style={{ 
+                                border:'1px solid skyblue',
+                                borderRadius:'1rem'
+                            }}
                         />
                         {errors.title && (
                             <div
@@ -129,6 +135,10 @@ function AddBlog() {
                             {...register('subtitle', { required: true, maxLength: 300 })}
                             type="text"
                             placeholder='Enter a subtitle for your post'
+                            style={{ 
+                                border:'1px solid skyblue',
+                                borderRadius:'1rem'
+                            }}
                         />
                         {errors.subtitle && (
                             <div
@@ -154,6 +164,10 @@ function AddBlog() {
                             as="textarea"
                             placeholder='Enter blog text here...' 
                             rows={10}
+                            style={{ 
+                                border:'1px solid skyblue',
+                                borderRadius:'1rem'
+                            }}
                         />
                         {errors.post && (
                             <div
@@ -182,26 +196,39 @@ function AddBlog() {
                         type="file"
                         name="image"
                         onChange={e => setImage(e.target.files[0])}
+                        style={{ 
+                            border:'1px solid skyblue',
+                            borderRadius:'1rem'
+                        }}
                     />
                 </Form.Group>
                 
                 <p>Add categories</p>
                  
                 <div
-                    className='d-flex justify-content-evenly border p-2'
+                    className='d-flex justify-content-evenly'
+                    style={{ 
+                        border:'1px solid skyblue', 
+                        borderRadius:'1rem', 
+                        padding:'0.5rem' 
+                    }}
                 >    
                     {/* display for user added category tags */}
                     <div
-                        style={{ display:'flex', flexWrap:'wrap' }}
+                        style={{ 
+                            display:'flex', 
+                            flexWrap:'wrap' 
+                        }}
                     >
                         {categories?.map((cat,index) => 
                             <div
+                                key={index}
                                 style={{ display:'flex' }}
                             >
-                                <CategoryBubble key={index} category={cat} />
+                                <CategoryBubble category={cat} />
                                 <FontAwesomeIcon 
                                     icon={faXmark} 
-                                    style={{ color:'red' }} 
+                                    style={{ color:'red', cursor:'pointer' }} 
                                     onClick={() => setCategories(categories.filter(category => category !== cat))}
                                 />
                             </div>
@@ -209,11 +236,11 @@ function AddBlog() {
                     </div>
 
                     {/* inputs for creating and adding tags to post */}
-                    <div className='d-flex flex-col justify-content-between px-5'>
+                    <div className='d-flex justify-content-between px-5'>
                         <div
                             className='d-flex'
                         >
-                            <Form.Control
+                            <input
                                 type="text"
                                 name="tags"
                                 placeholder='Enter a category'
