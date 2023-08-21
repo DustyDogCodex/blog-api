@@ -24,6 +24,10 @@ function EditPost() {
     const [ duplicateTag, setDuplicateTag ] = useState(false)
     const [ categories, setCategories ] = useState()
 
+    //variables for tracking changes to blog's associated image
+    const [ editImagePath, setEditImagePath ] = useState('')
+    const [ newImage, setNewImage ] = useState('')
+
     //function to add category tags and validate input
     function addTag(){
         if(!catInput.length){
@@ -48,13 +52,14 @@ function EditPost() {
             .then(res => { 
                 setBlog(res.data)
                 setCategories(res.data.categories)
+                setEditImagePath(res.data.image)
                 setLoading(false)
             })
             .catch(err => console.log(err))
         }
         getPost()
     }, [])
-
+    
     //using react hook form to reset form with values fetched from server once blog's value is changed
     useEffect(() => {
         reset(blog)
@@ -73,7 +78,7 @@ function EditPost() {
         formData.append("title", data.title)
         formData.append("subtitle", data.subtitle)
         formData.append("post", data.post)
-        /* formData.append("categories", data.categories) */
+        formData.append("categories", data.categories)
         
         if(newImage  /* || editimagepath */){
             formData.append("image", )
@@ -107,48 +112,79 @@ function EditPost() {
                 <>
                     <h3>Edit your post</h3>
 
-                    {/* Post's image + option to delete it */}
-                    <div
-                        style={{ 
-                            border:'1px solid black', 
-                            position:'relative', 
-                            display:'flex', 
-                            alignItems:'center', 
-                            justifyContent:'center', 
-                            width:'fit-content' 
-                        }}
-                    >
-                        <img 
-                            src={`http://localhost:5000/uploads/${blog.image}`} 
-                            alt="image with post"
-                            style={{ maxHeight:'40rem', width:'fit-content' }}
-                        />
-
-                        {/* icon for deleting image */}
-                        <div
-                            style={{ 
-                                position:'absolute', 
-                                bottom:'1rem', 
-                                right:'1rem', 
-                                background:'white', 
-                                borderRadius:'100%', 
-                                padding:'0.5rem', 
-                                display:'flex', 
-                                alignItems:'center', 
-                                justifyContent:'center' 
-                            }}
-                        >
-                            <FontAwesomeIcon 
-                                icon={faTrash} 
+                    {/* conditionally rendering blog's image or an input to upload an image */}
+                    <div>
+                        <label>Image</label>
+                        {editImagePath
+                            ?
+                            /* Post's image + option to delete it */
+                            <div
                                 style={{ 
-                                    color: "#fa0000", 
-                                    height:'2rem', 
-                                    width:'2rem', 
-                                    cursor:'pointer' 
-                                }} 
-                                /* onClick={() => setEditImagePath('')} */
-                            /> 
-                        </div>
+                                    border:'1px solid black', 
+                                    position:'relative', 
+                                    display:'flex', 
+                                    alignItems:'center', 
+                                    justifyContent:'center', 
+                                    width:'fit-content' 
+                                }}
+                            >
+                                <img 
+                                    src={`http://localhost:5000/uploads/${editImagePath}`} 
+                                    alt="image with post"
+                                    style={{ maxHeight:'40rem', width:'fit-content' }}
+                                />
+
+                                {/* icon for deleting image */}
+                                <div
+                                    style={{ 
+                                        position:'absolute', 
+                                        bottom:'1rem', 
+                                        right:'1rem', 
+                                        background:'white', 
+                                        borderRadius:'100%', 
+                                        padding:'0.5rem', 
+                                        display:'flex', 
+                                        alignItems:'center', 
+                                        justifyContent:'center' 
+                                    }}
+                                >
+                                    <FontAwesomeIcon 
+                                        icon={faTrash} 
+                                        style={{ 
+                                            color: "#fa0000", 
+                                            height:'2rem', 
+                                            width:'2rem', 
+                                            cursor:'pointer' 
+                                        }} 
+                                        onClick={() => setEditImagePath('')}
+                                    /> 
+                                </div>
+                            </div>
+                            :
+                            /* input element for uploading a new file if user deletes previously uploaded file/did not upload an image with post */
+                            <div>
+                                <input 
+                                    id="newFile"
+                                    type="file" 
+                                    onChange={(e) => setNewImage(e.target.files[0])}
+                                    style={{
+                                        border:'1px solid skyblue',
+                                        borderRadius:'1rem',
+                                        padding:'0.5rem'
+                                    }}
+                                />
+                                <FontAwesomeIcon 
+                                    icon={faTrash} 
+                                    style={{
+                                        color: "#fa0000", 
+                                        height:'25px', 
+                                        width:'25px', 
+                                        cursor:'pointer'
+                                    }} 
+                                    onClick={resetFile}
+                                /> 
+                            </div>
+                        }
                     </div>
                             
                     <div
@@ -237,9 +273,10 @@ function EditPost() {
                         >
                             {categories?.map((cat,index) => 
                                 <div
+                                    key={index}
                                     style={{ display:'flex' }}
                                 >
-                                    <CategoryBubble key={index} category={cat} />
+                                    <CategoryBubble category={cat} />
                                     <FontAwesomeIcon 
                                         icon={faXmark} 
                                         style={{ color:'red', cursor:'pointer' }} 

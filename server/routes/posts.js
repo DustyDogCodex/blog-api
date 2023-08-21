@@ -1,5 +1,6 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler')
+const fs = require('fs')
 const Router = express.Router()
 
 const Post = require('../models/Posts')
@@ -50,27 +51,6 @@ Router.get(
         const post = await Post.findById(req.params.id)
         
         res.status(200).json(post)
-    })
-)
-
-//Route for updating a blog post
-Router.put(
-    '/:id',
-    asyncHandler(async(req,res) => {
-        //grab post id from params
-        const { id } = req.params
-        
-        //find post by Id and update it
-        await Post.findByIdAndUpdate(
-            id, 
-            {
-                $set: req.body
-            }, 
-            { new: true }
-        )  
-        
-        //send success message and updated to allow client to redirect appropriately
-        res.status(200).send('updated') 
     })
 )
 
