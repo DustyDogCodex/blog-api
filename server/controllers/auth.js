@@ -25,7 +25,8 @@ const registerAccount =(
             //passing req info + hashed pasword into User model
             const newUser = new User({
                 username,
-                password: hashedPassword
+                password: hashedPassword,
+                avatar: req.file ? req.file.filename : ''
             })
 
             //saving newUser to db

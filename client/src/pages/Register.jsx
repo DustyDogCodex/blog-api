@@ -5,25 +5,40 @@ import { LinkContainer } from "react-router-bootstrap"
 
 function Register(){
     //using state variables to keep track of user input.
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const [password2, setPassword2] = useState('')
-
+    const [ username, setUsername ] = useState('')
+    const [ password, setPassword ] = useState('')
+    const [ password2, setPassword2 ] = useState('')
+    const [ image, setImage ] = useState('')
+    console.log(image)
     //using state to toggle dismissible bootstrap alerts.
-    const [usernameAlert, setUsernameAlert] = useState(false)
-    const [passwordAlert, setPasswordAlert] = useState(false)
-    const [password2Alert, setPassword2Alert] = useState(false)
-    const [passwordMismatch, setPasswordMismatch] = useState(false)
+    const [ usernameAlert, setUsernameAlert ] = useState(false)
+    const [ passwordAlert, setPasswordAlert ] = useState(false)
+    const [ password2Alert, setPassword2Alert ] = useState(false)
+    const [ passwordMismatch, setPasswordMismatch ] = useState(false)
 
     //state variables for successfull and failed registration
-    const [success, setSuccess] = useState(false)
-    const [fail, setFail] = useState(false)
+    const [ success, setSuccess ] = useState(false)
+    const [ fail, setFail ] = useState(false)
 
     //sending post request with user info to backend
     async function sendInfo(){
+        //submitting formdata to upload image
+        const formData = new FormData()
+        formData.append('username', username)
+        formData.append('password', password)
+
+        //add image if image is uploaded
+        if(image){
+            formData.append('image', image)
+        }
+
+        /* api call to create account */
         axios.post(
             'http://localhost:5000/auth/register',
-            { username, password }
+            formData,
+            {
+                headers: { "Content-Type": "multipart/form-data" }
+            }
         )
         .then(res => {
             const data = res.data
@@ -145,12 +160,13 @@ function Register(){
                     </Alert>
                 </Form.Group>
 
+                {/* add profile pic */}
                 <Form.Group className="mb-3">
                     <Form.Label>Add profile pic (optional)</Form.Label>
                     <Form.Control 
                         type="file" 
                         name="image"
-                        onChange={(e) => setPassword2(e.target.value)} 
+                        onChange={(e) => setImage(e.target.files[0])} 
                     />
                 </Form.Group>
 

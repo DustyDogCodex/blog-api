@@ -70,6 +70,7 @@ function Navigation(){
                     >
                         <Nav.Link href="/about">Who We Are</Nav.Link>
                         <Nav.Link href="/addblog">Write</Nav.Link>
+
                         {/* conditional rendering of login/account button */}
                         {userInfo 
                             ?   
@@ -81,14 +82,22 @@ function Navigation(){
                                     {userInfo.avatar
                                         ?
                                         <img 
-                                            style={{ width:'2rem', height:'2rem', borderRadius:'100%' }}
+                                            style={{ 
+                                                width:'3rem', 
+                                                height:'3rem', 
+                                                borderRadius:'100%' 
+                                            }}
                                             src={`http://localhost:5000/uploads/${userInfo.avatar}`}
                                             alt="user avatar" 
                                         />
                                         :
                                         <FontAwesomeIcon 
                                             icon={faUser} 
-                                            style={{ color:'white', height:'1.5rem', width:'1.5rem' }} 
+                                            style={{ 
+                                                color:'white', 
+                                                height:'1.5rem', 
+                                                width:'1.5rem' 
+                                            }} 
                                         />
                                     }                                            
                                 </Nav.Link>
