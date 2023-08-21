@@ -1,4 +1,4 @@
-import { Post } from "./Post";
+import { Post } from "./Post"
 
 function PostsDisplay({ blogs, dashboard }){
     //individual blogs for display

@@ -2,7 +2,7 @@ function CategoryBubble({ category }){
     return(
         <div 
             style={{ 
-                fontFamily:'Raleway, san-serif', 
+                fontFamily:'Roboto Mono, san-serif', 
                 fontSize:'0.9rem', 
                 marginRight:'0.2rem', 
                 padding:'0.5rem', 

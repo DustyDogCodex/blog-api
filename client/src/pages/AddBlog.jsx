@@ -74,15 +74,21 @@ function AddBlog() {
         <Container>
             {/* stock header image for page */}
             <img 
-                className="headerImage" 
                 src="https://images.pexels.com/photos/368260/pexels-photo-368260.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
                 alt="nightime mountain view" 
-                style={{ borderRadius:'20px', marginTop:'20px' }}
+                style={{ 
+                    borderRadius:'2rem', 
+                    marginTop:'2rem',
+                    width:'100%',
+                    height:'fit-content',
+                    maxHeight:'25rem',
+                    objectFit:'cover' 
+                }}
             />
 
             {/* form for creating and posting a blog post */}
             <Form 
-                className='mt-5 mb-5' 
+                className='mt-2 mb-5' 
                 onSubmit={handleSubmit(createBlog)}
             >
                 {/* title */}

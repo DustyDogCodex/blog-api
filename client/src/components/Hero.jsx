@@ -4,8 +4,8 @@ import { Link } from "react-router-dom"
 
 function Hero({ coverPosts }){
     //selecting the most recent post as cover post
-    let mainPost = coverPosts[2]
-    let trendingPosts = coverPosts.slice(0,2)
+    let mainPost = coverPosts[3]
+    let trendingPosts = coverPosts.slice(0,3)
     
     return(
         <Container
