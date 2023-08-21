@@ -22,7 +22,7 @@ function EditPost() {
     const [ catInput, setCatInput ] = useState('')
     const [ emptyTag, setEmptyTag ] = useState(false)
     const [ duplicateTag, setDuplicateTag ] = useState(false)
-    const [ categories, setCategories ] = useState()
+    const [ categories, setCategories ] = useState([])
 
     //variables for tracking changes to blog's associated image
     const [ editImagePath, setEditImagePath ] = useState('')
@@ -72,16 +72,17 @@ function EditPost() {
     }
 
     //api call to update post with new parameters
-    async function updatePost(){
+    async function updatePost(data){
+        
         //submitting formData with uploaded image to update post
         const formData = new FormData()
         formData.append("title", data.title)
         formData.append("subtitle", data.subtitle)
         formData.append("post", data.post)
-        formData.append("categories", data.categories)
+        formData.append("categories", categories)
         
-        if(newImage  /* || editimagepath */){
-            formData.append("image", )
+        if(newImage  || !editImagePath){
+            formData.append("image", newImage)
             formData.append('newImage', true)
         }
 
@@ -113,6 +114,7 @@ function EditPost() {
                     <h3>Edit your post</h3>
 
                     {/* conditionally rendering blog's image or an input to upload an image */}
+                    <form onSubmit={handleSubmit(updatePost)}>
                     <div>
                         <label>Image</label>
                         {editImagePath
@@ -336,12 +338,18 @@ function EditPost() {
                     <div
                         className="d-flex align-items-center justify-content-center mt-4"
                     >
-                        <Button 
-                            variant="success"
-                            style={{ borderRadius:'1rem' }}
+                        <button
+                            type="submit"
+                            style={{ 
+                                background: 'green',
+                                color:'white',
+                                padding:'0.5rem 0.8rem',
+                                border:'none',
+                                borderRadius:'1rem'
+                            }}
                         >
                             Save
-                        </Button>
+                        </button>
                         
                         <Link 
                             to={'/dashboard'} 
@@ -357,6 +365,7 @@ function EditPost() {
                             Cancel
                         </Link>
                     </div>   
+                    </form>
                 </>
             }           
         </Container>

@@ -145,7 +145,11 @@ function Post({ id, userId, title, username, post, image, categories, created, d
             {/* CRUD icons, these will only be displayed if post's userId == logged in user's userId AND these posts are currently displayed on the user's dashboard */}
             {dashboard && (
                 <div
-                    style={{ marginLeft:'1rem' }}
+                    style={{ 
+                        marginLeft:'1rem',
+                        display:'flex',
+                        flexDirection:'column'
+                    }}
                 >
                     <Link
                         to={`edit/${id}`}

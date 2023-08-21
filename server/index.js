@@ -12,7 +12,7 @@ const userRoute = require('./routes/users')
 const postRoute = require('./routes/posts')
 const categoryRoute = require('./routes/category')
 const passportConfig = require('./passportConfig')
-const { createNewBlog } = require('./controllers/posts')
+const { createNewBlog, updateBlog } = require('./controllers/posts')
 
 dotenv.config()
 
@@ -69,6 +69,7 @@ const upload = multer({ storage })
 
 //routes involving image uploads
 app.post('/post/new', upload.single("image"), createNewBlog)
+app.put('/post/:id', upload.single("image"), updateBlog)
 
 /* ------------------------------------------------------------------ */
 
