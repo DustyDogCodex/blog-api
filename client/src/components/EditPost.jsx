@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Button, Container, Alert } from "react-bootstrap"
-import { Link, Navigate, useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTrash, faXmark } from "@fortawesome/free-solid-svg-icons"
 import { useForm } from "react-hook-form"
@@ -106,6 +106,8 @@ function EditPost() {
                 :
                 <>
                     <h3>Edit your post</h3>
+
+                    {/* Post's image + option to delete it */}
                     <div
                         style={{ 
                             border:'1px solid black', 
@@ -158,10 +160,10 @@ function EditPost() {
                             type="text" 
                             style={{ 
                                 width:'50%', 
-                                padding:'0.25rem', 
+                                padding:'0.5rem', 
                                 marginBottom:'1rem', 
-                                background:'lightgray', 
-                                border:'none' 
+                                border:'1px solid skyblue',
+                                borderRadius:'1rem' 
                             }}
                         />
                         {errors.title && (
@@ -192,10 +194,10 @@ function EditPost() {
                             type="text" 
                             style={{ 
                                 width:'50%', 
-                                padding:'0.25rem', 
+                                padding:'0.5rem', 
                                 marginBottom:'1rem', 
-                                background:'lightgray', 
-                                border:'none' 
+                                border:'1px solid skyblue',
+                                borderRadius:'1rem' 
                             }}
                         />
                     </div>
@@ -209,21 +211,29 @@ function EditPost() {
                             {...register('post', { required: true, })} 
                             style={{ 
                                 width:'100%', 
-                                padding:'0.25rem', 
+                                padding:'0.5rem', 
                                 marginBottom:'1rem', 
-                                background:'lightgray', 
-                                border:'none' 
+                                border:'1px solid skyblue',
+                                borderRadius:'1rem' 
                             }}
                         />
                     </div> 
                     
                     <label>Edit Categories</label>
                     <div
-                        className='d-flex justify-content-evenly border p-2'
+                        className='d-flex justify-content-evenly'
+                        style={{ 
+                            border:'1px solid skyblue', 
+                            borderRadius:'1rem', 
+                            padding:'0.5rem' 
+                        }}
                     >    
                         {/* display for user added category tags */}
                         <div
-                            style={{ display:'flex', flexWrap:'wrap' }}
+                            style={{ 
+                                display:'flex', 
+                                flexWrap:'wrap'
+                            }}
                         >
                             {categories?.map((cat,index) => 
                                 <div
@@ -232,7 +242,7 @@ function EditPost() {
                                     <CategoryBubble key={index} category={cat} />
                                     <FontAwesomeIcon 
                                         icon={faXmark} 
-                                        style={{ color:'red' }} 
+                                        style={{ color:'red', cursor:'pointer' }} 
                                         onClick={() => setCategories(categories.filter(category => category !== cat))}
                                     />
                                 </div>
