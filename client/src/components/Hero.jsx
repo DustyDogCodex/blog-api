@@ -8,7 +8,15 @@ function Hero({ coverPosts }){
     
     return(
         <Container
-            style={{ display:'flex', alignItems:'center', justifyContent:'center', height:'45rem', padding:'0', marginTop:'2rem', marginBottom:'2rem' }}
+            style={{ 
+                display:'flex', 
+                alignItems:'center', 
+                justifyContent:'center', 
+                height:'45rem', 
+                padding:'0', 
+                marginTop:'2rem', 
+                marginBottom:'2rem' 
+            }}
         >
             {/* main cover article */}
             <div
@@ -16,7 +24,13 @@ function Hero({ coverPosts }){
             >
                 {/* cover image */}
                 <div
-                    style={{ display:'flex', alignItems:'center', justifyContent:'center', height:'70%', background:'rgb(211,211,211)' }}
+                    style={{ 
+                        display:'flex', 
+                        alignItems:'center', 
+                        justifyContent:'center', 
+                        height:'70%', 
+                        background:'rgb(211,211,211)' 
+                    }}
                 >
                     <img 
                         src={`http://localhost:5000/uploads/${mainPost?.image}`} 
@@ -41,11 +55,22 @@ function Hero({ coverPosts }){
 
             {/* new/featured posts section */}
             <div
-                style={{ height:'100%', width:'30%', display:'flex', flexDirection:'column', background:'rgb(3, 0, 28)' }}
+                style={{ 
+                    height:'100%', 
+                    width:'30%', 
+                    display:'flex', 
+                    flexDirection:'column', 
+                    background:'rgb(3, 0, 28)' 
+                }}
             >
                 {/* heading */}
                 <h3
-                    style={{ color: "gold", fontSize:'2.5rem' , fontFamily:'Roboto Mono, cursive', margin:'1rem' }}
+                    style={{ 
+                        color: "gold", 
+                        fontSize:'2.5rem' , 
+                        fontFamily:'Permanent Marker, cursive', 
+                        margin:'1rem' 
+                    }}
                 >
                     New
                 </h3>

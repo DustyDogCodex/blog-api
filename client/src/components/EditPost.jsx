@@ -18,7 +18,7 @@ function EditPost() {
     //loading screen toggle
     const [ loading, setLoading ] = useState(true)
 
-    //variables related to array for adding category tags to created blog post
+    //variables related to adding category tags to created blog post
     const [ catInput, setCatInput ] = useState('')
     const [ emptyTag, setEmptyTag ] = useState(false)
     const [ duplicateTag, setDuplicateTag ] = useState(false)
