@@ -16,6 +16,7 @@ import UserProfile from './pages/UserProfile'
 import Dashboard from './pages/Dashboard'
 import MyPosts from './pages/MyPosts'
 import EditPost from './components/EditPost'
+import PageNotFound from './pages/PageNotFound'
 
 function App() {
   //using context to check for a logged in user.
@@ -66,6 +67,8 @@ function App() {
                     path='about' 
                     element={ <About/> }
                 />
+                {/* page not found catch-all */}
+                <Route path='*' element={<PageNotFound />} />
             </Routes>
         </BrowserRouter>
         <Footer/>
