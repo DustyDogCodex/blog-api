@@ -1,8 +1,9 @@
 import { Container } from "react-bootstrap"
 import Trending from "./Trending"
+import { Link } from "react-router-dom"
 
 function Hero({ coverPosts }){
-    //selecting the most recent post as our cover post
+    //selecting the most recent post as cover post
     let mainPost = coverPosts[2]
     let trendingPosts = coverPosts.slice(0,2)
     
@@ -20,7 +21,7 @@ function Hero({ coverPosts }){
         >
             {/* main cover article */}
             <div
-                style={{ height:'100%', width:'70%' }}
+                style={{ height:'100%', width:'70%', marginRight:'1rem' }}
             >
                 {/* cover image */}
                 <div
@@ -41,19 +42,56 @@ function Hero({ coverPosts }){
                 
                 {/* title and subtitle */}
                 <div
-                    style={{ height:'30%', display:'flex' }}
+                    style={{ 
+                        height:'30%', 
+                        display:'flex' 
+                    }}
                 >
-                    <h1
-                        style={{ width:'50%', fontFamily:'Roboto Mono, cursive' }}
+                    <p
+                        style={{ 
+                            width:'50%', 
+                            fontFamily:'Montserrat, sans-serif',
+                            fontSize:'2.3rem',
+                            fontWeight:'800',
+                            padding:'1rem 0rem'
+                        }}
                     >
                         {mainPost?.title}
-                    </h1>
+                    </p>
 
-                    <h5>{mainPost?.subtitle}</h5>
+                    <p
+                        style={{ 
+                            padding:'2rem 0rem',
+                            fontSize:'1.4rem',
+                            color:'rgba(128,128,128)',
+                            width:'50%',
+                            display:'flex',
+                            flexDirection:'column',
+                            alignItems:'center'
+                        }}
+                    >
+                        {mainPost?.subtitle}
+
+                        <Link
+                            to={`post/${mainPost._id}`}
+                            className="link"
+                            style={{
+                                background:'red',
+                                color:'white',
+                                padding:'0.5rem 1rem',
+                                fontSize:'smaller',
+                                marginTop:'0.5rem',
+                                border:'none',
+                                borderRadius:'1rem'
+                            }}
+                        >
+                            Read More
+                        </Link>
+                    </p>
                 </div>
             </div>
 
-            {/* new/featured posts section */}
+            {/* new/trending posts section */}
             <div
                 style={{ 
                     height:'100%', 
