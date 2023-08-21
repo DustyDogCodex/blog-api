@@ -19,45 +19,40 @@ function Register(){
     const [success, setSuccess] = useState(false)
     const [fail, setFail] = useState(false)
 
-    //onChange handling functions
-    function changeUsername(e){
-        setUsername(e.target.value)
-    }
-    function changePassword(e){
-        setPassword(e.target.value)
-    }
-    function changePassword2(e){
-        setPassword2(e.target.value)
-    }
-
     //sending post request with user info to backend
     async function sendInfo(){
-        return  await axios.post(
+        axios.post(
             'http://localhost:5000/auth/register',
-            { username, password })
-                .then(res => {
-                    const data = res.data
-                    data == 'failed' ? setFail(true) : setSuccess(true)
-                    if(data == 'success') {
-                        setTimeout(() => {
-                            window.location.replace('/login')
-                        }, 3000)
-                    } 
-                }) 
-                .catch(err => console.log(err))
-
+            { username, password }
+        )
+        .then(res => {
+            const data = res.data
+            //failed or successful registration
+            data == 'failed' ? setFail(true) : setSuccess(true)
+            
+            //redirect 3secs after showing success alert
+            if(data == 'success') {
+                setTimeout(() => {
+                    window.location.replace('/login')
+                }, 3000)
+            } 
+        }) 
+        .catch(err => console.log(err))
     }
 
     //handling submit. this will also toggle bootstrap alerts if any field is left empty
     function handleSubmit(e){
         e.preventDefault()
         if(!username || !password || !password2){
+            /* set respective missing alerts to true if fields are empty */
             username.length === 0 ? setUsernameAlert(true) : ''
             password.length === 0 ? setPasswordAlert(true) : '' 
             password2.length === 0 ? setPassword2Alert(true) : ''
         } else if(password !== password2){
+            //set mismatch password alerts to true
             setPasswordMismatch(true)
         } else {
+            //if no errors, sending info to server and create account
             sendInfo()
         }
     }
@@ -71,21 +66,26 @@ function Register(){
     return(
         <div className="login">
             <h1 style={{ 
-                fontFamily:'Permanent Marker, cursive', 
-                fontSize:'60px', 
-                marginBottom:'30px'}}>
+                    fontFamily:'Permanent Marker, cursive', 
+                    fontSize:'4rem', 
+                    marginBottom:'2rem'
+                }}
+            >
                 Create a New Account
             </h1>
+            
+            {/* form for registering a new account  */}
             <Form className="d-flex flex-column" onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Group className="mb-3">
                     <Form.Label>Username</Form.Label>
                     <Form.Control 
                         type="text" 
                         name="username"
                         value={username}
-                        onChange={changeUsername}
+                        onChange={(e) => setUsername(e.target.value)}
                         placeholder="Enter your username" 
                     />
+
                     <Alert 
                         variant="danger" 
                         show={usernameAlert} 
@@ -96,15 +96,16 @@ function Register(){
                     </Alert> 
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3">
                     <Form.Label>Password</Form.Label>
                     <Form.Control 
                         type="password" 
                         name="password"
                         value={password}
-                        onChange={changePassword}
+                        onChange={(e) => setPassword(e.target.value)}
                         placeholder="Enter your password" 
                     />
+
                     <Alert 
                         variant="danger" 
                         show={passwordAlert}
@@ -115,15 +116,16 @@ function Register(){
                     </Alert>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword2">
+                <Form.Group className="mb-3">
                     <Form.Label>Confirm Password</Form.Label>
                     <Form.Control 
                         type="password" 
                         name="password"
                         value={password2}
-                        onChange={changePassword2}
+                        onChange={(e) => setPassword2(e.target.value)}
                         placeholder="Confirm your password" 
                     />
+
                     <Alert 
                         variant="danger" 
                         show={password2Alert}
@@ -132,6 +134,7 @@ function Register(){
                         dismissible >
                         Please confirm your password.
                     </Alert>
+
                     <Alert 
                         variant="danger" 
                         show={passwordMismatch}
@@ -142,6 +145,16 @@ function Register(){
                     </Alert>
                 </Form.Group>
 
+                <Form.Group className="mb-3">
+                    <Form.Label>Add profile pic (optional)</Form.Label>
+                    <Form.Control 
+                        type="file" 
+                        name="image"
+                        onChange={(e) => setPassword2(e.target.value)} 
+                    />
+                </Form.Group>
+
+                {/* successful account creation alert */}
                 <Alert 
                     className="mt-3" 
                     variant="success" 
@@ -150,6 +163,8 @@ function Register(){
                     dismissible>
                     User account successfully created! Redirecting to login ... 
                 </Alert>
+
+                {/* duplicate uername alert */}
                 <Alert 
                     className="mt-3" 
                     variant="warning" 
@@ -163,7 +178,8 @@ function Register(){
                     Register
                 </Button>
             </Form>
-
+            
+            {/* option to register with google account */}
             <Button 
                 variant="danger" 
                 className="mt-3"
@@ -171,10 +187,12 @@ function Register(){
             >
                 Register with Google
             </Button>
-
+            
+            {/* redirect to login page */}
             <p style={{marginTop:'30px'}}>
                 Already have an account?
             </p>
+
             <LinkContainer to='/login'>
                 <Button variant="success" type="button">
                     Login
