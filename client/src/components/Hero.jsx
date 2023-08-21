@@ -4,7 +4,7 @@ import Trending from "./Trending"
 function Hero({ coverPosts }){
     //selecting the most recent post as our cover post
     let mainPost = coverPosts[2]
-    let trendingPosts = coverPosts.slice(0,3)
+    let trendingPosts = coverPosts.slice(0,2)
     
     return(
         <Container

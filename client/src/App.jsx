@@ -42,6 +42,10 @@ function App() {
                     element={ userInfo ? <Homepage/> : <Login/> }
                 />
                 <Route 
+                    path='addblog' 
+                    element={ userInfo ? <AddBlog/> : <Login/> }
+                />
+                <Route 
                     path='post/:blogId' 
                     element={ <PostPage/> }
                 />
@@ -58,10 +62,6 @@ function App() {
                     <Route path='account' element={<Account />} />
                     <Route path='edit/:postId' element={<EditPost />} />
                 </Route>
-                <Route 
-                    path='addblog' 
-                    element={ userInfo ? <AddBlog/> : <Login/> }
-                />
                 <Route 
                     path='about' 
                     element={ <About/> }
