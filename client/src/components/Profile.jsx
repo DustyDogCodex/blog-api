@@ -50,6 +50,14 @@ function Profile({ userId }) {
                 :
                 (
                     //main content of page
+                    /* username/heading */
+                    <>
+                    <h1
+                        style={{ margin:'1rem 0rem' }}
+                    >
+                        {userProfile.username}'s Profile
+                    </h1>
+
                     <div
                         style={{ minHeight:'100vh', height:'100%', display:'flex' }}
                     >
@@ -57,13 +65,6 @@ function Profile({ userId }) {
                         <div
                             style={{ width:'70%' }}
                         >
-                            {/* username/heading */}
-                            <h1
-                                style={{ margin:'1rem 0rem' }}
-                            >
-                                {userProfile.username}'s Profile
-                            </h1>
-
                             <div>
                                 {loadingPosts
                                     ?
@@ -124,6 +125,7 @@ function Profile({ userId }) {
                         </div>
                         </div>
                     </div>
+                    </>
                 )
             }
         </>
