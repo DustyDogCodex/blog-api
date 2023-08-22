@@ -7,10 +7,14 @@ import { faTrash, faXmark } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react"
 import { Button } from "react-bootstrap"
 import axios from "axios"
+import useMediaQuery from "../hooks/useMediaQuery"
 
 function Post({ id, userId, title, username, post, image, categories, created, dashboard }){
     //toggle for confirm delete post popup
     const [ confirmDelete, setConfirmDelete ] = useState(false)
+
+    //custome media query
+    const aboveMediumScreens = useMediaQuery('(min-width:1060px)')
 
     //mapping categories to display as an array
     const categoryElements = categories.map((category,index) => 
@@ -126,16 +130,18 @@ function Post({ id, userId, title, username, post, image, categories, created, d
                 padding:'1rem 0rem', 
                 borderBottom:'1px solid rgba(211,211,211,0.6)', 
                 display:'flex', 
+                flexDirection:`${ aboveMediumScreens ? 'row' : 'column-reverse' }`,
                 alignItems:'center', 
                 justifyContent:'space-between' 
             }}
         >
+            {/* left hand side w/ username, title, summary, category and date */}
             <div
                 style={{ 
                     marginTop:'0.5rem', 
                     display:'flex', 
                     flexDirection:'column', 
-                    alignItems:'left', 
+                    alignItems:`${ aboveMediumScreens ? 'left' : 'center' }`, 
                     justifyContent:'flex-start' 
                 }}
             >
@@ -158,7 +164,8 @@ function Post({ id, userId, title, username, post, image, categories, created, d
                             fontSize:'1.6rem', 
                             margin:'0.2rem 0rem', 
                             fontFamily:'Permanent Marker, cursive', 
-                            cursor:'pointer' 
+                            cursor:'pointer',
+                            textAlign:`${ aboveMediumScreens ? 'left' : 'center' }`
                         }}
                     >
                         {title}
@@ -188,25 +195,25 @@ function Post({ id, userId, title, username, post, image, categories, created, d
                 </p>
             </div>
 
-            {/* conditionally rendering image */}
+            {/*right hand side of post w/ conditionally rendering image */}
             {image
                 ?
                 <img 
                     src={`http://localhost:5000/uploads/${image}`} 
                     alt="blog image" 
                     style={{ 
-                        width:'25%', 
+                        width:`${ aboveMediumScreens ? '25%' : '100%' }`, 
                         height:'12rem', 
                         objectFit:'cover', 
                         borderRadius:'2rem', 
-                        marginLeft:'1rem' 
+                        marginLeft:`${ aboveMediumScreens ? '1rem' : '0' }`
                     }}
                 />
                 :
                 ''
             }
 
-            {/* CRUD icons, these will only be displayed if post's userId == logged in user's userId AND these posts are currently displayed on the user's dashboard */}
+            {/* CRUD icons, these will only be displayed if these posts are currently displayed on the user's dashboard */}
             {dashboard && (
                 <div
                     style={{ 

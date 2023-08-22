@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom"
+import useMediaQuery from "../hooks/useMediaQuery"
 
 function Trending({ postId, title, subtitle }) {
+    //custom media query hook
+    const aboveMediumScreens = useMediaQuery('(min-width:1060px)')
     
     return (
         <Link
@@ -8,7 +11,8 @@ function Trending({ postId, title, subtitle }) {
             style={{ 
                 margin:'1.4rem 1rem', 
                 borderBottom:"1px solid rgb(211,211,211, 0.6)",  
-                paddingBottom:'2rem' 
+                paddingBottom:'2rem',
+                textAlign:`${ aboveMediumScreens ? 'left' : 'center' }`
             }}
             className="link"
         >

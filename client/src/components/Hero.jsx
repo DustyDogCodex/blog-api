@@ -1,27 +1,37 @@
-import { Container } from "react-bootstrap"
 import Trending from "./Trending"
+import { Container } from "react-bootstrap"
 import { Link } from "react-router-dom"
+import useMediaQuery from "../hooks/useMediaQuery"
 
 function Hero({ coverPosts }){
     //selecting the most recent post as cover post
     let mainPost = coverPosts[3]
     let trendingPosts = coverPosts.slice(0,3)
+
+    //media query hook
+    const aboveMediumScreens = useMediaQuery('(min-width:1060px)')
     
     return(
         <Container
             style={{ 
                 display:'flex', 
                 alignItems:'center', 
+                flexDirection:`${ aboveMediumScreens ? 'row' : 'column' }`,
                 justifyContent:'center', 
-                height:'45rem', 
+                minHeight:`${ aboveMediumScreens ? '45rem' : '100vh' }`, 
                 padding:'0', 
                 marginTop:'2rem', 
-                marginBottom:'2rem' 
+                marginBottom:`${ aboveMediumScreens ? '2rem' : '0' }`
             }}
         >
             {/* main cover article */}
             <div
-                style={{ height:'100%', width:'70%', marginRight:'1rem' }}
+                style={{ 
+                    height:'100%', 
+                    width:`${ aboveMediumScreens ? '70%' : '100%' }`, 
+                    marginRight:'1rem' 
+                }}
+                className="heroCover"
             >
                 {/* cover image */}
                 <div
@@ -29,7 +39,7 @@ function Hero({ coverPosts }){
                         display:'flex', 
                         alignItems:'center', 
                         justifyContent:'center', 
-                        height:'70%', 
+                        height:`${ aboveMediumScreens ? '70%' : '100%' }`, 
                         background:'rgb(211,211,211)' 
                     }}
                 >
@@ -43,17 +53,19 @@ function Hero({ coverPosts }){
                 {/* title and subtitle */}
                 <div
                     style={{ 
-                        height:'30%', 
-                        display:'flex' 
+                        height:`${ aboveMediumScreens ? '30%' : '100%' }`, 
+                        display:'flex',
+                        flexDirection:`${ aboveMediumScreens ? 'row' : 'column' }` 
                     }}
                 >
                     <p
                         style={{ 
-                            width:'50%', 
+                            width:`${ aboveMediumScreens ? '50%' : '100%' }`, 
                             fontFamily:'Montserrat, sans-serif',
-                            fontSize:'2.3rem',
+                            fontSize:`${ aboveMediumScreens ? '2.3rem' : '1.5rem' }`,
                             fontWeight:'800',
-                            padding:'1rem 0rem'
+                            padding:`${ aboveMediumScreens ? '1rem 0rem' : '1rem' }`,
+                            textAlign:`${ aboveMediumScreens ? 'left' : 'center' }`
                         }}
                     >
                         {mainPost?.title}
@@ -61,13 +73,14 @@ function Hero({ coverPosts }){
 
                     <p
                         style={{ 
-                            padding:'2rem 0rem',
+                            padding:`${ aboveMediumScreens ? '2rem 0rem' : '1rem' }`,
                             fontSize:'1.4rem',
                             color:'rgba(128,128,128)',
-                            width:'50%',
+                            width:`${ aboveMediumScreens ? '50%' : '100%' }`,
                             display:'flex',
                             flexDirection:'column',
-                            alignItems:'center'
+                            alignItems:'center',
+                            textAlign:`${ aboveMediumScreens ? 'left' : 'center' }`
                         }}
                     >
                         {mainPost?.subtitle}
@@ -94,12 +107,13 @@ function Hero({ coverPosts }){
             {/* new/trending posts section */}
             <div
                 style={{ 
-                    height:'100%', 
-                    width:'30%', 
+                    height:`${ aboveMediumScreens ? '100%' : 'fit-content' }`, 
+                    width:`${ aboveMediumScreens ? '30%' : '100%' }`, 
                     display:'flex', 
                     flexDirection:'column', 
                     background:'rgb(3, 0, 28)' 
                 }}
+                className="heroTrending"
             >
                 {/* heading */}
                 <h3
@@ -107,7 +121,8 @@ function Hero({ coverPosts }){
                         color: "gold", 
                         fontSize:'2.5rem' , 
                         fontFamily:'Permanent Marker, cursive', 
-                        margin:'1rem' 
+                        margin:'1rem',
+                        textAlign:`${ aboveMediumScreens ? 'left' : 'center' }`
                     }}
                 >
                     New

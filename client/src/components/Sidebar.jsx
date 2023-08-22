@@ -2,10 +2,14 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import { CategoryBubble } from "./CategoryBubble"
+import useMediaQuery from "../hooks/useMediaQuery"
 
 function Sidebar(){
     //using state to update list of available catgories in the sidebar
     const [categories, setCategories] = useState([])
+
+    //custom mediaQuery hook 
+    const aboveMediumScreens = useMediaQuery('(min-width:1060px)')
 
     //fetching available categories
     useEffect(() => {
@@ -36,13 +40,17 @@ function Sidebar(){
                 flexDirection:'column',
                 alignItems:'center',
                 justifyContent:'center',
-                width:'25%',
+                width:`${ aboveMediumScreens ? '25%' : '100%' }`,
                 height:'fit-content',
                 padding:'2rem 0.5rem'
             }}
+            /* className="sidebar" */
         >
             <span 
-                style={{ margin:'1rem', textAlign:'center' }}
+                style={{ 
+                    margin:`${ aboveMediumScreens ? '1rem' : '0.5rem' }`, 
+                    textAlign:'center' 
+                }}
             >
                 Discover more of what matters to you
             </span>

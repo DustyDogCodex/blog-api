@@ -6,6 +6,7 @@ import { PostsDisplay } from "../components/PostsDisplay"
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import Loading from "../components/Loading"
+import useMediaQuery from "../hooks/useMediaQuery"
 
 function Homepage(){    
     //using state to select posts to display
@@ -13,6 +14,9 @@ function Homepage(){
 
     //loading screen toggle
     const [ loading, setLoading ] = useState(true)
+
+    //media query hook
+    const aboveMediumScreens = useMediaQuery('(min-width:1060px)')
 
     //using useLocation to identify any query search parameters present in url
     const location = useLocation()
@@ -39,22 +43,25 @@ function Homepage(){
                 :
                 <div
                     style={{
-                        minHeight:'95vh'
+                        minHeight:'95vh',
+                        height:'100%'
                     }}
                 >
                     {!searchQuery && <Hero coverPosts={blogs.slice(0,4)} />}
 
-                    <Container 
-                        fluid='xxl' 
+                    <Container
                         style={{ 
                             display:'flex', 
+                            flexDirection:`${ aboveMediumScreens ? 'row' : 'column-reverse' }`,
                             justifyContent:'flex-start', 
                             marginBottom:'2rem',
                             height:'100%'
                         }}
                     >
                         <div
-                            style={{ width:'75%' }}
+                            style={{ 
+                                width:`${ aboveMediumScreens ? '75%' : '100%' }` 
+                            }}
                         >
                             <PostsDisplay blogs={blogs.slice(4)} dashboard={false}/>
                         </div>
