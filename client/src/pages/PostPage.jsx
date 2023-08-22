@@ -3,6 +3,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import Loading from "../components/Loading"
+import useMediaQuery from '../hooks/useMediaQuery'
 
 /* this is the page users will be directed to when they click on a blog post to view it */
 function PostPage(){
@@ -11,6 +12,9 @@ function PostPage(){
 
     //variables for loading animation
     const [ loading, setLoading ] = useState(true)
+
+    //custom media query hook
+    const aboveMediumScreens = useMediaQuery('(min-width:1060px)')
 
     //using state variable to store currently displayed post's information
     const [ currentPost, setCurrentPost ] = useState([])
@@ -54,7 +58,10 @@ function PostPage(){
                                 <img 
                                     src={`http://localhost:5000/uploads/${currentPost.image}`} 
                                     alt="post's image" 
-                                    style={{ maxWidth:'100%', maxHeight:'40rem' }}
+                                    style={{ 
+                                        width:'100%', 
+                                        maxHeight:'40rem' 
+                                    }}
                                 />
                             </div>
                             :
@@ -67,7 +74,7 @@ function PostPage(){
                                 textAlign:'center', 
                                 margin:'1rem', 
                                 fontFamily:'Permanent Marker, cursive', 
-                                fontSize:'3rem' 
+                                fontSize:`${ aboveMediumScreens ? '3rem' : '2rem' }` 
                             }}
                         >
                             {currentPost.title}
@@ -80,7 +87,7 @@ function PostPage(){
                                 marginTop:'1rem',
                                 marginBottom:'2rem',
                                 fontFamily:'Montserrat, sans-serif',
-                                fontSize:'2rem',
+                                fontSize:`${ aboveMediumScreens ? '2rem' : '1.5rem' }`,
                                 color:'rgb(128,128,128)'
                             }}
                         >
@@ -90,7 +97,7 @@ function PostPage(){
                         {/* info about blog like author, date created */}
                         <div
                             style={{
-                                margin:'0.75rem 0rem',
+                                margin:`${ aboveMediumScreens ? '0.75rem 0rem' : '0.25rem 0rem' }`,
                                 display:'flex',
                                 justifyContent:'space-between',
                                 alignItems:'center'
@@ -98,10 +105,10 @@ function PostPage(){
                         >
                             <span 
                                 style={{
-                                   fontSize:'1.2rem' 
+                                   fontSize:`${ aboveMediumScreens ? '1.2rem' : '1rem' }` 
                                 }}
                             >
-                                Written by 
+                                By 
                                 <Link 
                                     to={`/user/${currentPost.userId}`} 
                                     className="link"
@@ -114,10 +121,10 @@ function PostPage(){
                                 style={{
                                     marginLeft:'0.6rem',
                                     fontStyle:'italic',
-                                    fontSize:'1rem'
+                                    fontSize:`${ aboveMediumScreens ? '1.2rem' : '1rem' }`
                                 }}
                             >
-                                Created on { new Date(currentPost.createdAt).toLocaleDateString() }
+                                On { new Date(currentPost.createdAt).toLocaleDateString() }
                             </span>
                         </div>
 

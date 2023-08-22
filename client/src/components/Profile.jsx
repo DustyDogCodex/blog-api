@@ -1,10 +1,13 @@
 import Loading from "./Loading"
 import { useState, useEffect } from "react"
 import axios from "axios"
-import foShizzle from '../assets/snoop.gif'
 import { PostsDisplay } from "./PostsDisplay"
+import useMediaQuery from "../hooks/useMediaQuery"
+import { Container } from "react-bootstrap"
 
 function Profile({ userId }) {
+    //custom media query
+    const aboveMediumScreens = useMediaQuery('(min-width:1060px)')
 
     //loading animation variables
     const [ loadingUser, setLoadingUser ] = useState(true)
@@ -51,34 +54,40 @@ function Profile({ userId }) {
                 (
                     //main content of page
                     /* username/heading */
-                    <>
+                    <Container
+                        style={{
+                            minHeight:'100vh',
+                            height:'100%'
+                        }}
+                    >
                     <h1
-                        style={{ margin:'1rem 0rem' }}
+                        style={{ 
+                            margin:'1rem 0rem', 
+                            textAlign:`${ aboveMediumScreens ? 'left' : 'center' }`
+                        }}
                     >
                         {userProfile.username}'s Profile
                     </h1>
 
                     <div
-                        style={{ minHeight:'100vh', height:'100%', display:'flex' }}
+                        style={{ 
+                            minHeight:`${ aboveMediumScreens ? '100vh' : '50vh' }`, 
+                            height:'100%', 
+                            display:'flex',
+                            flexDirection:`${ aboveMediumScreens ? 'row' : 'column-reverse' }`
+                        }}
                     >
                         {/* left hand side of page with user created posts */}
                         <div
-                            style={{ width:'70%' }}
+                            style={{ 
+                                width:`${ aboveMediumScreens ? '70%' : '100%' }` 
+                            }}
                         >
                             <div>
                                 {loadingPosts
                                     ?
                                     //posts loading animation
-                                    (
-                                        <div
-                                            className="loadingAnimation"
-                                        >
-                                            <img 
-                                                src={foShizzle} 
-                                                alt="Our developers are loading your stuff"
-                                            />
-                                        </div>
-                                    )
+                                    <Loading />
                                     :
                                     (
                                         <PostsDisplay blogs={userPosts} />
@@ -90,16 +99,21 @@ function Profile({ userId }) {
                         {/* right hand side with user about me */}
                         <div
                             style={{ 
-                                borderLeft:'1px solid rgb(230,230,230)', 
-                                width:'30%', 
-                                marginLeft:'1rem' 
+                                borderLeft:`${ aboveMediumScreens ? '1px solid rgb(230,230,230)' : 'none' }`, 
+                                borderBottom:`${ aboveMediumScreens ? 'none' : '1px solid rgb(230,230,230)' }`,
+                                width:`${ aboveMediumScreens ? '30%' : '100%' }`, 
+                                marginLeft:`${ aboveMediumScreens ? '1rem' : '0' }`
                             }}
                         >
                         <div
                             style={{ 
                                 width:'100%',
                                 height:'fit-content', 
-                                padding:'2rem 1rem'
+                                padding:'2rem 1rem',
+                                display:"flex",
+                                flexDirection:'column',
+                                alignItems:`${ aboveMediumScreens ? 'left' : 'center' }`,
+                                textAlign:`${ aboveMediumScreens ? 'left' : 'center' }`
                             }}
                         >
                             {/* User avatar if it exists */}
@@ -121,11 +135,11 @@ function Profile({ userId }) {
 
                             <h3>{userProfile.username}</h3>
 
-                            <p style={{ color:'rgb(128,128,128)'}}>{userProfile.aboutMe}</p>
+                            <p style={{ color:'rgb(128,128,128)' }}>{userProfile.aboutMe}</p>
                         </div>
                         </div>
                     </div>
-                    </>
+                    </Container>
                 )
             }
         </>

@@ -204,7 +204,6 @@ function Post({ id, userId, title, username, post, image, categories, created, d
                     style={{ 
                         width:`${ aboveMediumScreens ? '25%' : '100%' }`, 
                         height:'12rem', 
-                        objectFit:'cover', 
                         borderRadius:'2rem', 
                         marginLeft:`${ aboveMediumScreens ? '1rem' : '0' }`
                     }}

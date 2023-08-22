@@ -63,7 +63,7 @@ function Homepage(){
                                 width:`${ aboveMediumScreens ? '75%' : '100%' }` 
                             }}
                         >
-                            <PostsDisplay blogs={blogs.slice(4)} dashboard={false}/>
+                            <PostsDisplay blogs={ searchQuery ? blogs : blogs.slice(4) } dashboard={false}/>
                         </div>
                         <Sidebar />
                     </Container>

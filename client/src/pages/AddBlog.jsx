@@ -71,7 +71,12 @@ function AddBlog() {
     }
 
     return (
-        <Container>
+        <Container
+            style={{ 
+                minHeight:'100vh', 
+                height:'100%' 
+            }}
+        >
             {/* stock header image for page */}
             <img 
                 src="https://images.pexels.com/photos/368260/pexels-photo-368260.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
