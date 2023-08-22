@@ -38,6 +38,20 @@ function Dashboard() {
                 >
                     Account
                 </Link>
+
+                <Link
+                    to={'profile'}
+                    style={{ 
+                        fontFamily:'Roboto Mono, cursive', 
+                        fontSize:'1.8rem', 
+                        marginLeft:'1rem',
+                        color:`${ subpage === 'profile' ? 'black' : 'rgba(211,211,211,0.6)' }`,  
+                        borderBottom:`${ subpage === 'profile' ? '1px solid black' : '' }` 
+                    }}
+                    className="link"
+                >
+                    Profile
+                </Link>
             </div>
 
             {/* outlet for subpages */}

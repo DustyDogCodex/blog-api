@@ -1,6 +1,5 @@
 import { useContext, useState } from "react"
-import { Container, Button, Form } from "react-bootstrap"
-import { useForm } from "react-hook-form"
+import { Container, Button } from "react-bootstrap"
 import { MyContext } from "../MyContext"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons"
@@ -19,12 +18,9 @@ function Account(){
     const [ editAboutMe, setEditAboutMe ] = useState(false)
     const [ editPicture, setEditPicture ] = useState(false)
 
-    //react hook form to submit and validate form
-    const { register, handleSubmit, formState: { errors } } = useForm()
-
     //api calls for updating user settings
     async function updateAboutMe(){
-        axios.put(`http://localhost:5000/settings/location`,
+        axios.put(`http://localhost:5000/settings/aboutMe`,
             { userId: userInfo._id, aboutMe },
             { withCredentials: true }
         )
@@ -49,7 +45,7 @@ function Account(){
         }
 
         //sending patch request to update post info on server
-        axios.put(`http://localhost:5000/settings/profilepic`,
+        axios.put(`http://localhost:5000/settings/profilePic`,
             formData,
             {
                 headers: { "Content-Type": "multipart/form-data" }
@@ -70,14 +66,11 @@ function Account(){
                 marginTop:"4rem", 
                 display:'flex', 
                 minHeight:'90vh', 
-                height:'100%', 
-                padding:'2rem',
-                border:'1px solid black'
+                height:'100%'
             }}
         >
             <div
                 style={{
-                    border:'1px solid green',
                     width:'100%',
                     display:'flex',
                     flexDirection:'column',
@@ -94,11 +87,22 @@ function Account(){
                     style={{
                         marginTop:'2rem',
                         display:'flex',
+                        flexDirection:'column',
                         alignItems:'center',
-                        justifyContent:'space-between'
+                        justifyContent:'space-around',
+                        width:'35rem',
                     }}
                 >
-                    <label style={{ fontWeight:'900', fontSize:'large' }}>About Me</label>
+                    <label 
+                        style={{ 
+                            fontWeight:'900', 
+                            fontSize:'1.5rem', 
+                            marginBottom:'0.75rem' 
+                        }}
+                    >
+                        About Me
+                    </label>
+
                     <div
                         style={{
                             display:`${ editAboutMe ? 'none' : 'flex' }`,
@@ -107,7 +111,14 @@ function Account(){
                         }}
                     >
                         <p 
-                            style={{ marginLeft:'0.5rem' }}
+                            style={{ 
+                                marginLeft:'0.5rem', 
+                                width:'20rem', 
+                                marginLeft:'1rem',
+                                background:'rgb(220,220,220)',
+                                padding:'1rem',
+                                borderRadius:'1rem'
+                            }}
                         >
                             {userInfo.aboutMe ? userInfo.aboutMe : 'Add an about me section'}
                         </p>
@@ -125,27 +136,31 @@ function Account(){
                     {/* this section will be displayed after user clicks the edit button first */}
                     <div
                         style={{
-                            display:`${ editAboutMe ? '' : 'none' }`
+                            display:`${ editAboutMe ? 'flex' : 'none' }`,
+                            alignItems:'center',
                         }}
                     >
-                        <input 
+                        <textarea 
                             type="text"
                             value={aboutMe} 
                             onChange={(e) => setAboutMe(e.target.value)}
                             style={{ 
                                 padding:'0.5rem',
-                                borderRadius:'0.5rem'
+                                borderRadius:'0.5rem',
+                                marginLeft:'1rem',
+                                width:'20rem'
                             }}
+                            rows={5}
                         />
                     
                         <FontAwesomeIcon 
                             icon={faCheck} 
-                            style={{color: "#05fa2e", cursor:'pointer', marginLeft:'5px'}} 
+                            style={{color: "#05fa2e", cursor:'pointer', marginLeft:'0.5rem'}} 
                             onClick={updateAboutMe}
                         />
                         <FontAwesomeIcon 
                             icon={faXmark} 
-                            style={{color: "#ff0000", cursor:'pointer', marginLeft:'5px'}}
+                            style={{color: "#ff0000", cursor:'pointer', marginLeft:'0.5rem'}}
                             onClick={() => setEditAboutMe(!editAboutMe)} 
                         />
                     </div>
@@ -156,11 +171,21 @@ function Account(){
                     style={{
                         marginTop:'2rem',
                         display:'flex',
+                        flexDirection:'column',
                         alignItems:'center',
-                        justifyContent:'space-between'
+                        justifyContent:'space-around'
                     }}
                 >
-                    <label style={{ fontWeight:'900', fontSize:'large' }}>Profile Picture</label>
+                    <label 
+                        style={{ 
+                            fontWeight:'900', 
+                            fontSize:'1.5rem',
+                            marginBottom:'0.75rem'
+                        }}
+                    >
+                        Profile Picture
+                    </label>
+
                     <div
                         style={{
                             display:`${editPicture ? 'none' : 'flex'}`,

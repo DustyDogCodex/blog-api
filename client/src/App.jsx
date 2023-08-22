@@ -17,6 +17,8 @@ import Dashboard from './pages/Dashboard'
 import MyPosts from './pages/MyPosts'
 import EditPost from './components/EditPost'
 import PageNotFound from './pages/PageNotFound'
+import Profile from './components/Profile'
+import MyProfile from './pages/MyProfile'
 
 function App() {
   //using context to check for a logged in user.
@@ -61,6 +63,7 @@ function App() {
                 >
                     <Route index element={<MyPosts />} />
                     <Route path='account' element={<Account />} />
+                    <Route path='profile' element={<MyProfile />} />
                     <Route path='edit/:postId' element={<EditPost />} />
                 </Route>
                 <Route 

@@ -10,9 +10,11 @@ const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
 const postRoute = require('./routes/posts')
 const categoryRoute = require('./routes/category')
+const settingsRoute = require('./routes/settings')
 const passportConfig = require('./passportConfig')
 const { createNewBlog, updateBlog } = require('./controllers/posts')
 const { registerAccount } = require('./controllers/auth')
+const { updateProfilePic } = require('./controllers/settings')
 
 dotenv.config()
 
@@ -71,6 +73,7 @@ const upload = multer({ storage })
 app.post('/auth/register', upload.single("image"), registerAccount)
 app.post('/post/new', upload.single("image"), createNewBlog)
 app.put('/post/:id', upload.single("image"), updateBlog)
+app.put('/settings/profilePic', upload.single("image"), updateProfilePic)
 
 /* ------------------------------------------------------------------ */
 
@@ -87,6 +90,8 @@ app.use('/user', userRoute)
 app.use('/post', postRoute)    
 //routes for categories
 app.use('/category', categoryRoute) 
+//route for settings
+app.use('/settings', settingsRoute) 
 
 /* ------------------------------------------------------------  */
 

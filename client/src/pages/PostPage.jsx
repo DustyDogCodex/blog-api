@@ -103,7 +103,7 @@ function PostPage(){
                             >
                                 Written by 
                                 <Link 
-                                    to={`/?username=${currentPost.username}`} 
+                                    to={`/user/${currentPost.userId}`} 
                                     className="link"
                                 >
                                     <strong> {currentPost.username} </strong>
