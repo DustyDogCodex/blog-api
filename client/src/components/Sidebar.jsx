@@ -30,14 +30,32 @@ function Sidebar(){
     )
 
     return(
-        <div className="sidebar">
+        <div 
+            style={{
+                display:'flex',
+                flexDirection:'column',
+                alignItems:'center',
+                justifyContent:'center',
+                width:'25%',
+                height:'fit-content',
+                padding:'2rem 0.5rem'
+            }}
+        >
             <span 
-                className="sidebarTitle"
+                style={{ margin:'1rem', textAlign:'center' }}
             >
                 Discover more of what matters to you
             </span>
 
-            <div className="sidebarList">
+            <div
+                style={{
+                    display:'flex',
+                    flexWrap:'wrap',
+                    justifyContent:'center',
+                    gap:'0.3rem',
+                    textAlign:'center'
+                }}
+            >
                 { categoriesElements }
             </div>
         </div>

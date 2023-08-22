@@ -40,10 +40,16 @@ function PostPage(){
                     :
                     /* post to be displayed */
                     <> 
+                        {/* post's image if it exists */}
                         {currentPost.image
                             ? 
                             <div
-                                style={{ width:'100%', display:'flex', alignItems:'center', justifyContent:'center' }}
+                                style={{ 
+                                    width:'100%', 
+                                    display:'flex', 
+                                    alignItems:'center', 
+                                    justifyContent:'center' 
+                                }}
                             >
                                 <img 
                                     src={`http://localhost:5000/uploads/${currentPost.image}`} 
@@ -55,15 +61,46 @@ function PostPage(){
                             ''
                         }
 
+                        {/* post title */}
                         <h1 
-                            style={{ textAlign:'center', margin:'1rem', fontFamily:'Permanent Marker, cursive', fontSize:'3rem' }}
+                            style={{ 
+                                textAlign:'center', 
+                                margin:'1rem', 
+                                fontFamily:'Permanent Marker, cursive', 
+                                fontSize:'3rem' 
+                            }}
                         >
                             {currentPost.title}
                         </h1>
 
+                        {/* post subtitle */}
+                        <h3
+                            style={{
+                                textAlign:'center',
+                                marginTop:'1rem',
+                                marginBottom:'2rem',
+                                fontFamily:'Montserrat, sans-serif',
+                                fontSize:'2rem',
+                                color:'rgb(128,128,128)'
+                            }}
+                        >
+                            {currentPost.subtitle}
+                        </h3>
+
                         {/* info about blog like author, date created */}
-                        <div className="blogInfo">
-                            <span className="blogAuthor">
+                        <div
+                            style={{
+                                margin:'0.75rem 0rem',
+                                display:'flex',
+                                justifyContent:'space-between',
+                                alignItems:'center'
+                            }}
+                        >
+                            <span 
+                                style={{
+                                   fontSize:'1.2rem' 
+                                }}
+                            >
                                 Written by 
                                 <Link 
                                     to={`/?username=${currentPost.username}`} 
@@ -73,13 +110,22 @@ function PostPage(){
                                 </Link>
                             </span>
 
-                            <span className="blogDate">
+                            <span 
+                                style={{
+                                    marginLeft:'0.6rem',
+                                    fontStyle:'italic',
+                                    fontSize:'1rem'
+                                }}
+                            >
                                 Created on { new Date(currentPost.createdAt).toLocaleDateString() }
                             </span>
                         </div>
 
                         {/* blog content */}
-                        <p className="blogText">
+                        <p 
+                            style={{ fontSize:'1.2rem' }}
+                            className="blogText"
+                        >
                             {editedPost.map((part,index) => 
                                 <span key={index}>
                                     {part}

@@ -37,7 +37,11 @@ function Homepage(){
                 ?
                 <Loading />
                 :
-                <>
+                <div
+                    style={{
+                        minHeight:'95vh'
+                    }}
+                >
                     {!searchQuery && <Hero coverPosts={blogs.slice(0,4)} />}
 
                     <Container 
@@ -46,7 +50,6 @@ function Homepage(){
                             display:'flex', 
                             justifyContent:'flex-start', 
                             marginBottom:'2rem',
-                            minHeight:'90vh',
                             height:'100%'
                         }}
                     >
@@ -57,7 +60,7 @@ function Homepage(){
                         </div>
                         <Sidebar />
                     </Container>
-                </>
+                </div>
             }
         </>
     )
