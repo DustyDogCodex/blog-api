@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap"
 import { useParams } from "react-router-dom"
 import { PostsDisplay } from "../components/PostsDisplay"
 import Loading from "../components/Loading"
+import foShizzle from '../assets/snoop.gif'
 
 function UserProfile() {
     //grab user id from params
@@ -92,15 +93,20 @@ function UserProfile() {
 
                         {/* right hand side with user about me */}
                         <div
-                            style={{ width:'30%', height:'fit-content', padding:'2rem 1rem', border:'1px solid black' }}
+                            style={{ 
+                                width:'30%', 
+                                height:'fit-content', 
+                                padding:'2rem 1rem', 
+                                border:'1px solid black' 
+                            }}
                         >
                             {/* User avatar if it exists */}
                             {userProfile.avatar
                                 ?
                                 <img 
-                                    src={`http:localhost:5000/uploads/${userProfile.avatar}`} 
+                                    src={`http://localhost:5000/uploads/${userProfile.avatar}`} 
                                     alt="" 
-                                    style={{ width:'3rem', height:'3rem', borderRadius:'100%'}}
+                                    style={{ width:'3rem', height:'3rem', borderRadius:'100%' }}
                                 />
                                 :
                                 ''
