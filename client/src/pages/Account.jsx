@@ -5,6 +5,7 @@ import { MyContext } from "../MyContext"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons"
 import { faCheck, faUser, faXmark } from "@fortawesome/free-solid-svg-icons"
+import axios from "axios"
 
 function Account(){
     //grabbing userInfo from context
@@ -87,7 +88,7 @@ function Account(){
                     User Settings
                 </h3>
 
-                {/* Edit user info section */}
+                {/* about me section */}
                 <div
                     className="mt-5 flex items-center justify-between"
                     style={{
@@ -97,98 +98,102 @@ function Account(){
                         justifyContent:'space-between'
                     }}
                 >
-                    {/* about me section */}
-                        <label style={{ fontWeight:'900', fontSize:'large'}}>AboutMe</label>
-                        <div
-                            className={` flex items-center justify-around`}
-                            style={{
-                                display:`${ editAboutMe ? 'hidden' : 'flex' }`,
-                                alignItems:'center',
-                                justifyContent:'center'
-                            }}
-                        >
-                            <p 
-                                style={{ marginLeft:'0.5rem' }}
-                            >
-                                {userInfo.aboutMe ? userInfo.aboutMe : 'Add an about me section'}
-                            </p>
-                            <FontAwesomeIcon 
-                                icon={faPenToSquare} 
-                                style={{ 
-                                    color: "#00e9fa", 
-                                    cursor:'pointer', 
-                                    marginLeft:'10px'
-                                }} 
-                                onClick={() => setEditAboutMe(!editAboutMe)}
-                            />
-                        </div>
-
-                        {/* this section will be displayed after user clicks the edit button first */}
-                        <div
-                            style={{
-                                display:`${ editAboutMe ? '' : 'hidden' }`
-                            }}
-                        >
-                            <input 
-                                type="text"
-                                value={aboutMe} 
-                                onChange={(e) => setAboutMe(e.target.value)}
-                                className="rounded-lg p-1 dark:text-black"
-                                style={{ 
-                                    padding:'0.5rem',
-                                    borderRadius:'0.5rem'
-                                }}
-                            />
-                            <FontAwesomeIcon 
-                                icon={faCheck} 
-                                style={{color: "#05fa2e", cursor:'pointer', marginLeft:'5px'}} 
-                                onClick={updateAboutMe}
-                            />
-                            <FontAwesomeIcon 
-                                icon={faXmark} 
-                                style={{color: "#ff0000", cursor:'pointer', marginLeft:'5px'}}
-                                onClick={() => setEditAboutMe(!editAboutMe)} 
-                            />
-                        </div>
-                    </div>
-
+                    <label style={{ fontWeight:'900', fontSize:'large' }}>About Me</label>
                     <div
-                        className="mt-5 flex items-center justify-between"
                         style={{
-                            marginTop:'2rem',
-                            display:'flex',
+                            display:`${ editAboutMe ? 'none' : 'flex' }`,
                             alignItems:'center',
-                            justifyContent:'space-between'
+                            justifyContent:'center'
                         }}
                     >
-                        <label style={{ fontWeight:'900', fontSize:'large'}}>Profile Picture</label>
-                        <div
-                            style={{
-                                display:`${editPicture ? 'hidden' : 'flex'}`,
-                                alignItems:'center',
-                                justifyContent:'center'
-                            }}
+                        <p 
+                            style={{ marginLeft:'0.5rem' }}
                         >
-                            {userInfo.avatar
-                                ?
-                                <>
-                                    <img 
-                                        src={`http://localhost:5000/uploads/${userInfo.avatar}`} 
-                                        alt="user profile picture" 
-                                        style={{
-                                            width:'12rem',
-                                            height:'12rem',
-                                            borderRadius:'1rem',
-                                            marginLeft:'2.5rem'
-                                        }}
-                                    />
-                                    <FontAwesomeIcon 
-                                        icon={faPenToSquare} 
-                                        style={{ color: "#00e9fa", cursor:'pointer', marginLeft:'1rem' }}
-                                        onClick={() => setEditPicture(!editPicture)}
-                                    />
-                                </>
-                                :
+                            {userInfo.aboutMe ? userInfo.aboutMe : 'Add an about me section'}
+                        </p>
+                        <FontAwesomeIcon 
+                            icon={faPenToSquare} 
+                            style={{ 
+                                color: "#00e9fa", 
+                                cursor:'pointer', 
+                                marginLeft:'10px'
+                            }} 
+                            onClick={() => setEditAboutMe(!editAboutMe)}
+                        />
+                    </div>
+
+                    {/* this section will be displayed after user clicks the edit button first */}
+                    <div
+                        style={{
+                            display:`${ editAboutMe ? '' : 'none' }`
+                        }}
+                    >
+                        <input 
+                            type="text"
+                            value={aboutMe} 
+                            onChange={(e) => setAboutMe(e.target.value)}
+                            style={{ 
+                                padding:'0.5rem',
+                                borderRadius:'0.5rem'
+                            }}
+                        />
+                    
+                        <FontAwesomeIcon 
+                            icon={faCheck} 
+                            style={{color: "#05fa2e", cursor:'pointer', marginLeft:'5px'}} 
+                            onClick={updateAboutMe}
+                        />
+                        <FontAwesomeIcon 
+                            icon={faXmark} 
+                            style={{color: "#ff0000", cursor:'pointer', marginLeft:'5px'}}
+                            onClick={() => setEditAboutMe(!editAboutMe)} 
+                        />
+                    </div>
+                </div>
+                    
+                {/* profile picture section */}
+                <div
+                    style={{
+                        marginTop:'2rem',
+                        display:'flex',
+                        alignItems:'center',
+                        justifyContent:'space-between'
+                    }}
+                >
+                    <label style={{ fontWeight:'900', fontSize:'large' }}>Profile Picture</label>
+                    <div
+                        style={{
+                            display:`${editPicture ? 'none' : 'flex'}`,
+                            alignItems:'center',
+                            justifyContent:'center'
+                        }}
+                    >
+                        {userInfo.avatar
+                            ?
+                            <>
+                                <img 
+                                    src={`http://localhost:5000/uploads/${userInfo.avatar}`} 
+                                    alt="user profile picture" 
+                                    style={{
+                                        width:'12rem',
+                                        height:'12rem',
+                                        borderRadius:'1rem',
+                                        marginLeft:'2.5rem'
+                                    }}
+                                />
+                                <FontAwesomeIcon 
+                                    icon={faPenToSquare} 
+                                    style={{ 
+                                        color: "#00e9fa", 
+                                        cursor:'pointer', 
+                                        marginLeft:'1rem' 
+                                    }}
+                                    onClick={() => setEditPicture(!editPicture)}
+                                />
+                            </>
+                            :
+                            <>
+                                {/* displaying a default user icon if user does not have an avatar */}
                                 <FontAwesomeIcon
                                     icon={faUser}
                                     style={{ 
@@ -197,33 +202,56 @@ function Account(){
                                         width:'5rem'
                                     }}
                                 />
-                            }
-                        </div>
-
-                        {/* this section will be displayed after user clicks the edit button first */}
-                        <div
-                            className={`${editPicture ? '' : 'hidden'}`}
-                        >
-                            <input 
-                                type="file"
-                                onChange={(e) => setProfilePic(e.target.files[0])}
-                                className="rounded-lg p-1 border border-sky-500 ml-5"
-                                
-                            />
-                            <FontAwesomeIcon 
-                                icon={faCheck} 
-                                style={{color: "#05fa2e", cursor:'pointer', marginLeft:'5px'}} 
-                                onClick={updateProfilePic}
-                            />
-                            <FontAwesomeIcon 
-                                icon={faXmark} 
-                                style={{color: "#ff0000", cursor:'pointer', marginLeft:'5px'}}
-                                onClick={() => setEditPicture(!editPicture)} 
-                            />
-                        </div>
+                                <FontAwesomeIcon 
+                                    icon={faPenToSquare} 
+                                    style={{ 
+                                        color: "#00e9fa", 
+                                        cursor:'pointer', 
+                                        marginLeft:'1rem' 
+                                    }}
+                                    onClick={() => setEditPicture(!editPicture)}
+                                />
+                            </>
+                        }
                     </div>
-                
-                
+
+                    {/* this section will be displayed after user clicks the edit button first */}
+                    <div
+                        style={{
+                            display:`${ editPicture ? '' : 'none' }`
+                        }}
+                    >
+                        <input 
+                            type="file"
+                            onChange={(e) => setProfilePic(e.target.files[0])}
+                            style={{ 
+                                border:'1px solid skyblue',
+                                marginLeft:'1rem',
+                                borderRadius:'1rem',
+                                padding:'0.5rem'
+                            }}
+                        />
+                        
+                        <FontAwesomeIcon 
+                            icon={faCheck} 
+                            style={{
+                                color: "#05fa2e", 
+                                cursor:'pointer', 
+                                marginLeft:'5px'
+                            }} 
+                            onClick={updateProfilePic}
+                        />
+                        <FontAwesomeIcon 
+                            icon={faXmark} 
+                            style={{ 
+                                color: "#ff0000", 
+                                cursor:'pointer', 
+                                marginLeft:'5px'
+                            }}
+                            onClick={() => setEditPicture(!editPicture)} 
+                        />
+                    </div>
+                </div>
                 
                 {/* delete account button */}
                 <div
