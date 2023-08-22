@@ -4,10 +4,14 @@ import { useContext, useEffect, useState } from "react"
 import { MyContext } from "../MyContext"
 import axios from "axios"
 import Loading from "../components/Loading"
+import useMediaQuery from "../hooks/useMediaQuery"
 
 function MyPosts() {
     //getting userInfo through context
     const { userInfo } = useContext(MyContext)
+
+    //custom media query
+    const aboveMediumScreens = useMediaQuery('(min-width:1060px)')
 
     //variable for tracking posts
     const [ posts, setPosts ] = useState([])
@@ -41,9 +45,13 @@ function MyPosts() {
                 //displaying user's posts after data is fetched from server
                 <>
                     <h1
-                        style={{ margin:'1rem 0rem', fontSize:'2rem'}}
+                        style={{ 
+                            margin:'1rem 0rem', 
+                            fontSize:'2rem',
+                            textAlign:`${ aboveMediumScreens ? 'left' : 'center' }` 
+                        }}
                     >
-                        {userInfo.username}'s posts
+                        My posts
                     </h1>
                     <PostsDisplay blogs={posts} dashboard={true}/>
                 </>

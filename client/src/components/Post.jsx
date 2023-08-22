@@ -89,12 +89,13 @@ function Post({ id, userId, title, username, post, image, categories, created, d
                             justifyContent:'center'  
                         }}
                     >
-                        <h3>Are you sure you want to delete:</h3>
+                        <h3 style={{ textAlign:'center' }} >Are you sure you want to delete:</h3>
                         
                         <h4 
                             style={{ 
                                 fontFamily:'Permanent Marker, cursive', 
-                                fontSize:'2rem' 
+                                fontSize:'2rem',
+                                textAlign:'center' 
                             }}
                         >
                             {title}
@@ -124,6 +125,7 @@ function Post({ id, userId, title, username, post, image, categories, created, d
         )
     }
 
+    /* main component */
     return(
         <div 
             style={{ 
@@ -218,7 +220,7 @@ function Post({ id, userId, title, username, post, image, categories, created, d
                     style={{ 
                         marginLeft:'1rem',
                         display:'flex',
-                        flexDirection:'column'
+                        flexDirection:`${ aboveMediumScreens ? 'column' : 'row' }`
                     }}
                 >
                     <Link
@@ -226,13 +228,13 @@ function Post({ id, userId, title, username, post, image, categories, created, d
                     >
                         <FontAwesomeIcon 
                             icon={faPenToSquare} 
-                            style={{ color:'skyblue', height:'1.6rem', cursor:'pointer' }}
+                            style={{ color:'skyblue', height:'1.6rem', cursor:'pointer',margin:'0.5rem' }}
                         />
                     </Link>
                     
                     <FontAwesomeIcon 
                         icon={faTrash} 
-                        style={{ color:'red', height:'1.6rem', cursor:'pointer' }}
+                        style={{ color:'red', height:'1.6rem', cursor:'pointer', margin:'0.5rem' }}
                         onClick={() => setConfirmDelete(!confirmDelete)}
                     />
                 </div>

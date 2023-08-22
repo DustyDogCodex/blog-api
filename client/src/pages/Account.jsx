@@ -90,7 +90,7 @@ function Account(){
                         flexDirection:'column',
                         alignItems:'center',
                         justifyContent:'space-around',
-                        width:'35rem',
+                        width:'fit-content',
                     }}
                 >
                     <label 
@@ -113,7 +113,7 @@ function Account(){
                         <p 
                             style={{ 
                                 marginLeft:'0.5rem', 
-                                width:'20rem', 
+                                width:'fit-content', 
                                 marginLeft:'1rem',
                                 background:'rgb(220,220,220)',
                                 padding:'1rem',
@@ -127,7 +127,7 @@ function Account(){
                             style={{ 
                                 color: "#00e9fa", 
                                 cursor:'pointer', 
-                                marginLeft:'10px'
+                                marginLeft:'0.5rem'
                             }} 
                             onClick={() => setEditAboutMe(!editAboutMe)}
                         />
@@ -148,7 +148,7 @@ function Account(){
                                 padding:'0.5rem',
                                 borderRadius:'0.5rem',
                                 marginLeft:'1rem',
-                                width:'20rem'
+                                width:'fit-content'
                             }}
                             rows={5}
                         />
@@ -253,7 +253,8 @@ function Account(){
                                 border:'1px solid skyblue',
                                 marginLeft:'1rem',
                                 borderRadius:'1rem',
-                                padding:'0.5rem'
+                                padding:'0.5rem',
+                                width:'15rem'
                             }}
                         />
                         
@@ -262,7 +263,7 @@ function Account(){
                             style={{
                                 color: "#05fa2e", 
                                 cursor:'pointer', 
-                                marginLeft:'5px'
+                                marginLeft:'0.5rem'
                             }} 
                             onClick={updateProfilePic}
                         />
@@ -271,7 +272,7 @@ function Account(){
                             style={{ 
                                 color: "#ff0000", 
                                 cursor:'pointer', 
-                                marginLeft:'5px'
+                                marginLeft:'0.5rem'
                             }}
                             onClick={() => setEditPicture(!editPicture)} 
                         />

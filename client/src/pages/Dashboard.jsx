@@ -8,7 +8,13 @@ function Dashboard() {
     let subpage = location.pathname.split('/')[2]
     
     return (
-        <Container className="mt-5">
+        <Container 
+            className="mt-5"
+            style={{
+                minHeight:'100vh',
+                height:'100%'
+            }}    
+        >
             <div
                 style={{ display:'flex', alignItems:'flex-start' }}
             >

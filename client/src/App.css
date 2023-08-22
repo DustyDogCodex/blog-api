@@ -52,52 +52,10 @@
     padding: 6%;
 }
 
-/* media query for large and xl screens */
-@media (min-width:1200px){
-    .aboutHeader{
-        font-size: 120px;
-    }
-
-    .summaryLeft{
-        padding: 30px 250px;
-    }
-
-    .aboutUserSpotLight > p{
-        padding: 5% 20%;
-    }
-
-    .aboutUserSpotLight > h1{
-        font-size: 100px;
-    }
-}
-
 /* for small and mobile screens */
-@media (max-width: 1000px){
-    .aboutSummary{
-        flex-direction: column;
-    }
-
-    .summaryLeft{
-        border-right: none;
-        border-bottom: 1px solid black;
+@media (max-width: 1060px){
+    .contactSection{
         width: 100%;
-    }
-
-    .userSpotLight{
-        display: flex;
-        flex-direction: column;
-        height: 1200px;
-    }
-
-    .postTitle{
-        font-size: x-large;
-    }
-
-    .postCategories{
-        font-size: small;
-    }
-
-    .postSummary {
-        display: none;
+        padding: 1%;
     }
 }

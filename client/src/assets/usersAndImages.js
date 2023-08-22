@@ -34,19 +34,7 @@ const usersAndImages = [
         {
             avatar: 'https://img.freepik.com/premium-photo/fashion-portrait-young-elegant-woman-sunglasses-black-leather-jacket-colored-background-studio-shot_374827-369.jpg?w=1380',
             username: 'Sparkle Gem'
-        },
-        {
-            avatar: 'https://img.freepik.com/premium-photo/cyberpunk-girl-future-portrait-asian-teenager-cybernetic-illustration_739548-5149.jpg?w=1380',
-            username: 'Cloud Dancer'
-        },
-        {
-            avatar: 'https://img.freepik.com/premium-photo/monkey-with-mask-flames-his-chest_14865-2293.jpg?w=1380',
-            username: 'Luna Mist'
-        },
-        {
-            avatar: 'https://img.freepik.com/free-photo/man-with-mohawk-blue-hair-with-word-devil-it_1340-41517.jpg?w=1380&t=st=1686101974~exp=1686102574~hmac=6655b3462d3d2734f267cb5403272f9af0b96a574d5b08fa32d731790d87404c',
-            username: 'Blaze Rider'
-        },
+        }
 ]
 
 export { usersAndImages }

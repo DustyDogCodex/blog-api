@@ -22,7 +22,14 @@ function PostsDisplay({ blogs, dashboard }){
             style={{ marginBottom:'3rem' }}
         >
             {/* in case of empty search result, display a small message */}
-            { blogs.length ? blogElements.reverse() :  <p style={{ textAlign:'center' }}>Sorry, no results matching your search were found.</p> }
+            {blogs.length 
+                ? 
+                blogElements.reverse() 
+                :  
+                <p style={{ textAlign:'center' }}>
+                    Sorry, no results matching your search were found.
+                </p> 
+            }
         </div>
     )
 }
