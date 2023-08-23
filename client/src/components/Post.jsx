@@ -143,7 +143,7 @@ function Post({ id, userId, title, username, post, image, categories, created, d
                     marginTop:'0.5rem', 
                     display:'flex', 
                     flexDirection:'column', 
-                    alignItems:`${ aboveMediumScreens ? 'left' : 'center' }`, 
+                    alignItems:`${ aboveMediumScreens ? 'start' : 'center' }`, 
                     justifyContent:'flex-start' 
                 }}
             >
