@@ -16,7 +16,6 @@ Router.post(
 Router.get(
     '/getuser',
     (req,res) => {
-        console.log('req.user', req.user)
         res.send(req.user)
     }
 )
