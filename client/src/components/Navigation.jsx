@@ -8,7 +8,7 @@ import { faUser, faBars } from "@fortawesome/free-solid-svg-icons"
 function Navigation(){
     //using context to check for user
     const { userInfo } = useContext(MyContext)
-
+    console.log('navbar userInfo', userInfo)
     //function to log out user
     async function logout(e) {
         e.preventDefault()

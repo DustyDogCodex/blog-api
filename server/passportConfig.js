@@ -38,7 +38,7 @@ passport.use(new GoogleStrategy({
 //local strategy
 passport.use(new LocalStrategy(
     function(username, password, done) {
-        User.findOne({ username: username })
+        User.findOne({ username })
         .then(user => {
             if(!user){
                 return done(null, false);
@@ -63,6 +63,7 @@ passport.use(new LocalStrategy(
 /*-------------------- SERIALISE AND DESERIALISE USERS ------------------------- */
 
 passport.serializeUser((user, cb) => {
+    console.log('serialize users', user._id)
     return cb(null, user._id)
 })
 
@@ -71,6 +72,7 @@ passport.deserializeUser(async(id, cb) => {
         const user = await User.findById(id)
         //omitting password otherwise we will make a big OOPSIE
         const { password, ...others } = user._doc
+        console.log('deserialize users',others)
         cb(null, others)
     } catch(err) {
         cb(err)

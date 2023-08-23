@@ -8,7 +8,7 @@ Router.post(
     '/login', 
     passport.authenticate('local'),
     (req, res) => {
-        res.status(200).send('ok')
+        res.send('ok')
     }
 );
 
@@ -16,6 +16,7 @@ Router.post(
 Router.get(
     '/getuser',
     (req,res) => {
+        console.log('req.user', req.user)
         res.send(req.user)
     }
 )
@@ -25,7 +26,7 @@ Router.get(
     "/logout", 
     (req, res) => {
         req.logout()
-        res.status(200).send('success')
+        res.send('success')
     }
 )
 
