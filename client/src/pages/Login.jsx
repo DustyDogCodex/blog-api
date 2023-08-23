@@ -1,7 +1,7 @@
-import { Form, Button, Alert } from "react-bootstrap";
-import { useState } from "react";
-import { LinkContainer } from "react-router-bootstrap";
-import axios from "axios";
+import { Form, Button, Alert } from "react-bootstrap"
+import { useState } from "react"
+import { LinkContainer } from "react-router-bootstrap"
+import axios from "axios"
 
 function Login(){
     //using state variables to keep track of user input.
