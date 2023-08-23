@@ -16,7 +16,7 @@ Router.post(
 Router.get(
     '/getuser',
     (req,res) => {
-        res.status(200).send(req.user)
+        res.send(req.user)
     }
 )
 
