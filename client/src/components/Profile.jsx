@@ -23,7 +23,7 @@ function Profile({ userId }) {
     useEffect(() => {
         //api call to get user's profile info
         const getUserProfile = async() => {
-            axios.get(`http://localhost:5000/user/${userId}`)
+            axios.get(`https://bloggy-production.up.railway.app/user/${userId}`)
             .then(res => {
                 setUserProfile(res.data)
                 setLoadingUser(false)
@@ -33,7 +33,7 @@ function Profile({ userId }) {
 
         //api call to get user's posts
         const getUserPosts = async() => {
-            axios.get(`http://localhost:5000/post/user/${userId}`)
+            axios.get(`https://bloggy-production.up.railway.app/post/user/${userId}`)
             .then(res => { 
                 setUserPosts([ ...res.data ])
                 setLoadingPosts(false)
@@ -120,7 +120,7 @@ function Profile({ userId }) {
                             {userProfile.avatar
                                 ?
                                 <img 
-                                    src={`http://localhost:5000/uploads/${userProfile.avatar}`} 
+                                    src={`https://bloggy-production.up.railway.app/uploads/${userProfile.avatar}`} 
                                     alt="" 
                                     style={{ 
                                         width:'5rem', 

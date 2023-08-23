@@ -24,14 +24,16 @@ function Login(){
             password.length === 0 ? setPasswordAlert(true) : '' 
         } else {
             //if no errors, send user info to api to authenticate user.
-            const res = await axios.post(
-            'http://localhost:5000/auth/login',
+            axios.post(
+            'https://bloggy-production.up.railway.app/auth/login',
             {
                 username,
                 password
             }, { withCredentials: true })
             .then(res => {
-                window.location.replace('/')
+                if(res.data == 'ok'){
+                    window.location.replace('/')
+                }
             }) 
             .catch(err => {
                 setRetryAlert(true)
@@ -42,7 +44,7 @@ function Login(){
 
     //signing in with Google. Opens new window to log into google account.
     function googleSignIn(){
-        window.open("http://localhost:5000/auth/google", "_self")
+        window.open("https://bloggy-production.up.railway.app/auth/google", "_self")
     }
     
     return(

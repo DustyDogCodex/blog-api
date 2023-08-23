@@ -34,7 +34,7 @@ function Register(){
 
         /* api call to create account */
         axios.post(
-            'http://localhost:5000/auth/register',
+            'https://bloggy-production.up.railway.app/auth/register',
             formData,
             {
                 headers: { "Content-Type": "multipart/form-data" }
@@ -75,7 +75,7 @@ function Register(){
     //google sign-in
     //signing in with Google. Opens new window to log into google account.
     function googleSignIn(){
-        window.open("http://localhost:5000/auth/google", "_self")
+        window.open("https://bloggy-production.up.railway.app/auth/google", "_self")
     }
 
     return(

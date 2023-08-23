@@ -18,12 +18,14 @@ const { createNewBlog, updateBlog } = require('./controllers/posts')
 const { registerAccount } = require('./controllers/auth')
 const { updateProfilePic } = require('./controllers/settings')
 
+//dotenv
 dotenv.config()
 
 const app = express()
 
+//cors setup
 app.use(cors({ 
-    origin: ['http://localhost:5173'],
+    origin: ['https://bloggy-production.up.railway.app'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
     credentials: true 

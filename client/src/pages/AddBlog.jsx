@@ -55,7 +55,7 @@ function AddBlog() {
 
         //api call to post blog
         axios.post(
-            'http://localhost:5000/post/new',
+            'https://bloggy-production.up.railway.app/post/new',
             formData,
             {
                 headers: { "Content-Type": "multipart/form-data" }

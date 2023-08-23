@@ -4,7 +4,13 @@ import foShizzle from '../assets/snoop.gif'
 function Loading() {
     return (
         <div
-            style={{ display:'flex', alignItems:'center', justifyContent:'center', width:'100%', padding:'5%' }}
+            style={{ 
+                display:'flex', 
+                alignItems:'center', 
+                justifyContent:'center', 
+                width:'100%', 
+                padding:'5%' 
+            }}
         >
             <img 
                 src={foShizzle} 

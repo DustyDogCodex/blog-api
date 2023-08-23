@@ -23,7 +23,7 @@ function MyPosts() {
     useEffect(() => {
         const getUserPosts = async() => {
             axios.get(
-                `http://localhost:5000/post/user/${userInfo._id}`,
+                `https://bloggy-production.up.railway.app/post/user/${userInfo._id}`,
                 { withCredentials: true }
             )
             .then(res => {

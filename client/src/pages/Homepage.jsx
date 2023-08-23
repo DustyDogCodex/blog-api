@@ -25,7 +25,7 @@ function Homepage(){
     //fetching data from our API
     useEffect(() => {
         const getBlogs = async() => {
-            axios.get(`http://localhost:5000/post/${searchQuery}`)
+            axios.get(`https://bloggy-production.up.railway.app/post/${searchQuery}`)
             .then(res => { 
                 setBlogs(res.data)
                 setLoading(false)

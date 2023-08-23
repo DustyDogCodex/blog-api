@@ -20,7 +20,7 @@ function Account(){
 
     //api calls for updating user settings
     async function updateAboutMe(){
-        axios.put(`http://localhost:5000/settings/aboutMe`,
+        axios.put(`https://bloggy-production.up.railway.app/settings/aboutMe`,
             { userId: userInfo._id, aboutMe },
             { withCredentials: true }
         )
@@ -45,7 +45,7 @@ function Account(){
         }
 
         //sending patch request to update post info on server
-        axios.put(`http://localhost:5000/settings/profilePic`,
+        axios.put(`https://bloggy-production.up.railway.app/settings/profilePic`,
             formData,
             {
                 headers: { "Content-Type": "multipart/form-data" }

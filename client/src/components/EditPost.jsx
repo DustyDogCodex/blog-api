@@ -48,7 +48,7 @@ function EditPost() {
     //grab post info from server
     useEffect(() => {
         const getPost = async() => {
-            axios.get(`http://localhost:5000/post/${postId}`)
+            axios.get(`https://bloggy-production.up.railway.app/post/${postId}`)
             .then(res => { 
                 setBlog(res.data)
                 setCategories(res.data.categories)
@@ -87,7 +87,7 @@ function EditPost() {
         }
 
         //sending patch request to update post info on server
-        axios.put(`http://localhost:5000/post/${postId}`,
+        axios.put(`https://bloggy-production.up.railway.app/post/${postId}`,
             formData,
             {
                 headers: { "Content-Type": "multipart/form-data" }
@@ -131,7 +131,7 @@ function EditPost() {
                                 }}
                             >
                                 <img 
-                                    src={`http://localhost:5000/uploads/${editImagePath}`} 
+                                    src={`https://bloggy-production.up.railway.app/uploads/${editImagePath}`} 
                                     alt="image with post"
                                     style={{ maxHeight:'40rem', width:'fit-content' }}
                                 />

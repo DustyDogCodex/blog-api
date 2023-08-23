@@ -14,7 +14,7 @@ function Sidebar(){
     //fetching available categories
     useEffect(() => {
         const getCategories = async() => {
-            axios.get('http://localhost:5000/category/')
+            axios.get('https://bloggy-production.up.railway.app/category/')
             .then(res => setCategories(res.data))
             .catch(err => console.log(err))
         }

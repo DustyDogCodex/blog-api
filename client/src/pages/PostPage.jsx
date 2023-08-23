@@ -22,7 +22,7 @@ function PostPage(){
     //api call to fetch the selected blog post
     useEffect(() => {
         const getPost = async() => {
-            axios.get(`http://localhost:5000/post/${blogId}`)
+            axios.get(`https://bloggy-production.up.railway.app/post/${blogId}`)
             .then(res => { 
                 setCurrentPost(res.data)
                 setLoading(false)
@@ -56,7 +56,7 @@ function PostPage(){
                                 }}
                             >
                                 <img 
-                                    src={`http://localhost:5000/uploads/${currentPost.image}`} 
+                                    src={`https://bloggy-production.up.railway.app/uploads/${currentPost.image}`} 
                                     alt="post's image" 
                                     style={{ 
                                         width:'100%', 

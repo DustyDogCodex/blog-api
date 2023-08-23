@@ -44,7 +44,7 @@ function Hero({ coverPosts }){
                     }}
                 >
                     <img 
-                        src={`http://localhost:5000/uploads/${mainPost?.image}`} 
+                        src={`https://bloggy-production.up.railway.app/uploads/${mainPost?.image}`} 
                         alt='posts image'
                         style={{ height:'100%', width:'100%', objectFit:'fill' }} 
                     />

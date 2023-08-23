@@ -13,7 +13,7 @@ function Navigation(){
     async function logout(e) {
         e.preventDefault()
         axios.get(
-            'http://localhost:5000/auth/logout',
+            'https://bloggy-production.up.railway.app/auth/logout',
             { withCredentials: true }
         )
         .then(res => { 
@@ -87,7 +87,7 @@ function Navigation(){
                                                 height:'3rem', 
                                                 borderRadius:'100%' 
                                             }}
-                                            src={`http://localhost:5000/uploads/${userInfo.avatar}`}
+                                            src={`https://bloggy-production.up.railway.app/uploads/${userInfo.avatar}`}
                                             alt="user avatar" 
                                         />
                                         :

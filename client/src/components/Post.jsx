@@ -23,7 +23,7 @@ function Post({ id, userId, title, username, post, image, categories, created, d
 
     //delete post api call
     function deletePost(){
-        axios.delete(`http://localhost:5000/post/${id}`)
+        axios.delete(`https://bloggy-production.up.railway.app/post/${id}`)
         .then(res => {
             if(res.data === 'deleted'){
                 window.location.replace('/dashboard')
@@ -201,7 +201,7 @@ function Post({ id, userId, title, username, post, image, categories, created, d
             {image
                 ?
                 <img 
-                    src={`http://localhost:5000/uploads/${image}`} 
+                    src={`https://bloggy-production.up.railway.app/uploads/${image}`} 
                     alt="blog image" 
                     style={{ 
                         width:`${ aboveMediumScreens ? '25%' : '100%' }`, 
