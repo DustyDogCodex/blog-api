@@ -9,7 +9,7 @@ function Register(){
     const [ password, setPassword ] = useState('')
     const [ password2, setPassword2 ] = useState('')
     const [ image, setImage ] = useState('')
-    console.log(image)
+    
     //using state to toggle dismissible bootstrap alerts.
     const [ usernameAlert, setUsernameAlert ] = useState(false)
     const [ passwordAlert, setPasswordAlert ] = useState(false)
@@ -196,13 +196,13 @@ function Register(){
             </Form>
             
             {/* option to register with google account */}
-            <Button 
+            {/* <Button 
                 variant="danger" 
                 className="mt-3"
                 onClick={googleSignIn}
             >
                 Register with Google
-            </Button>
+            </Button> */}
             
             {/* redirect to login page */}
             <p style={{marginTop:'30px'}}>

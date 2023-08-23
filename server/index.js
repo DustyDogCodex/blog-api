@@ -5,6 +5,8 @@ const multer = require('multer')
 const dotenv = require('dotenv')
 const passport = require('passport')
 const session = require('express-session')
+const MongoStore = require('connect-mongo')
+const path = require('path')
 //all imported routes and controllers
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
@@ -22,6 +24,8 @@ const app = express()
 
 app.use(cors({ 
     origin: ['http://localhost:5173'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
     credentials: true 
 }))
 app.use(express.json())
@@ -40,7 +44,12 @@ app.use(session({
         sameSite: "lax",
         secure: 'auto',  //for dev environment
         maxAge: 24 * 60 * 60 * 1000 //one day 
-    }
+    },
+    store: MongoStore.create({ 
+        mongoUrl: process.env.MONGO_URL,
+        dbName: 'bloggy',
+        touchAfter: 24 * 3600 // lazy update unless somethings was changed in session data, time period in seconds
+    })
 }))
 app.use(passport.initialize())
 app.use(passport.session())
@@ -77,6 +86,9 @@ app.put('/settings/profilePic', upload.single("image"), updateProfilePic)
 
 /* ------------------------------------------------------------------ */
 
+// Serve static files from the vite build that is now stored in the public folder
+app.use(express.static(path.join(__dirname, 'public')))
+
 //static folder containing uploaded user images
 app.use('/uploads', express.static('server/images'))
 
@@ -94,6 +106,11 @@ app.use('/category', categoryRoute)
 app.use('/settings', settingsRoute) 
 
 /* ------------------------------------------------------------  */
+
+// Route for handling all other requests and serving the React app
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
 
 const port = process.env.PORT || 5000
 

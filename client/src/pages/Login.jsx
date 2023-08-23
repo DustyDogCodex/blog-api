@@ -103,12 +103,12 @@ function Login(){
             </Form>
 
             {/* signin using google */}
-            <Button 
+            {/* <Button 
                 variant="danger" 
                 className="mt-3"
                 onClick={googleSignIn}>
                 Sign in with Google
-            </Button>
+            </Button> */}
                 
             {/* invalid credentials alert */}
             <Alert 

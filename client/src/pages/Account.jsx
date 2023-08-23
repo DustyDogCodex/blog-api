@@ -114,7 +114,6 @@ function Account(){
                             style={{ 
                                 marginLeft:'0.5rem', 
                                 width:'fit-content', 
-                                marginLeft:'1rem',
                                 background:'rgb(220,220,220)',
                                 padding:'1rem',
                                 borderRadius:'1rem'
@@ -280,7 +279,7 @@ function Account(){
                 </div>
                 
                 {/* delete account button */}
-                <div
+                {/* <div
                     style={{ 
                         marginTop:'2rem',
                         display:'flex',
@@ -296,7 +295,7 @@ function Account(){
                     >
                         Delete Your Account
                     </Button>
-                </div>
+                </div> */}
             </div>
         </Container>
     )
