@@ -107,7 +107,7 @@ function Hero({ coverPosts }){
             {/* new/trending posts section */}
             <div
                 style={{ 
-                    height:`${ aboveMediumScreens ? '100%' : 'fit-content' }`, 
+                    height:'100%', 
                     width:`${ aboveMediumScreens ? '30%' : '100%' }`, 
                     display:'flex', 
                     flexDirection:'column', 
