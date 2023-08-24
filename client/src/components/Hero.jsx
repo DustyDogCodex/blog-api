@@ -31,7 +31,6 @@ function Hero({ coverPosts }){
                     width:`${ aboveMediumScreens ? '70%' : '100%' }`, 
                     marginRight:'1rem' 
                 }}
-                className="heroCover"
             >
                 {/* cover image */}
                 <div
@@ -113,7 +112,6 @@ function Hero({ coverPosts }){
                     flexDirection:'column', 
                     background:'rgb(3, 0, 28)' 
                 }}
-                className="heroTrending"
             >
                 {/* heading */}
                 <h3
