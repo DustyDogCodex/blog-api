@@ -16,9 +16,9 @@ function Trending({ postId, title, subtitle }) {
             }}
             className="link"
         >
-            <p style={{ color:'white', fontSize:'2rem', margin:'0' }}>{title}</p>
+            <p style={{ color:'white', fontSize:'1.75rem', margin:'0' }}>{title}</p>
             
-            <span style={{ color:'grey', fontSize:'1.5rem' }}>{subtitle}</span>
+            <span style={{ color:'grey', fontSize:'1.25rem' }}>{subtitle}</span>
         </Link>
     )
 }
