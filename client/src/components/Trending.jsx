@@ -9,7 +9,7 @@ function Trending({ postId, title, subtitle }) {
         <Link
             to={`/post/${postId}`}
             style={{ 
-                margin:'1.5rem 1rem', 
+                margin:'1.25rem 1rem', 
                 borderBottom:"1px solid rgb(211,211,211, 0.6)",  
                 paddingBottom:'2rem',
                 textAlign:`${ aboveMediumScreens ? 'left' : 'center' }`
